@@ -49,5 +49,8 @@
     @section("scripts")
 
     @show
+    <br>
+    <br>
+    @include('auth.partials.footer')
   </body>
 </html>

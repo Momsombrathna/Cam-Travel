@@ -2,9 +2,11 @@
 
 @section('content')
 
-    <h1 class="mb-3">Laravel 8 User Roles and Permissions Step by Step Tutorial - codeanddeploy.com</h1>
+    <h1 class="mb-3">User Management</h1>
+    <a href="{{ route('roles.index') }}" class="btn btn-primary btn-sm">Users Roles</a>
+    <a href="{{ route('posts.index') }}" class="btn btn-primary btn-sm">Posts</a>
 
-    <div class="bg-light p-4 rounded">
+    <div class="bg-light p-4 rounded mt-3">
         <h1>Users</h1>
         <div class="lead">
             Manage your users here.

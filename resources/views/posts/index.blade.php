@@ -1,10 +1,13 @@
 @extends('layouts.app-master')
 
 @section('content')
+    
+    <h1 class="mb-3">Post Contents</h1>
+    <a href="{{ route('users.index') }}" class="btn btn-primary btn-sm">Users</a>
+    <a href="{{ route('roles.index') }}" class="btn btn-primary btn-sm">User Roles</a>
+    
 
-    <h1 class="mb-3">Laravel 8 User Roles and Permissions Step by Step Tutorial - codeanddeploy.com</h1>
-
-    <div class="bg-light p-4 rounded">
+    <div class="bg-light p-4 rounded mt-3">
         <h2>Posts</h2>
         <div class="lead">
             Manage your posts here.
