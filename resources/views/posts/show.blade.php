@@ -1,6 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
+    <br/><br/><br/>
     <div class="bg-light p-4 rounded">
         <h2>Show post</h2>
         <div class="lead">

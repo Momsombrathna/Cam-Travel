@@ -14,11 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['namespace' => 'App\Http\Controllers'], function()
-{   
+{
     /**
      * Home Routes
      */
     Route::get('/', 'HomeController@index')->name('home.index');
+    Route::get('/place', 'PlaceController@index')->name('place.index');
+    Route::get('/photo', 'PhotoController@index')->name('photo.index');
+    Route::get('/uploadphoto', 'UploadPhotoController@index')->name('uploadphoto.index');
+    Route::get('/uploadplace', 'UploadPlaceController@index')->name('uploadplace.index');
+    Route::get('/profile', 'UserProfileController@index')->name('profile.index');
 
     Route::group(['middleware' => ['guest']], function() {
         /**

@@ -1,4 +1,4 @@
-
+{{--
     <!-- Footer -->
     <footer class="bg-white">
       <div class="container py-5">
@@ -45,7 +45,7 @@
           </div>
         </div>
       </div>
-  
+
       <!-- Copyrights -->
       <div class="bg-light py-4">
         <div class="container text-center">
@@ -54,5 +54,4 @@
       </div>
     </footer>
     <!-- End -->
-  
-  
+ --}}
