@@ -1,10 +1,10 @@
 @extends('layouts.app-master')
 
 @section('content')
-<br/><br/><br/><br/><br/><br/>
+    <br/><br/><br/>
     <h1 class="mb-3">Post Contents</h1>
-    <a href="{{ route('users.index') }}" class="btn btn-primary btn-sm">Users</a>
-    <a href="{{ route('roles.index') }}" class="btn btn-primary btn-sm">User Roles</a>
+    {{-- <a href="{{ route('users.index') }}" class="btn btn-primary btn-sm">Users</a>
+    <a href="{{ route('roles.index') }}" class="btn btn-primary btn-sm">User Roles</a> --}}
 
 
     <div class="bg-light p-4 rounded mt-3">

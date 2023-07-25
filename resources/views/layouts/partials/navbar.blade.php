@@ -29,10 +29,11 @@
                     <li><a href="{{ route('photo.index') }}">Photo</a></li>
 
                     @auth
-                        @role('Admin')
+                        @role('admin')
                             <li><a href="{{ route('users.index') }}">User</a></li>
                             <li><a href="{{ route('roles.index') }}">Role</a></li>
                         @endrole
+                        
                         <li><a href="{{ route('posts.index') }}">Post</a></li>
                     @endauth
                 </ul>
@@ -94,6 +95,6 @@
 
         </div>
     </nav>
-    <script type="text/javascript" src="{{ asset('assets/js/navbar.js') }}"/>
+    <script type="text/javascript" src="{{ asset('assets/js/navbar.js') }}"></script>
 </body>
 </html>
