@@ -28,7 +28,7 @@ class UserProfileController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'username' => 'required|max:191',
+            'username' => 'nullable|max:18',
             'image'    => 'required|max:655',
             'phone'    => 'required|max:12',
             'address'  => 'required|max:191',
