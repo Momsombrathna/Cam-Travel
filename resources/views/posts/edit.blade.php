@@ -28,11 +28,11 @@
 
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <input value="{{ $post->description }}" 
+                    <textarea 
                         type="text" 
                         class="form-control" 
                         name="description" 
-                        placeholder="Description" required>
+                        placeholder="Description" required>{{ $post->description }}</textarea>
 
                     @if ($errors->has('description'))
                         <span class="text-danger text-left">{{ $errors->first('description') }}</span>
@@ -40,15 +40,28 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="body" class="form-label">Body</label>
+                    <label for="body" class="form-label">image</label>
                     <textarea
                         type="text" 
                         class="form-control" 
-                        name="body" 
-                        placeholder="Body" required>{{ $post->body }}</textarea>
+                        name="image" 
+                        placeholder="Image Link" required>{{ $post->image }}</textarea>
 
-                    @if ($errors->has('body'))
-                        <span class="text-danger text-left">{{ $errors->first('body') }}</span>
+                    @if ($errors->has('image'))
+                        <span class="text-danger text-left">{{ $errors->first('image') }}</span>
+                    @endif
+                </div>
+
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <textarea 
+                        type="text" 
+                        class="form-control" 
+                        name="location" 
+                        placeholder="Location Link" required>{{ $post->location }}</textarea>
+
+                    @if ($errors->has('location'))
+                        <span class="text-danger text-left">{{ $errors->first('location') }}</span>
                     @endif
                 </div>
 

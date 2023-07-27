@@ -23,7 +23,8 @@
     {{-- @section('content') --}}
 
     <div class="card container ">
-        <form method="POST" action="{{ route('posts.store') }}">
+        <form method="POST" action="{{ route('uploadphoto.store') }}">
+            @csrf
             <div class="row">
                 <div class="col">
                     <div class="container">
@@ -31,30 +32,44 @@
                           <div class="icon">
                             <i class="fas fa-images"></i>
                           </div>
-            
+                          <span class="header">Drag & Drop</span>
+                          <span class="header">or <span class="button">browse</span></span>
+                          <input type="file" hidden />
+                          <span class="support">Supports: JPEG, JPG, PNG</span>
                         </div>
                     </div>
-                    <img id="image" style="width: 100px" style="height: 100px" />
                 </div>
                 <div class="col formtext">
                     <div class="form-group">
                         <label for="inputTitle">Title</label>
-                        <input type="text" name="title"  class="form-control mt-2" id="title" placeholder="title">
+                        <input type="text" name="title" class="form-control mt-2" id="inputTitle" placeholder="Title">
+                        @if ($errors->has('title'))
+                        <span class="text-danger text-left">{{ $errors->first('title') }}</span>
+                    @endif
                     </div>
                     <div class="form-group mt-4">
-                        <label for="inputDescription">Description</label>
-                        <textarea type="text" name="description" class="form-control mt-2" id="decription" placeholder="Description"></textarea>
+                        <label>Description</label>
+                        <input type="text" name="description" class="form-control mt-2"  placeholder="Description">
+                        @if ($errors->has('description'))
+                        <span class="text-danger text-left">{{ $errors->first('description') }}</span>
+                    @endif
                     </div>
                     <div class="form-group mt-4">
-                        <label for="inputLocation">Image</label>
-                        <input type="text" name="image" class="form-control mt-2" id="imageUrl" placeholder="image Link">
+                        <label for="inputLocation">Image Link</label>
+                        <input type="text" name="image" class="form-control mt-2" placeholder="Image Linnk">
+                        @if ($errors->has('image'))
+                        <span class="text-danger text-left">{{ $errors->first('image') }}</span>
+                    @endif
                     </div>
                     <div class="form-group mt-4">
                         <label for="inputLocation">Loaction</label>
-                        <input type="text" name="location" class="form-control mt-2" id="location" placeholder="Location">
+                        <input type="text" name="location" class="form-control mt-2"  placeholder="Location">
+                        @if ($errors->has('location'))
+                        <span class="text-danger text-left">{{ $errors->first('location') }}</span>
+                        @endif
                     </div>
                     <div class="form-group mt-4">
-                        <button type="button" type="submit" class="btn btn-info mt-2">Submit</button>
+                        <button type="submit" class="btn btn-info mt-2">Submit</button>
                     </div>
 
                 </div>
@@ -67,20 +82,3 @@
 </html>
 
 
-{{--  javascript for drag and drop image --}}
-<script>
-    function showImage() {
-    // Get the image URL from the user input.
-    const imageUrl = document.getElementById("imageUrl").value;
-
-    // Create an HTML element for the image.
-    const imageElement = document.createElement("img");
-    imageElement.src = imageUrl;
-
-    // Append the image to the DOM.
-    document.getElementById("image").appendChild(imageElement);
-    }
-
-    // Show the image when the page loads.
-    window.onload = showImage;
-</script>

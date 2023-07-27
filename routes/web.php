@@ -61,8 +61,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
              * Dashboard Routes
              */
             Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
-            Route::get('/uploadphoto', 'UploadPhotoController@index')->name('uploadphoto.index');
             Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
+
+            Route::get('/uploadphoto', 'UploadPhotoController@index')->name('uploadphoto.index');
+            Route::get('/uploadphoto/create', 'UploadPhotoController@create')->name('uploadphoto.create');
+            Route::post('/uploadphoto/create', 'UploadPhotoController@store')->name('uploadphoto.store');
+            Route::get('/uploadphoto/{post}/show', 'UploadPhotoController@show')->name('uploadphoto.show');
+
 
             Route::get('profile', 'UserProfileController@index')->name('profile.index');
             Route::get('profile/edit', 'UserProfileController@edit')->name('profile.edit');
