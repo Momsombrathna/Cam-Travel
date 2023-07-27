@@ -10,12 +10,19 @@
 
     <!-- ===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        @media screen and (max-width: 720px) {
+          .hide-on-small {
+            display: none;
+          }
+        }
+        </style>
 </head>
 <body>
     <nav>
         <div class="nav-bar">
             <i class='bx bx-menu sidebarOpen' ></i>
-            <span class="logo navLogo"><a href="#">The Travel</a></span>
+            <span class="logo navLogo hide-on-small"><a href="#">The Travel</a></span>
 
             <div class="menu">
                 <div class="logo-toggle">
@@ -30,11 +37,17 @@
 
                     @auth
                         @role('admin')
+                            <li><a href="{{ route('users.index') }}">Dashboad</a></li>
+                            {{-- <li><a href="{{ route('roles.index') }}">Role</a></li>
+                            <li><a href="{{ route('posts.index') }}">Post</a></li> --}}
+                        @endrole
+                        @role('stuff')
                             <li><a href="{{ route('users.index') }}">User</a></li>
-                            <li><a href="{{ route('roles.index') }}">Role</a></li>
+                            {{-- <li><a href="{{ route('roles.index') }}">Role</a></li> --}}
+                            <li><a href="{{ route('posts.index') }}">Post</a></li>
                         @endrole
                         
-                        <li><a href="{{ route('posts.index') }}">Post</a></li>
+                        
                     @endauth
                 </ul>
             </div>
@@ -71,13 +84,13 @@
                 @endauth
                 @auth
                     <div style="margin-left: 10px;" class="dropdown">
-                        <img class="userImage" src="https://images.pexels.com/photos/15767257/pexels-photo-15767257.jpeg?cs=srgb&dl=pexels-thamyres-silva-15767257.jpg&fm=jpg&_gl=1*gt2tmu*_ga*MTMxMjgzNTE2NC4xNjg5Mzg4NjIx*_ga_8JE65Q40S6*MTY4OTg0NTYzNS41LjEuMTY4OTg0Njk2NS4wLjAuMA.."
+                        <img class="userImage" src="{{ auth()->user()->image }}" alt="avatar"
                         class="dropdown-toggle" type="profile" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true">
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="{{ route('profile.index') }}" >Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Edit Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Forgot Password</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Edit Profile</a></li>
+                            {{-- <li><a class="dropdown-item" href="#">Forgot Password</a></li> --}}
                             <li><a class="dropdown-item" href="{{ route('logout.perform') }}" >Logout</a></li>
                         </ul>
                     </div>

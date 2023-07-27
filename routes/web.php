@@ -21,9 +21,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::get('/', 'HomeController@index')->name('home.index');
     Route::get('/place', 'PlaceController@index')->name('place.index');
     Route::get('/photo', 'PhotoController@index')->name('photo.index');
-    Route::get('/uploadphoto', 'UploadPhotoController@index')->name('uploadphoto.index');
-    Route::get('/uploadplace', 'UploadPlaceController@index')->name('uploadplace.index');
-    Route::get('/profile', 'UserProfileController@index')->name('profile.index');
+    
 
     Route::group(['middleware' => ['guest']], function() {
         /**
@@ -38,15 +36,45 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('/login', 'LoginController@show')->name('login.show');
         Route::post('/login', 'LoginController@login')->name('login.perform');
 
-        Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
-
+        
     });
 
-    Route::group(['middleware' => ['auth', 'permission']], function() {
+    // Route::group(['middleware' => ['auth']], function() {
+    //     Route::get('/email/verify', 'VerificationController@show')->name('verification.notice');
+    //     Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify')->middleware(['signed']);
+    //     Route::post('/email/resend', 'VerificationController@resend')->name('verification.resend');
+    //     Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
+
+    // });
+
+    Route::group(['middleware' => ['auth']], function() {
+
+        /**
+        * Verification Routes
+        */
+        Route::get('/email/verify', 'VerificationController@show')->name('verification.notice');
+        Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify')->middleware(['signed']);
+        Route::post('/email/resend', 'VerificationController@resend')->name('verification.resend');
+        
+        Route::group(['middleware' => ['verified']], function() {
+            /**
+             * Dashboard Routes
+             */
+            Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
+            Route::get('/uploadphoto', 'UploadPhotoController@index')->name('uploadphoto.index');
+            Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
+
+            Route::get('profile', 'UserProfileController@index')->name('profile.index');
+            Route::get('profile/edit', 'UserProfileController@edit')->name('profile.edit');
+            Route::post('profile/edit', 'UserProfileController@update')->name('profile.update');
+    });
+    });
+
+
+    Route::group(['middleware' => ['auth', 'permission', 'verified']], function() {
         /**
          * Logout Routes
          */
-        Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
 
         /**
          * User Routes
@@ -73,6 +101,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::patch('/{post}/update', 'PostsController@update')->name('posts.update');
             Route::delete('/{post}/delete', 'PostsController@destroy')->name('posts.destroy');
         });
+
+        Route::get('/uploadplace', 'UploadPlaceController@index')->name('uploadplace.index');
 
         Route::resource('roles', RolesController::class);
         Route::resource('permissions', PermissionsController::class);
