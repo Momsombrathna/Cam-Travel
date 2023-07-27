@@ -34,6 +34,7 @@
 
     <!-- Custom styles for this template -->
     <link href="{!! url('assets/css/app.css') !!}" rel="stylesheet">
+    <link href="{!! url('assets/css/main.css') !!}" rel="stylesheet">
 </head>
 <body>
 

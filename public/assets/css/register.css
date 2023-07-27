@@ -60,11 +60,6 @@ form {
     background-color: var(--side-nav);
 }
 
-.btn {
-    width: 100%;
-    background-color: var(--search-bar);
-    color: var(--search-bar);
-}
 body.dark nav{
     border: 1px solid #393838;
 }
