@@ -1,5 +1,6 @@
 
-@extends('layouts.app-master')
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,39 +21,39 @@
 </head>
 <body>
 
-    {{-- @section('content') --}}
+    @extends('layouts.app-master')
 
     <div class="card container ">
-        <form>
+        <form method="POST" id="uploadImage" autocomplete="off">
             <div class="row">
                 <div class="col">
-                    <div class="container">
+                    <div class="container textmode">
                         <div class="drag-area">
                           <div class="icon">
                             <i class="fas fa-images"></i>
                           </div>
                           <span class="header">Drag & Drop</span>
-                          <span class="header">or <span class="button">browse</span></span>
-                          <input type="file" hidden />
+                          <span id="image" name="image" class="header">or <span class="button">browse</span></span>
+                          <input type="file" id="image" name="image" hidden />
                           <span class="support">Supports: JPEG, JPG, PNG</span>
                         </div>
                     </div>
                 </div>
-                <div class="col formtext">
+                <div class="col formtext textmode">
                     <div class="form-group">
                         <label for="inputTitle">Title</label>
-                        <input type="text" class="form-control mt-2" id="inputTitle" placeholder="Title">
+                        <input type="text" class="form-control mt-2" id="title" name="title" placeholder="Title">
                     </div>
                     <div class="form-group mt-4">
                         <label for="inputDescription">Description</label>
-                        <input type="text" class="form-control mt-2" id="inputDecription" placeholder="Description">
+                        <input type="text" class="form-control mt-2" id="decription" name="decription" placeholder="Description">
                     </div>
                     <div class="form-group mt-4">
                         <label for="inputLocation">Loaction</label>
-                        <input type="file" class="form-control mt-2" id="inputLocation" placeholder="Location">
+                        <input type="text" class="form-control mt-2" id="location" name="location" placeholder="Location">
                     </div>
                     <div class="form-group mt-4">
-                        <button type="button" class="btn btn-info mt-2">Submit</button>
+                        <button type="button" id="submitUpload" class="btn btn-info mt-2">Submit</button>
                     </div>
 
                 </div>
@@ -65,7 +66,8 @@
 </html>
 
 
-{{--  javascript for drag and drop image --}}
+
+// {{--  javascript for drag and drop image --}}
 <script>
     const dropArea = document.querySelector('.drag-area');
     const dragText = document.querySelector('.header');
@@ -133,3 +135,5 @@
     }
     }
 </script>
+
+

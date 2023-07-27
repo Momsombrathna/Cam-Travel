@@ -17,20 +17,38 @@
     --text-color: #071e3d;
     --search-bar: #071e3d;
     --search-text: #fefeff;
+    --h1: #071e3d;
+    --card: #fff;
 }
 
 body{
-    height: 100vh;
+    height: auto;
     background-color: var(--body-color);
 }
 
 body.dark{
-    --body-color: #18191A;
+    --body-color: #242526;
     --nav-color: #242526;
     --side-nav: #071e3d;
     --text-color: #fefeff;
-    --search-bar: #071e3d;
+    --search-bar: #fefeff;
+    --search-text: #071e3d;
+    --h1: #fefeff;
+    --card: #242526;
 }
+
+h1 {
+    color: var(--h1);
+    align-items: center;
+}
+
+.card {
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--card);
+}
+
 
 nav{
     position: fixed;
@@ -226,7 +244,7 @@ nav .nav-bar .logo a{
 }
 
 body.dark .search-field input{
-    color: var(--text-color);
+    color: var(--search-text);
 }
 
 .search-field i{
@@ -238,7 +256,7 @@ body.dark .search-field input{
 }
 
 body.dark .search-field i{
-    color: var(--text-color);
+    color: var(--search-text);
 }
 
 @media (max-width: 790px) {
@@ -301,9 +319,14 @@ ul {
   }
 
 .userImage {
+    display: inline-block;
     width: 50px;
     height: 50px;
     border-radius: 50%;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
 
 /* profile dropdown */

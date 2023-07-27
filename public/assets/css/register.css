@@ -1,0 +1,14 @@
+
+/* register */
+.registercard {
+    height: 550px;
+}
+
+@media (max-width:1067px) {
+    .registercard {
+        width: 90%;
+        height: auto;
+    }
+
+}
+

@@ -34,6 +34,7 @@
 
     <!-- Custom styles for this template -->
     <link href="{!! url('assets/css/app.css') !!}" rel="stylesheet">
+    <link href="{!! url('assets/css/main.css') !!}" rel="stylesheet">
 </head>
 <body>
 
@@ -43,14 +44,19 @@
         @yield('content')
     </main>
 
+    {{-- <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.1.0/firebase-app.js"></script> --}}
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{!! url('assets/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
+
 
     @section("scripts")
 
     @show
     <br>
-    <br>
+    <br> <br>
     @include('auth.partials.footer')
   </body>
 </html>

@@ -12,14 +12,15 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
+    @extends('layouts.auth-master')
     <nav>
         <div class="nav-bar">
             <i class='bx bx-menu sidebarOpen' ></i>
-            <span class="logo navLogo"><a href="#">The Travel</a></span>
+            <span class="logo navLogo"><img src="{{URL::asset('images/logo.png')}}" alt="logo" height="auto" width="170px"></span>
 
             <div class="menu">
                 <div class="logo-toggle">
-                    <span class="logo"><a href="#">The Travel</a></span>
+                    <span class="logo"><img src="{{URL::asset('images/logo.png')}}" alt="logo" height="auto" width="170px"></span>
                     <i class='bx bx-x siderbarClose'></i>
                 </div>
 
@@ -33,7 +34,7 @@
                             <li><a href="{{ route('users.index') }}">User</a></li>
                             <li><a href="{{ route('roles.index') }}">Role</a></li>
                         @endrole
-                        <li><a href="{{ route('posts.index') }}">Post</a></li>
+                        <li><a href="{{ route('posts.index') }}">Dashboard</a></li>
                     @endauth
                 </ul>
             </div>
