@@ -1,4 +1,4 @@
-{{-- @extends('layouts.app-master')
+@extends('layouts.app-master')
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('assets/css/homepage.css') }}">
@@ -60,4 +60,4 @@ FOR KIDS</h2>
 </section>
 <!-- end of hero slider -->
 
- --}}
+
