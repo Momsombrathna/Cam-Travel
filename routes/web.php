@@ -62,7 +62,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
              */
             Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
             Route::get('/uploadphoto', 'UploadPhotoController@index')->name('uploadphoto.index');
-            Route::get('/uploadphoto/store', 'UploadPhotoController@store')->name('uploadphoto.store');
             Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
 
             Route::get('profile', 'UserProfileController@index')->name('profile.index');

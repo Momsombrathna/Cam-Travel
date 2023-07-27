@@ -23,7 +23,7 @@
     {{-- @section('content') --}}
 
     <div class="card container ">
-        <form method="POST" action="{{ route('posts.store') }}">
+        <form>
             <div class="row">
                 <div class="col">
                     <div class="container">
@@ -31,30 +31,28 @@
                           <div class="icon">
                             <i class="fas fa-images"></i>
                           </div>
-            
+                          <span class="header">Drag & Drop</span>
+                          <span class="header">or <span class="button">browse</span></span>
+                          <input type="file" hidden />
+                          <span class="support">Supports: JPEG, JPG, PNG</span>
                         </div>
                     </div>
-                    <img id="image" style="width: 100px" style="height: 100px" />
                 </div>
                 <div class="col formtext">
                     <div class="form-group">
                         <label for="inputTitle">Title</label>
-                        <input type="text" name="title"  class="form-control mt-2" id="title" placeholder="title">
+                        <input type="text" class="form-control mt-2" id="inputTitle" placeholder="Title">
                     </div>
                     <div class="form-group mt-4">
                         <label for="inputDescription">Description</label>
-                        <textarea type="text" name="description" class="form-control mt-2" id="decription" placeholder="Description"></textarea>
-                    </div>
-                    <div class="form-group mt-4">
-                        <label for="inputLocation">Image</label>
-                        <input type="text" name="image" class="form-control mt-2" id="imageUrl" placeholder="image Link">
+                        <input type="text" class="form-control mt-2" id="inputDecription" placeholder="Description">
                     </div>
                     <div class="form-group mt-4">
                         <label for="inputLocation">Loaction</label>
-                        <input type="text" name="location" class="form-control mt-2" id="location" placeholder="Location">
+                        <input type="file" class="form-control mt-2" id="inputLocation" placeholder="Location">
                     </div>
                     <div class="form-group mt-4">
-                        <button type="button" type="submit" class="btn btn-info mt-2">Submit</button>
+                        <button type="button" class="btn btn-info mt-2">Submit</button>
                     </div>
 
                 </div>
@@ -69,18 +67,69 @@
 
 {{--  javascript for drag and drop image --}}
 <script>
-    function showImage() {
-    // Get the image URL from the user input.
-    const imageUrl = document.getElementById("imageUrl").value;
+    const dropArea = document.querySelector('.drag-area');
+    const dragText = document.querySelector('.header');
 
-    // Create an HTML element for the image.
-    const imageElement = document.createElement("img");
-    imageElement.src = imageUrl;
+    let button = dropArea.querySelector('.button');
+    let input = dropArea.querySelector('input');
 
-    // Append the image to the DOM.
-    document.getElementById("image").appendChild(imageElement);
+    let file;
+
+    button.onclick = () => {
+    input.click();
+    };
+    // when browse
+    input.addEventListener('change', function () {
+    file = this.files[0];
+    dropArea.classList.add('active');
+    displayFile();
+    });
+
+    // when file is inside drag area
+    dropArea.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    dropArea.classList.add('active');
+    dragText.textContent = 'Release to Upload';
+    // console.log('File is inside the drag area');
+    });
+
+    // when file leave the drag area
+    dropArea.addEventListener('dragleave', () => {
+    dropArea.classList.remove('active');
+    // console.log('File left the drag area');
+    dragText.textContent = 'Drag & Drop';
+    });
+
+    // when file is dropped
+    dropArea.addEventListener('drop', (event) => {
+    event.preventDefault();
+    // console.log('File is dropped in drag area');
+
+    file = event.dataTransfer.files[0]; // grab single file even of user selects multiple files
+    // console.log(file);
+    displayFile();
+    });
+
+    function displayFile() {
+    let fileType = file.type;
+    // console.log(fileType);
+
+    let validExtensions = ['image/jpeg', 'image/jpg', 'image/png'];
+
+    if (validExtensions.includes(fileType)) {
+    // console.log('This is an image file');
+    let fileReader = new FileReader();
+
+    fileReader.onload = () => {
+    let fileURL = fileReader.result;
+    // console.log(fileURL);
+    let imgTag = `<img src="${fileURL}" alt="">`;
+    dropArea.innerHTML = imgTag;
+    };
+    fileReader.readAsDataURL(file);
+    } else {
+    alert('This is not an Image File');
+    dropArea.classList.remove('active');
     }
-
-    // Show the image when the page loads.
-    window.onload = showImage;
+    }
 </script>
