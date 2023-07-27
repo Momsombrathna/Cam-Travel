@@ -1,16 +1,63 @@
-@extends('layouts.app-master')
+{{-- @extends('layouts.app-master')
 
 @section('content')
-    <div class="bg-light p-5 rounded">
-        @auth
-        <h1>Dashboard</h1>
-        <p class="lead">Only authenticated users can access this section.</p>
-        <a class="btn btn-lg btn-primary" href="https://codeanddeploy.com" role="button">View more tutorials here &raquo;</a>
-        @endauth
+<link rel="stylesheet" href="{{ asset('assets/css/homepage.css') }}">
+<br/><br/><br/>
+<link href="https://fonts.googleapis.com/css?family=Rajdhani&display=swap" rel="stylesheet">
+<!-- start of hero -->
+<section class="hero-slider hero-style">
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="slide-inner slide-bg-image" data-background="https://images.unsplash.com/photo-1578934191836-ff5f608c2228?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80">
+          <div class="container">
+            <div data-swiper-parallax="300" class="slide-title">
+              <h2>GUITAR CLASSES
+FOR KIDS</h2>
+            </div>
+            <div data-swiper-parallax="400" class="slide-text">
+              <p>Want to see your kid become more expressive?</p>
+            </div>
+            <div class="clearfix"></div>
+            <div data-swiper-parallax="500" class="slide-btns">
+              <a href="#" class="theme-btn-s2">Register now</a>
+              <a href="#" class="theme-btn-s3"><i class="fas fa-chevron-circle-right"></i> Get Info</a>
+            </div>
+          </div>
+        </div>
+        <!-- end slide-inner -->
+      </div>
+      <!-- end swiper-slide -->
 
-        @guest
-        <h1>Homepage</h1>
-        <p class="lead">Your viewing the home page. Please login to view the restricted data.</p>
-        @endguest
+      <div class="swiper-slide">
+        <div class="slide-inner slide-bg-image" data-background="https://images.unsplash.com/photo-1579003087287-997fd4d18771?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80">
+          <div class="container">
+            <div data-swiper-parallax="300" class="slide-title">
+              <h2>GUITAR CLASSES
+FOR KIDS</h2>
+            </div>
+            <div data-swiper-parallax="400" class="slide-text">
+              <p>Want to see your kid become more expressive?</p>
+            </div>
+            <div class="clearfix"></div>
+            <div data-swiper-parallax="500" class="slide-btns">
+              <a href="#" class="theme-btn-s2">Register now</a>
+              <a href="#" class="theme-btn-s3"><i class="fas fa-chevron-circle-right"></i>Get Info</a>
+            </div>
+          </div>
+        </div>
+        <!-- end slide-inner -->
+      </div>
+      <!-- end swiper-slide -->
     </div>
-@endsection
+    <!-- end swiper-wrapper -->
+
+    <!-- swipper controls -->
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</section>
+<!-- end of hero slider -->
+
+ --}}
