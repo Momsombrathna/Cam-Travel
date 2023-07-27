@@ -1,11 +1,11 @@
 @extends('layouts.app-master')
 
 @section('content')
-    
+    <br/><br/><br/>
     <h1 class="mb-3">Post Contents</h1>
-    <a href="{{ route('users.index') }}" class="btn btn-primary btn-sm">Users</a>
-    <a href="{{ route('roles.index') }}" class="btn btn-primary btn-sm">User Roles</a>
-    
+    {{-- <a href="{{ route('users.index') }}" class="btn btn-primary btn-sm">Users</a>
+    <a href="{{ route('roles.index') }}" class="btn btn-primary btn-sm">User Roles</a> --}}
+
 
     <div class="bg-light p-4 rounded mt-3">
         <h2>Posts</h2>
@@ -21,13 +21,19 @@
         <table class="table table-bordered">
           <tr>
              <th width="1%">No</th>
-             <th>Name</th>
+             <th>title</th>
+             <th>description</th>
+             <th>location</th>
+             <th>image</th>
              <th width="3%" colspan="3">Action</th>
           </tr>
             @foreach ($posts as $key => $post)
             <tr>
                 <td>{{ $post->id }}</td>
                 <td>{{ $post->title }}</td>
+                <td>{{ $post->description }}</td>
+                <td>{{ $post->location }}</td>
+                <td><img src="{{ $post->image }}" alt=""></td>
                 <td>
                     <a class="btn btn-info btn-sm" href="{{ route('posts.show', $post->id) }}">Show</a>
                 </td>

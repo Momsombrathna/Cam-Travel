@@ -1,6 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
+    <br/><br/><br/>
     <div class="bg-light p-4 rounded">
         <h2>Add new post</h2>
         <div class="lead">
@@ -26,11 +27,9 @@
 
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <input value="{{ old('description') }}" 
-                        type="text" 
-                        class="form-control" 
+                    <textarea class="form-control" 
                         name="description" 
-                        placeholder="Description" required>
+                        placeholder="Description" required>{{ old('description') }}</textarea>
 
                     @if ($errors->has('description'))
                         <span class="text-danger text-left">{{ $errors->first('description') }}</span>
@@ -38,18 +37,31 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="body" class="form-label">Body</label>
-                    <textarea class="form-control" 
-                        name="body" 
-                        placeholder="Body" required>{{ old('body') }}</textarea>
+                    <label for="image" class="form-label">Image Link</label>
+                    <input value="{{ old('image') }}" 
+                        type="text" 
+                        class="form-control" 
+                        name="image" 
+                        placeholder="Image Link" required>
 
-                    @if ($errors->has('body'))
-                        <span class="text-danger text-left">{{ $errors->first('body') }}</span>
+                    @if ($errors->has('image'))
+                        <span class="text-danger text-left">{{ $errors->first('image') }}</span>
+                    @endif
+                </div>
+
+                <div class="mb-3">
+                    <label for="body" class="form-label">Location</label>
+                    <textarea class="form-control" 
+                        name="location" 
+                        placeholder="location" required>{{ old('location') }}</textarea>
+
+                    @if ($errors->has('location'))
+                        <span class="text-danger text-left">{{ $errors->first('location') }}</span>
                     @endif
                 </div>
 
 
-                <button type="submit" class="btn btn-primary">Save role</button>
+                <button type="submit" class="btn btn-primary">Save Post</button>
                 <a href="{{ route('posts.index') }}" class="btn btn-default">Back</a>
             </form>
         </div>

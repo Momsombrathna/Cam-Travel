@@ -1,38 +1,113 @@
-<header class="p-3 bg-dark text-white">
-  <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
-      </a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="{{ route('home.index') }}" class="nav-link px-2 text-white">Home</a></li>
-        @auth
-          @role('Admin')
-          <li><a href="{{ route('users.index') }}" class="nav-link px-2 text-white">Users</a></li>
-          <li><a href="{{ route('roles.index') }}" class="nav-link px-2 text-white">Roles</a></li>
-          @endrole
-          <li><a href="{{ route('posts.index') }}" class="nav-link px-2 text-white">Post</a></li>
-        @endauth
-      </ul>
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="{{ asset('assets/css/navbar.css') }}">
 
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-      </form>
+    <!-- ===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        @media screen and (max-width: 720px) {
+          .hide-on-small {
+            display: none;
+          }
+        }
+        </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-bar">
+            <i class='bx bx-menu sidebarOpen' ></i>
+            <span class="logo navLogo hide-on-small"><a href="#">The Travel</a></span>
 
-      @auth
-        {{auth()->user()->name}}&nbsp;
-        <div class="text-end">
-          <a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Logout</a>
+            <div class="menu">
+                <div class="logo-toggle">
+                    <span class="logo"><a href="#">The Travel</a></span>
+                    <i class='bx bx-x siderbarClose'></i>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="{{ route('home.index') }}" >Home</a></li>
+                    <li><a href="{{ route('place.index') }}">Place</a></li>
+                    <li><a href="{{ route('photo.index') }}">Photo</a></li>
+
+                    @auth
+                        @role('admin')
+                            <li><a href="{{ route('users.index') }}">Dashboad</a></li>
+                            {{-- <li><a href="{{ route('roles.index') }}">Role</a></li>
+                            <li><a href="{{ route('posts.index') }}">Post</a></li> --}}
+                        @endrole
+                        @role('stuff')
+                            <li><a href="{{ route('users.index') }}">User</a></li>
+                            {{-- <li><a href="{{ route('roles.index') }}">Role</a></li> --}}
+                            <li><a href="{{ route('posts.index') }}">Post</a></li>
+                        @endrole
+                        
+                        
+                    @endauth
+                </ul>
+            </div>
+
+            <div class="darkLight-searchBox">
+                <div class="dark-light">
+                    <i class='bx bx-moon moon'></i>
+                    <i class='bx bx-sun sun'></i>
+                </div>
+
+                <div class="searchBox">
+                   <div class="searchToggle">
+                        <i class='bx bx-x cancel'></i>
+                        <i class='bx bx-search search'></i>
+                   </div>
+                    <div class="search-field">
+                        <input type="text" placeholder="Search...">
+                        <i class='bx bx-search'></i>
+                    </div>
+                </div>
+
+                @auth
+                    <div style="margin-left: 10px;" class="dropdown">
+                        <button src="https://images.pexels.com/photos/15767257/pexels-photo-15767257.jpeg?cs=srgb&dl=pexels-thamyres-silva-15767257.jpg&fm=jpg&_gl=1*gt2tmu*_ga*MTMxMjgzNTE2NC4xNjg5Mzg4NjIx*_ga_8JE65Q40S6*MTY4OTg0NTYzNS41LjEuMTY4OTg0Njk2NS4wLjAuMA.."
+                        class=" btn btn-info dropdown-toggle" type="profile" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true">
+                        Upload
+                        </button>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="{{ route('uploadphoto.create') }}" >Upload photo</a></li>
+                            <li><a class="dropdown-item" href="{{ route('uploadplace.index') }}" >Upload place</a></li>
+                        </ul>
+                    </div>
+                @endauth
+                @auth
+                    <div style="margin-left: 10px;" class="dropdown">
+                        <img class="userImage" src="{{ auth()->user()->image }}" alt="avatar"
+                        class="dropdown-toggle" type="profile" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true">
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="{{ route('profile.index') }}" >Profile</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Edit Profile</a></li>
+                            {{-- <li><a class="dropdown-item" href="#">Forgot Password</a></li> --}}
+                            <li><a class="dropdown-item" href="{{ route('logout.perform') }}" >Logout</a></li>
+                        </ul>
+                    </div>
+                @endauth
+
+                @guest
+                    <div>
+                        <a href="{{ route('login.perform') }}" type="button" class="btn btn-outline-success">Login</a>
+                    </div>
+                    <div style="margin-left: 10px;">
+                        <a href="{{ route('register.perform') }}" type="button" class="btn btn-outline-info">Sign Up</a>
+                    </div>
+                @endguest
+            </div>
+
         </div>
-      @endauth
-
-      @guest
-        <div class="text-end">
-          <a href="{{ route('login.perform') }}" class="btn btn-outline-light me-2">Login</a>
-          <a href="{{ route('register.perform') }}" class="btn btn-warning">Sign-up</a>
-        </div>
-      @endguest
-    </div>
-  </div>
-</header>
+    </nav>
+    <script type="text/javascript" src="{{ asset('assets/js/navbar.js') }}"></script>
+</body>
+</html>
