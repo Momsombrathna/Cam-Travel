@@ -37,7 +37,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        Post::create(array_merge($request->only('title', 'description', 'body'),[
+        Post::create(array_merge($request->only('title', 'description', 'image', 'location'),[
             'user_id' => auth()->id()
         ]));
 

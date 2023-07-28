@@ -1,58 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+    <title>Footer</title>
+</head>
+<body>
 
+
+    <div class=" fuild footermode">
     <!-- Footer -->
-    <footer class="bg-white">
-      <div class="container py-5">
-        <div class="row py-4">
-          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src="https://i.pinimg.com/originals/33/b8/69/33b869f90619e81763dbf1fccc896d8d.jpg" alt="" width="180" class="mb-3">
-            <p class="font-italic text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-            <ul class="list-inline mt-4">
-              <li class="list-inline-item"><a href="#" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></li>
-              <li class="list-inline-item"><a href="#" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></li>
-              <li class="list-inline-item"><a href="#" target="_blank" title="instagram"><i class="fa fa-instagram"></i></a></li>
-              <li class="list-inline-item"><a href="#" target="_blank" title="pinterest"><i class="fa fa-pinterest"></i></a></li>
-              <li class="list-inline-item"><a href="#" target="_blank" title="vimeo"><i class="fa fa-vimeo"></i></a></li>
-            </ul>
-          </div>
-          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-            <h6 class="text-uppercase font-weight-bold mb-4">Shop</h6>
-            <ul class="list-unstyled mb-0">
-              <li class="mb-2"><a href="#" class="text-muted">For Women</a></li>
-              <li class="mb-2"><a href="#" class="text-muted">For Men</a></li>
-              <li class="mb-2"><a href="#" class="text-muted">Stores</a></li>
-              <li class="mb-2"><a href="#" class="text-muted">Our Blog</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-            <h6 class="text-uppercase font-weight-bold mb-4">Company</h6>
-            <ul class="list-unstyled mb-0">
-              <li class="mb-2"><a href="#" class="text-muted">Login</a></li>
-              <li class="mb-2"><a href="#" class="text-muted">Register</a></li>
-              <li class="mb-2"><a href="#" class="text-muted">Wishlist</a></li>
-              <li class="mb-2"><a href="#" class="text-muted">Our Products</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-lg-0">
-            <h6 class="text-uppercase font-weight-bold mb-4">Newsletter</h6>
-            <p class="text-muted mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At itaque temporibus.</p>
-            <div class="p-1 rounded border">
-              <div class="input-group">
-                <input type="email" placeholder="Enter your email address" aria-describedby="button-addon1" class="form-control border-0 shadow-0">
-                <div class="input-group-append">
-                  <button id="button-addon1" type="submit" class="btn btn-link"><i class="fa fa-paper-plane"></i></button>
-                </div>
-              </div>
+   <!-- Footer -->
+    <footer class=" text-center text-lg-start text-muted">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+        <!-- Left -->
+        <div class="footertextmode me-5 d-none d-lg-block">
+            <span>Get connected with us on social networks:</span>
+        </div>
+        <!-- Left -->
+
+        <!-- Right -->
+        <div>
+            <a href="" class=" me-4 text-reset">
+            <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+            <i class="fab fa-twitter"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+            <i class="fab fa-google"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+            <i class="fab fa-instagram"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+            <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+            <i class="fab fa-github"></i>
+            </a>
+        </div>
+        <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        <section class="">
+        <div class="container footertextmode text-center text-md-start mt-5">
+            <!-- Grid row -->
+            <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <!-- Content -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                <i class="fas fa-gem me-3"></i>Company name
+                </h6>
+                <p>
+                    Here you can find a place to relax easily with mab. Not only that,
+                    you can also find rich pictures here and you can also post pictures.
+                </p>
             </div>
-          </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                Products
+                </h6>
+                <p>
+                <a href="#!" class="text-reset">Angular</a>
+                </p>
+                <p>
+                <a href="#!" class="text-reset">React</a>
+                </p>
+                <p>
+                <a href="#!" class="text-reset">Vue</a>
+                </p>
+                <p>
+                <a href="#!" class="text-reset">Laravel</a>
+                </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                    Reference
+                </h6>
+                <p>
+                <a href="#!" class="text-reset">Pricing</a>
+                </p>
+                <p>
+                <a href="#!" class="text-reset">Settings</a>
+                </p>
+                <p>
+                <a href="#!" class="text-reset">Orders</a>
+                </p>
+                <p>
+                <a href="#!" class="text-reset">Help</a>
+                </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                <p><i class="fas fa-home me-3"></i>
+                RUPP (Royal University of Phnom Penh), មហាវិថី សហពន្ធ័រុស្ស៊ី (១១០), ភ្នំពេញ</p>
+                <p>
+                <i class="fas fa-envelope me-3"></i>
+                info@TheTravel.com
+                </p>
+                <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+                <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+            </div>
+            <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
         </div>
-      </div>
-  
-      <!-- Copyrights -->
-      <div class="bg-light py-4">
-        <div class="container text-center">
-          <p class="text-muted mb-0 py-2">© 2023 Cam-Travel All rights reserved.</p>
+        </section>
+        <!-- Section: Links  -->
+
+        <!-- Copyright -->
+        <div class="text-center footertextmode p-4" style="background-color: rgba(40, 59, 73, 0.353);">
+        © 2023 Cam-Travel All rights reserved.
         </div>
-      </div>
+        <!-- Copyright -->
     </footer>
-    <!-- End -->
-  
-  
+    <!-- Footer -->
+
+    </div>
+
+</body>
+</html>
