@@ -1,60 +1,100 @@
+
 @extends('layouts.app-master')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="{{ asset('assets/css/upload.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/draganddrop.css') }}">
+    <title>Upload photo</title>
 
-@section('content')
-    <br/><br/><br/>
-    <h1 class="mb-3">Post Contents</h1>
-    {{-- <a href="{{ route('users.index') }}" class="btn btn-primary btn-sm">Users</a>
-    <a href="{{ route('roles.index') }}" class="btn btn-primary btn-sm">User Roles</a> --}}
+</head>
+<body>
+    <div style="margin-top: 90px;" >
+    <div class="container textmode card py-2 mb-3">
+        <img style="cursor: pointer; " onclick="history.back()" src="{{URL::asset('images/back.png')}}" alt="logo" height="auto" width="40px">
+    </div>
 
 
-    <div class="bg-light p-4 rounded mt-3">
-        <h2>Posts</h2>
-        <div class="lead">
-            Manage your posts here.
-            {{-- <a href="{{ route('posts.create') }}" class="btn btn-primary btn-sm float-right">Add post</a> --}}
-        </div>
 
-        <div class="mt-2">
-            @include('layouts.partials.messages')
-        </div>
+    <div class="card container ">
+        <form method="POST" action="{{ route('posts.store') }}">
+            @csrf
+            <div class="row">
+                <div class="col">
+                    <div class="container">
+                        <div class="drag-area">
+                          <div class="icon">
+                            <div id="image-container" class="p-3"></div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col formtext">
+                    <div class="form-group">
+                        <label for="inputTitle">Title</label>
+                        <input type="text" name="title" class="form-control mt-2" id="inputTitle" maxlength="70" placeholder="Title">
+                        @if ($errors->has('title'))
+                        <span class="text-danger text-left">{{ $errors->first('title') }}</span>
+                    @endif
+                    </div>
+                    <div class="form-group mt-4">
+                        <label>Description</label>
+                        <textarea type="text" name="description" class="form-control mt-2"  maxlength="290" placeholder="Description"></textarea>
+                        @if ($errors->has('description'))
+                        <span class="text-danger text-left">{{ $errors->first('description') }}</span>
+                    @endif
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputLocation">Image Link</label>
+                        <input type="text" name="image" id="image-url" onchange="showImage(this.value)" class="form-control mt-2" placeholder="Image Linnk"/>
+                        @if ($errors->has('image'))
+                        <span class="text-danger text-left">{{ $errors->first('image') }}</span>
+                    @endif
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputLocation">Loaction</label>
+                        <textarea type="text" name="location" class="form-control mt-2"  placeholder="Location"></textarea>
+                        @if ($errors->has('location'))
+                        <span class="text-danger text-left">{{ $errors->first('location') }}</span>
+                        @endif
+                    </div>
+                    <div class="form-group mt-4">
+                        <button type="submit" class="btn btn-info mt-2">Submit</button>
+                    </div>
 
-        <table class="table table-bordered">
-          <tr>
-             <th width="1%">No</th>
-             <th>post by</th>
-             <th>title</th>
-             <th>description</th>
-             <th>location</th>
-             <th>image</th>
-             <th>post by user</th>
-             <th width="3%" colspan="3">Action</th>
-          </tr>
-            @foreach ($posts as $key => $post)
-            <tr>
-                <td>{{ $key + 1 }}</td>
-                <td>{{ $post->user->username }}</td>
-                <td>{{ $post->title }}</td>
-                <td>{{ $post->description }}</td>
-                <td>{{ $post->location }}</td>
-                <td><img src="{{ $post->image }}" alt="" style="width: 50px" style="height: 50px"></td>
-                <td>
-                    <a class="btn btn-info btn-sm" href="{{ route('posts.show', $post->id) }}">Show</a>
-                </td>
-                {{-- <td>
-                    <a class="btn btn-primary btn-sm" href="{{ route('posts.edit', $post->id) }}">Edit</a>
-                </td> --}}
-                <td>
-                    {!! Form::open(['method' => 'DELETE','route' => ['posts.destroy', $post->id],'style'=>'display:inline']) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
-                    {!! Form::close() !!}
-                </td>
-            </tr>
-            @endforeach
-        </table>
-
-        <div class="d-flex">
-            {!! $posts->links() !!}
-        </div>
+                </div>
+              </div>
+        </form>
+    </div>
 
     </div>
-@endsection
+</body>
+<script>
+    // This function takes an image URL as input and displays it in a div element
+    function showImage(url) {
+    // Create a new image element
+    let image = document.createElement("img");
+    // Set the source attribute to the URL
+    image.src = url;
+    // Set the width and height attributes to fit the div
+    image.width = 300;
+    image.height = 200;
+    // Find the div element by its id
+    let container = document.getElementById("image-container");
+    // Append the image element to the div
+    container.appendChild(image);
+    }
+  </script>
+</html>
+
+

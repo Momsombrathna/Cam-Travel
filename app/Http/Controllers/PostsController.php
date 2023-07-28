@@ -37,9 +37,14 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        Post::create(array_merge($request->only('title', 'description', 'image', 'location'),[
-            'user_id' => auth()->id()
-        ]));
+        $post = new Post();
+        $post->title = $request->input('title');
+        $post->description = $request->input('description');
+        $post->image = $request->input('image');
+        $post->location = $request->input('location');
+        $post->user_id = auth()->user()->id;
+
+        $post->save();
 
         return redirect()->route('posts.index')
             ->withSuccess(__('Post created successfully.'));
@@ -80,7 +85,7 @@ class PostsController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $post->update($request->only('title', 'description', 'body'));
+        $post->update($request->only('title', 'description', 'image', 'location'));
 
         return redirect()->route('posts.index')
             ->withSuccess(__('Post updated successfully.'));

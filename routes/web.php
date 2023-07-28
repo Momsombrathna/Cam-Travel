@@ -106,6 +106,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         });
 
         Route::get('/uploadplace', 'UploadPlaceController@index')->name('uploadplace.index');
+        Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 
         Route::resource('roles', RolesController::class);
         Route::resource('permissions', PermissionsController::class);

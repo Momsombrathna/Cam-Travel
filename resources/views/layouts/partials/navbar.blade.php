@@ -37,7 +37,7 @@
 
                     @auth
                         @role('admin')
-                            <li><a href="{{ route('users.index') }}">Dashboad</a></li>
+                            <li><a href="{{ route('dashboard.index') }}">Dashboad</a></li>
                             {{-- <li><a href="{{ route('roles.index') }}">Role</a></li>
                             <li><a href="{{ route('posts.index') }}">Post</a></li> --}}
                         @endrole

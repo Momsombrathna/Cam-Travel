@@ -40,6 +40,9 @@
                     <a class="btn btn-info btn-sm" href="{{ route('posts.show', $post->id) }}">Show</a>
                 </td>
                 <td>
+                    <a class="btn btn-info btn-sm" href="{{ route('posts.edit', $post->id) }}">edit</a>
+                </td>
+                <td>
                     {!! Form::open(['method' => 'DELETE','route' => ['posts.destroy', $post->id],'style'=>'display:inline']) !!}
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
                     {!! Form::close() !!}
