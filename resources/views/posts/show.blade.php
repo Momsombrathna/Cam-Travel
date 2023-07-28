@@ -1,6 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
+    <br/><br/><br/>
     <div class="bg-light p-4 rounded">
         <h2>Show post</h2>
         <div class="lead">
@@ -11,11 +12,14 @@
             <div>
                 Title: {{ $post->title }}
             </div>
+            <img src="{{ $post->image }}" alt="" style="width: 200px" style="height: 200px">
             <div>
                 Description: {{ $post->description }}
             </div>
             <div>
-                Body: {{ $post->body }}
+                Location: {{ $post->location }}
+            </div>
+            <td>Post by: {{ $post->user->username }}</td>
             </div>
         </div>
 

@@ -1,0 +1,84 @@
+/* ===== Google Font Import - Poppins ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.4s ease;;
+}
+
+
+/* ===== Colours ===== */
+:root{
+    --body-color: #E4E9F7;
+    --text-color: #242526;
+    --footer-color: #242526;
+    --fotertextmode: #E4E9F7;
+}
+
+body{
+    height: auto;
+    background-color: var(--body-color);
+}
+
+body.dark{
+    --body-color: #000000;
+    --text-color: #E4E9F7;
+    --footer-color: #242526;
+    --fotertextmode: #E4E9F7;
+}
+.textmode {
+    color: var(--text-color);
+}
+
+.footermode {
+    background-color: var(--footer-color);
+    color: var(--footer-color);
+}
+.footertextmode {
+    color: var(--fotertextmode);
+}
+
+
+/* profile */
+  .image--cover {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+
+    object-fit: cover;
+    /* object-position: center right; */
+  }
+/* end profile */
+
+
+
+
+/* ============================================================ */
+/* card show photo */
+.card-show-photo {
+    background-color: #fff;
+    height: 1000px;
+    width: 100%;
+    max-width: auto;
+    max-height: 1200px;
+}
+.image-card img {
+    width: auto;
+    height: auto;
+    margin-top: 30px;
+    max-height: 700px;
+    object-fit: cover;
+    /* object-fit: cover; */
+}
+
+
+
+
+
+
+
+
+
+

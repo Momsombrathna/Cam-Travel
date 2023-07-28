@@ -1,58 +1,100 @@
+
 @extends('layouts.app-master')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="{{ asset('assets/css/upload.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/draganddrop.css') }}">
+    <title>Upload photo</title>
 
-@section('content')
-    <div class="bg-light p-4 rounded">
-        <h2>Add new post</h2>
-        <div class="lead">
-            Add new post.
-        </div>
+</head>
+<body>
+    <div style="margin-top: 90px;" >
+    <div class="container textmode card py-2 mb-3">
+        <img style="cursor: pointer; " onclick="history.back()" src="{{URL::asset('images/back.png')}}" alt="logo" height="auto" width="40px">
+    </div>
 
-        <div class="container mt-4">
 
-            <form method="POST" action="{{ route('posts.store') }}">
-                @csrf
-                <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
-                    <input value="{{ old('title') }}" 
-                        type="text" 
-                        class="form-control" 
-                        name="title" 
-                        placeholder="Title" required>
 
-                    @if ($errors->has('title'))
+    <div class="card container ">
+        <form method="POST" action="{{ route('posts.store') }}">
+            @csrf
+            <div class="row">
+                <div class="col">
+                    <div class="container">
+                        <div class="drag-area">
+                          <div class="icon">
+                            <div id="image-container" class="p-3"></div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col formtext">
+                    <div class="form-group">
+                        <label for="inputTitle">Title</label>
+                        <input type="text" name="title" class="form-control mt-2" id="inputTitle" maxlength="70" placeholder="Title">
+                        @if ($errors->has('title'))
                         <span class="text-danger text-left">{{ $errors->first('title') }}</span>
                     @endif
-                </div>
-
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
-                    <input value="{{ old('description') }}" 
-                        type="text" 
-                        class="form-control" 
-                        name="description" 
-                        placeholder="Description" required>
-
-                    @if ($errors->has('description'))
+                    </div>
+                    <div class="form-group mt-4">
+                        <label>Description</label>
+                        <textarea type="text" name="description" class="form-control mt-2"  maxlength="290" placeholder="Description"></textarea>
+                        @if ($errors->has('description'))
                         <span class="text-danger text-left">{{ $errors->first('description') }}</span>
                     @endif
-                </div>
-
-                <div class="mb-3">
-                    <label for="body" class="form-label">Body</label>
-                    <textarea class="form-control" 
-                        name="body" 
-                        placeholder="Body" required>{{ old('body') }}</textarea>
-
-                    @if ($errors->has('body'))
-                        <span class="text-danger text-left">{{ $errors->first('body') }}</span>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputLocation">Image Link</label>
+                        <input type="text" name="image" id="image-url" onchange="showImage(this.value)" class="form-control mt-2" placeholder="Image Linnk"/>
+                        @if ($errors->has('image'))
+                        <span class="text-danger text-left">{{ $errors->first('image') }}</span>
                     @endif
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputLocation">Loaction</label>
+                        <textarea type="text" name="location" class="form-control mt-2"  placeholder="Location"></textarea>
+                        @if ($errors->has('location'))
+                        <span class="text-danger text-left">{{ $errors->first('location') }}</span>
+                        @endif
+                    </div>
+                    <div class="form-group mt-4">
+                        <button type="submit" class="btn btn-info mt-2">Submit</button>
+                    </div>
+
                 </div>
-
-
-                <button type="submit" class="btn btn-primary">Save role</button>
-                <a href="{{ route('posts.index') }}" class="btn btn-default">Back</a>
-            </form>
-        </div>
+              </div>
+        </form>
+    </div>
 
     </div>
-@endsection
+</body>
+<script>
+    // This function takes an image URL as input and displays it in a div element
+    function showImage(url) {
+    // Create a new image element
+    let image = document.createElement("img");
+    // Set the source attribute to the URL
+    image.src = url;
+    // Set the width and height attributes to fit the div
+    image.width = 300;
+    image.height = 200;
+    // Find the div element by its id
+    let container = document.getElementById("image-container");
+    // Append the image element to the div
+    container.appendChild(image);
+    }
+  </script>
+</html>
+
+
