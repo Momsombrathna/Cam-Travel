@@ -20,7 +20,13 @@
 </head>
 <body>
 
+    <br><br><br><br><br>
     {{-- @section('content') --}}
+
+<div class="container textmode card py-2 mb-3">
+    <img style="cursor: pointer" onclick="history.back()" src="{{URL::asset('images/back.png')}}" alt="logo" height="auto" width="40px">
+</div>
+
 
     <div class="card container ">
         <form method="POST" action="{{ route('uploadphoto.update', $post->id) }}">

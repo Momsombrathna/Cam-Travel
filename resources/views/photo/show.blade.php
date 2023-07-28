@@ -47,6 +47,7 @@
 
     </div>
 
+    <br>
     <div style="float: left">
         <h4>{{ $post->title }}</h4>
         <p>{{ $post->description }}</p>

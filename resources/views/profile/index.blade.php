@@ -16,7 +16,7 @@
 
     @extends('layouts.app-master')
     @section('content')
-    <br/><br/><br/>
+    <br/><br/>
 
 {{-- ======================================================================= --}}
 {{-- Section Profile User --}}

@@ -67,8 +67,7 @@ body.dark{
 .image-card img {
     width: auto;
     height: auto;
-    padding: 20px;
-    margin-top: 50px;
+    margin-top: 30px;
     max-height: 700px;
     object-fit: cover;
     /* object-fit: cover; */
