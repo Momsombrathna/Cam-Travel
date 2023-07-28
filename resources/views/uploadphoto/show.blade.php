@@ -16,7 +16,9 @@
                 <div class="row" style="float:left; text-align:center; justify-content:center; align-items: center;">
                     @auth
                     <div class="col" style="float: left; cursor:pointer" >
-                        <img class="userImage" src="{{ auth()->user()->image }}" alt="avatar"/>
+                        <a href="{{ route('profile.index', $user->id) }}">
+                            <img class="userImage" src="{{$post->user->image }}" alt="avatar"/>
+                        </a>
                     </div>
                     <div class="col">
                         <h5>{{ $post->user->username }}</h5>

@@ -14,11 +14,14 @@
     <body>
         @extends('layouts.partials.navbar')
         <br><br><br><br>
+
         <div class="container-fluid mb-5">
             <div class="row gy-4 masonry">
                 @foreach ($posts as $post)
                 <div class="col-lg-3 col-md-4 col-6">
-                    <img src="{{ $post->image }}"  class="img-fluid">
+                    <a href="{{ route('photo.show', $post->id) }}">
+                        <img src="{{ $post->image }}"  class="img-fluid">
+                    </a>
                 </div>
                 @endforeach
             </div>
