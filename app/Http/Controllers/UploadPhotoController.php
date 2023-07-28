@@ -17,7 +17,7 @@ class UploadPhotoController extends Controller
     {
         $posts = Post::where('user_id', auth()->user()->id)->get();
 
-        return view('uploadphoto.index', compact('posts'));
+        return view('profile.index', compact('posts'));
     }
 
     public function create()
@@ -38,13 +38,37 @@ class UploadPhotoController extends Controller
 
         $post->save();
 
-        return redirect()->route('uploadphoto.index');
+        return redirect()->route('profile.index');
     }
 
     public function show(Post $post)
-{
-    $user = $post->user;
+    {
+        $user = $post->user;
+    
 
-    return view('uploadphoto.show', compact('post', 'user'));
-}
+        return view('uploadphoto.show', compact('post', 'user'));
+    }
+
+    public function edit(Post $post)
+    {
+        return view('uploadphoto.edit', [
+            'post' => $post
+        ]);
+    }
+
+    public function update(Request $request, Post $post)
+    {
+        $post->update($request->only('title', 'description', 'image', 'location'));
+
+        return redirect()->route('profile.index')
+            ->withSuccess(__('Post updated successfully.'));
+    }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
+
+        return redirect()->route('profile.index')
+            ->withSuccess(__('Post deleted successfully.'));
+    }
 }

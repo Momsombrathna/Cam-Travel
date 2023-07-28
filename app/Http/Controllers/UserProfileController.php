@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Post;
 
 
 class UserProfileController extends Controller
@@ -14,9 +15,17 @@ class UserProfileController extends Controller
     public function index()
     {
         $user = auth()->user();
+        $posts = Post::where('user_id', auth()->user()->id)->get();
 
-        return view('profile.index', compact('user'));
+        return view('profile.index', compact('user', 'posts'));
     }
+
+    // public function showpost()
+    // {
+    //     $posts = Post::where('user_id', auth()->user()->id)->get();
+
+    //     return view('profile.index', compact('posts'));
+    // }
 
     public function edit()
     {

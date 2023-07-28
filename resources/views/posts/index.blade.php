@@ -21,24 +21,23 @@
         <table class="table table-bordered">
           <tr>
              <th width="1%">No</th>
-             <th>title</th>
-             <th>description</th>
-             <th>location</th>
-             <th>image</th>
+             <th>Post by</th>
+             <th>Title</th>
+             <th>Description</th>
+             <th>Location</th>
+             <th>Image</th>
              <th width="3%" colspan="3">Action</th>
           </tr>
             @foreach ($posts as $key => $post)
             <tr>
-                <td>{{ $post->id }}</td>
+                <td>{{ $key + 1 }}</td>
+                <td>{{ $post->user->username }}</td>
                 <td>{{ $post->title }}</td>
                 <td>{{ $post->description }}</td>
                 <td>{{ $post->location }}</td>
-                <td><img src="{{ $post->image }}" alt=""></td>
+                <td><img src="{{ $post->image }}" alt="" style="width: 50px" style="height: 50px"></td>
                 <td>
                     <a class="btn btn-info btn-sm" href="{{ route('posts.show', $post->id) }}">Show</a>
-                </td>
-                <td>
-                    <a class="btn btn-primary btn-sm" href="{{ route('posts.edit', $post->id) }}">Edit</a>
                 </td>
                 <td>
                     {!! Form::open(['method' => 'DELETE','route' => ['posts.destroy', $post->id],'style'=>'display:inline']) !!}

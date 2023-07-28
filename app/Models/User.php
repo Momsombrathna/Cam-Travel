@@ -32,9 +32,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
     ];
 
-    public function UserPosts()
+    public function Post()
     {
-        return $this->hasMany(UserPost::class);
+        return $this->hasMany(Post::class);
     }
 
     /**

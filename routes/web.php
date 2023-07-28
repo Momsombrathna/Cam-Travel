@@ -21,6 +21,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::get('/', 'HomeController@index')->name('home.index');
     Route::get('/place', 'PlaceController@index')->name('place.index');
     Route::get('/photo', 'PhotoController@index')->name('photo.index');
+    Route::get('/photo/{post}/show', 'PhotoController@show')->name('photo.show');
+    
     
 
     Route::group(['middleware' => ['guest']], function() {
@@ -39,14 +41,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         
     });
 
-    // Route::group(['middleware' => ['auth']], function() {
-    //     Route::get('/email/verify', 'VerificationController@show')->name('verification.notice');
-    //     Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify')->middleware(['signed']);
-    //     Route::post('/email/resend', 'VerificationController@resend')->name('verification.resend');
-    //     Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
-
-    // });
-
     Route::group(['middleware' => ['auth']], function() {
 
         /**
@@ -55,6 +49,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('/email/verify', 'VerificationController@show')->name('verification.notice');
         Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify')->middleware(['signed']);
         Route::post('/email/resend', 'VerificationController@resend')->name('verification.resend');
+        
         
         Route::group(['middleware' => ['verified']], function() {
             /**
@@ -66,10 +61,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::get('/uploadphoto', 'UploadPhotoController@index')->name('uploadphoto.index');
             Route::get('/uploadphoto/create', 'UploadPhotoController@create')->name('uploadphoto.create');
             Route::post('/uploadphoto/create', 'UploadPhotoController@store')->name('uploadphoto.store');
+            Route::get('/uploadphoto/{post}/edit', 'UploadPhotoController@edit')->name('uploadphoto.edit');
             Route::get('/uploadphoto/{post}/show', 'UploadPhotoController@show')->name('uploadphoto.show');
-
+            Route::patch('/uploadphoto/{post}/update', 'UploadPhotoController@update')->name('uploadphoto.update');
+            Route::delete('/uploadphoto/{post}/delete', 'UploadPhotoController@destroy')->name('uploadphoto.destroy');
 
             Route::get('profile', 'UserProfileController@index')->name('profile.index');
+            // Route::get('profile', 'UserProfileController@showpost')->name('profile.showpost');
             Route::get('profile/edit', 'UserProfileController@edit')->name('profile.edit');
             Route::post('profile/edit', 'UserProfileController@update')->name('profile.update');
     });

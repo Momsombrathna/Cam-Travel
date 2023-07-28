@@ -10,53 +10,30 @@
     @extends('layouts.app-master')
     @section('content')
     <br/><br/><br/>
-
-   <div class="container fulid py-5">
-    <!-- Gallery -->
-    <div class="row">
-        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-        <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
-            class="w-100 shadow-1-strong rounded mb-4"
-            alt="Boat on Calm Water"
-        />
-
-        <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp"
-            class="w-100 shadow-1-strong rounded mb-4"
-            alt="Wintry Mountain Landscape"
-        />
+    
+    <div class="container fulid py-5">
+        <!-- Gallery -->
+        @foreach ($posts as $key => $post)
+        <div class="row">
+            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+            <img
+                src="{{ $post->image }}"
+                class="w-100 shadow-1-strong rounded mb-4"
+                alt="Boat on Calm Water"
+            />
+            <a class="btn btn-info btn-sm" href="{{ route('photo.show', $post->id) }}">Show</a>
+            </div>   
         </div>
-
-        <div class="col-lg-4 mb-4 mb-lg-0">
-        <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp"
-            class="w-100 shadow-1-strong rounded mb-4"
-            alt="Mountains in the Clouds"
-        />
-
-        <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
-            class="w-100 shadow-1-strong rounded mb-4"
-            alt="Boat on Calm Water"
-        />
-        </div>
-
-        <div class="col-lg-4 mb-4 mb-lg-0">
-        <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(18).webp"
-            class="w-100 shadow-1-strong rounded mb-4"
-            alt="Waves at Sea"
-        />
-
-        <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain3.webp"
-            class="w-100 shadow-1-strong rounded mb-4"
-            alt="Yosemite National Park"
-        />
-        </div>
+        @endforeach
+        <!-- Gallery -->
     </div>
-    <!-- Gallery -->
-   </div>
+   
+
+   {{-- @guest
+        <h1>Homepage</h1>
+        <p class="lead">Your viewing the home page. Please login to view the restricted data.</p>
+    @endguest --}}
 </body>
 </html>
+
+

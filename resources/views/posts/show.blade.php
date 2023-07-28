@@ -12,15 +12,14 @@
             <div>
                 Title: {{ $post->title }}
             </div>
-            <img src="{{ $post->image }}" alt="" style="width: 50px" style="height: 50px">
+            <img src="{{ $post->image }}" alt="" style="width: 200px" style="height: 200px">
             <div>
                 Description: {{ $post->description }}
             </div>
             <div>
                 Location: {{ $post->location }}
             </div>
-            <div>
-                Posted by {{ $post->user->username }}
+            <td>Post by: {{ $post->user->username }}</td>
             </div>
         </div>
 

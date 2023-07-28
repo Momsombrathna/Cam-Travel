@@ -23,8 +23,9 @@
     {{-- @section('content') --}}
 
     <div class="card container ">
-        <form method="POST" action="{{ route('uploadphoto.store') }}">
+        <form method="POST" action="{{ route('uploadphoto.update', $post->id) }}">
             @csrf
+            @method('patch')
             <div class="row">
                 <div class="col">
                     <div class="container">
@@ -42,28 +43,28 @@
                 <div class="col formtext">
                     <div class="form-group">
                         <label for="inputTitle">Title</label>
-                        <input type="text" name="title" class="form-control mt-2" id="inputTitle" placeholder="Title">
+                        <input type="text" name="title" class="form-control mt-2" id="inputTitle" placeholder="Title" value="{{ $post->title}}">
                         @if ($errors->has('title'))
                         <span class="text-danger text-left">{{ $errors->first('title') }}</span>
                     @endif
                     </div>
                     <div class="form-group mt-4">
                         <label>Description</label>
-                        <textarea type="text" name="description" class="form-control mt-2"  placeholder="Description"></textarea>
+                        <textarea type="text" name="description" class="form-control mt-2"  placeholder="Description">{{ $post->description}}</textarea>
                         @if ($errors->has('description'))
                         <span class="text-danger text-left">{{ $errors->first('description') }}</span>
                     @endif
                     </div>
                     <div class="form-group mt-4">
                         <label for="inputLocation">Image Link</label>
-                        <textarea type="text" name="image" class="form-control mt-2" placeholder="Image Linnk"></textarea>
+                        <textarea type="text" name="image" class="form-control mt-2" placeholder="Image Linnk">{{ $post->image}}</textarea>
                         @if ($errors->has('image'))
                         <span class="text-danger text-left">{{ $errors->first('image') }}</span>
                     @endif
                     </div>
                     <div class="form-group mt-4">
                         <label for="inputLocation">Loaction</label>
-                        <textarea type="text" name="location" class="form-control mt-2"  placeholder="Location"></textarea>
+                        <textarea type="text" name="location" class="form-control mt-2"  placeholder="Location">{{ $post->location}}</textarea>
                         @if ($errors->has('location'))
                         <span class="text-danger text-left">{{ $errors->first('location') }}</span>
                         @endif
