@@ -19,8 +19,12 @@
 
 </head>
 <body>
+    <div style="margin-top: 90px;" >
+    <div class="container textmode card py-2 mb-3">
+        <img style="cursor: pointer; " onclick="history.back()" src="{{URL::asset('images/back.png')}}" alt="logo" height="auto" width="40px">
+    </div>
 
-    {{-- @section('content') --}}
+
 
     <div class="card container ">
         <form method="POST" action="{{ route('uploadphoto.store') }}">
@@ -42,14 +46,14 @@
                 <div class="col formtext">
                     <div class="form-group">
                         <label for="inputTitle">Title</label>
-                        <input type="text" name="title" class="form-control mt-2" id="inputTitle" placeholder="Title">
+                        <input type="text" name="title" class="form-control mt-2" id="inputTitle" maxlength="70" placeholder="Title">
                         @if ($errors->has('title'))
                         <span class="text-danger text-left">{{ $errors->first('title') }}</span>
                     @endif
                     </div>
                     <div class="form-group mt-4">
                         <label>Description</label>
-                        <textarea type="text" name="description" class="form-control mt-2"  placeholder="Description"></textarea>
+                        <textarea type="text" name="description" class="form-control mt-2"  maxlength="290" placeholder="Description"></textarea>
                         @if ($errors->has('description'))
                         <span class="text-danger text-left">{{ $errors->first('description') }}</span>
                     @endif
@@ -77,7 +81,7 @@
         </form>
     </div>
 
-
+    </div>
 </body>
 </html>
 

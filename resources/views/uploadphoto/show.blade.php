@@ -2,20 +2,65 @@
 
 @section('content')
     <br><br><br>
-    <p>{{ $post->title }}</p>
 
-    <p>{{ $post->decription }}</p>
 
-    <img src=" {{$post->image}} " alt="" style="width: 50px" style="height: 50px"/>
+<div class="container textmode card py-2 mb-3">
+    <img style="cursor: pointer" onclick="history.back()" src="{{URL::asset('images/back.png')}}" alt="logo" height="auto" width="40px">
+</div>
 
-    <p>Location: {{ $post->location }}</p>
+<div class="card-show-photo mb-5" style="padding: 30px">
+    <div class="text-center" >
 
-    <p>Posted by {{ $post->user ? $post->user->name : 'Anonymous' }}</p>
-    <a href="{{ route('uploadphoto.edit', $post->id) }}" class="btn btn-primary">Edit</a>
-    <form action="{{ route('uploadphoto.destroy', $post) }}" method="POST">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="btn btn-danger">Delete Post</button>
-    </form>
+        <div class="row" >
+            <div class="col">
+                <div class="row" style="float:left; text-align:center; justify-content:center; align-items: center;">
+                    @auth
+                    <div class="col" style="float: left; cursor:pointer" >
+                        <img class="userImage" src="{{ auth()->user()->image }}" alt="avatar"/>
+                    </div>
+                    <div class="col">
+                        <h5>{{ $post->user->username }}</h5>
+                    </div>
+                    @endauth
+                  </div>
+            </div>
+            <div class="col">
+                <div class="row" style="float:right">
+                    <div class="col">
+                        <a href="{{ route('uploadphoto.edit', $post->id) }}" class="btn btn-primary">Edit</a>
+                    </div>
+                    <div class="col">
+                        <form action="{{ route('uploadphoto.destroy', $post) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        <div class="image-card text-center">
+            <img src=" {{$post->image}} " alt=""/>
+        </div>
+
+    </div>
+
+    <div style="float: left">
+        <h4>{{ $post->title }}</h4>
+        <p>{{ $post->description }}</p>
+        <div>
+            <img src="{{URL::asset('images/location.png')}}" alt="logo" height="auto" width="20px">
+
+            <a class="textmode" href="{{ $post->location }}" target="blank">{{ $post->location }}</a>
+        </div>
+
+    </div>
+
+</div>
+
+
 
 @endsection
+
+

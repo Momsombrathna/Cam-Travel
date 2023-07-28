@@ -22,11 +22,11 @@
     <nav>
         <div class="nav-bar">
             <i class='bx bx-menu sidebarOpen' ></i>
-            <span class="logo navLogo hide-on-small"><a href="#">The Travel</a></span>
+            <span class="logo navLogo hide-on-small"><a href="#"><img src="{{URL::asset('images/logo.png')}}" alt="logo" height="auto" width="185px"></a></span>
 
             <div class="menu">
                 <div class="logo-toggle">
-                    <span class="logo"><a href="#">The Travel</a></span>
+                    <span class="logo"><a href="#"><a href="#"><img src="{{URL::asset('images/logo.png')}}" alt="logo" height="auto" width="185px"></a></a></span>
                     <i class='bx bx-x siderbarClose'></i>
                 </div>
 
@@ -46,8 +46,8 @@
                             {{-- <li><a href="{{ route('roles.index') }}">Role</a></li> --}}
                             <li><a href="{{ route('posts.index') }}">Post</a></li>
                         @endrole
-                        
-                        
+
+
                     @endauth
                 </ul>
             </div>

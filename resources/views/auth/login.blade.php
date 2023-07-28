@@ -1,37 +1,5 @@
-{{-- @extends('layouts.auth-master')
-@section('content')
-    <form method="post" action="{{ route('login.perform') }}">
-
-        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-
-        <h1 class="h3 mb-3 fw-normal">Login</h1>
-
-        @include('layouts.partials.messages')
-
-        <div class="form-group form-floating mb-3">
-            <input type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="Username" autofocus>
-            <label for="floatingName">Email or Username</label>
-            @if ($errors->has('username'))
-                <span class="text-danger text-left">{{ $errors->first('username') }}</span>
-            @endif
-        </div>
-
-        <div class="form-group form-floating mb-3">
-            <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Password" >
-            <label for="floatingPassword">Password</label>
-            @if ($errors->has('password'))
-                <span class="text-danger text-left">{{ $errors->first('password') }}</span>
-            @endif
-        </div>
-
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
-
-        @include('auth.partials.copy')
-    </form>
-@endsection --}}
 
 @extends('layouts.app-master')
-{{-- @extends('layouts.auth-master') --}}
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
@@ -66,14 +34,23 @@
                         </div>
 
                         <div class="form-group form-floating mb-3">
-                            <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Password" required="required">
+                            <input type="password" id="MyPassword" class="form-control" name="password" value="{{ old('password') }}" placeholder="Password" required="required">
                             <label for="floatingPassword">Password</label>
                             @if ($errors->has('password'))
                                 <span class="text-danger text-left">{{ $errors->first('password') }}</span>
                             @endif
                         </div>
 
-                        <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+                        <div class="form-group mb-3">
+                            <input class="form-check-input "type="checkbox" onclick="ShowPassword()" value="" >
+                            <label class="form-check-label" for="flexCheckChecked">
+                              Show Password
+                            </label>
+                        </div>
+
+                        <div class="form-group form-floating  mb-3">
+                            <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+                        </div>
 
                     </form>
 
@@ -94,4 +71,9 @@
     </div>
 
 @endsection
+
+
+{{-- call JavaScript to show password from public--}}
+<script type="text/javascript" src="{{ asset('assets/js/showpassword.js') }}"></script>
+{{-- end JavaScript to show passowrd --}}
 

@@ -1,12 +1,13 @@
 @extends('layouts.app-master')
 @section('content')
-<link rel="stylesheet" href="{{ asset('assets/css/register.css') }}">
 <br><br>
+<link rel="stylesheet" href="{{ asset('assets/css/register.css') }}">
+
 <div class="py-5 registercard">
     <div class="container">
         <div class="row d-flex justify-content-center align-items-center">
         <div class="col-lg-12 col-xl-11">
-            <div class="card text-black" style="border-radius: 25px;">
+            <div class="card text-black" style="border-radius: 5px;">
             <div class="card-body p-md-5">
                 <div class="row justify-content-center">
                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
@@ -34,7 +35,7 @@
 
 
                         <div class="form-group form-floating mb-3">
-                            <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Password" >
+                            <input type="password" id="MyPassword" class="form-control" name="password" value="{{ old('password') }}" placeholder="Password" >
                             <label for="floatingPassword">Password</label>
                             @if ($errors->has('password'))
                                 <span class="text-danger text-left">{{ $errors->first('password') }}</span>
@@ -42,14 +43,23 @@
                         </div>
 
                         <div class="form-group form-floating mb-3">
-                            <input type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Confirm Password" required="required">
+                            <input type="password" id="MyConfirmPassword" class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Confirm Password" required="required">
                             <label for="floatingConfirmPassword">Confirm Password</label>
                             @if ($errors->has('password_confirmation'))
                                 <span class="text-danger text-left">{{ $errors->first('password_confirmation') }}</span>
                             @endif
                         </div>
 
-                        <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+                        <div class="form-group mb-3">
+                            <input class="form-check-input "type="checkbox" onclick="ShowPassword()" value="" >
+                            <label class="form-check-label" for="flexCheckChecked">
+                              Show Password
+                            </label>
+                        </div>
+
+                        <div class="form-group form-floating  mb-3">
+                            <button class="w-100 btn btn-lg  btn-primary" type="submit">Register</button>
+                        </div>
                     </form>
                 </div>
 
@@ -66,3 +76,8 @@
     </div>
 </div>
 @endsection
+
+
+{{-- call JavaScript to show password from public--}}
+<script type="text/javascript" src="{{ asset('assets/js/showpassword.js') }}"></script>
+{{-- end JavaScript to show passowrd --}}

@@ -36,7 +36,6 @@ body.dark{
     position: relative;
     padding: 30px;
     margin: auto;
-    margin-top: 90px;
     height: auto;
     max-width: 1000px;
     background-color: var(--nav-color);

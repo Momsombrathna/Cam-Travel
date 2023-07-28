@@ -318,7 +318,7 @@ ul {
 
   }
 
-.userImage {
+/* .userImage {
     display: inline-block;
     width: 50px;
     height: 50px;
@@ -327,6 +327,16 @@ ul {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-}
+} */
+/* profile */
+.userImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+    object-fit: cover;
+    /* object-position: center right; */
+  }
+/* end profile */
 
 /* profile dropdown */

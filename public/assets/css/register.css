@@ -32,11 +32,11 @@ body.dark{
 }
 .card {
 
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
     position: relative;
-    padding: 30px;
+    padding: 0px;
     margin: auto;
-    margin-top: 90px;
+    margin-top: 0px;
     height: auto;
     max-width: 1000px;
     background-color: var(--nav-color);

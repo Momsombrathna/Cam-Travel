@@ -39,3 +39,47 @@ body.dark{
 .footertextmode {
     color: var(--fotertextmode);
 }
+
+
+/* profile */
+  .image--cover {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+
+    object-fit: cover;
+    /* object-position: center right; */
+  }
+/* end profile */
+
+
+
+
+/* ============================================================ */
+/* card show photo */
+.card-show-photo {
+    background-color: #fff;
+    height: 1000px;
+    width: 100%;
+    max-width: auto;
+    max-height: 1200px;
+}
+.image-card img {
+    width: auto;
+    height: auto;
+    padding: 20px;
+    margin-top: 50px;
+    max-height: 700px;
+    object-fit: cover;
+    /* object-fit: cover; */
+}
+
+
+
+
+
+
+
+
+
+
