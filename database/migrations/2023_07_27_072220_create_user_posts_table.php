@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('title', 255);
             $table->text('description');
-            $table->string('image', 655);
+            $table->longText('image');
             $table->string('location', 655);
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

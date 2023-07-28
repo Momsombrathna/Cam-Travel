@@ -19,9 +19,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
      * Home Routes
      */
     Route::get('/', 'HomeController@index')->name('home.index');
-    Route::get('/place', 'PlaceController@index')->name('place.index');
     Route::get('/photo', 'PhotoController@index')->name('photo.index');
     Route::get('/photo/{post}/show', 'PhotoController@show')->name('photo.show');
+    Route::get('/place', 'PlaceController@index')->name('place.index');
+    Route::get('/place/{post}/show', 'PlaceController@show')->name('place.show');
     
     
 
@@ -65,6 +66,14 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::get('/uploadphoto/{post}/show', 'UploadPhotoController@show')->name('uploadphoto.show');
             Route::patch('/uploadphoto/{post}/update', 'UploadPhotoController@update')->name('uploadphoto.update');
             Route::delete('/uploadphoto/{post}/delete', 'UploadPhotoController@destroy')->name('uploadphoto.destroy');
+            
+            Route::get('uploadplace/', 'UploadPlaceController@index')->name('uploadplace.index');
+            Route::get('uploadplace/create', 'UploadPlaceController@create')->name('uploadplace.create');
+            Route::post('uploadplace/create', 'PostsController@store')->name('uploadplace.store');
+            Route::get('uploadplace/{post}/show', 'UploadPlaceController@show')->name('uploadplace.show');
+            Route::get('uploadplace/{post}/edit', 'UploadPlaceController@edit')->name('uploadplace.edit');
+            Route::patch('uploadplace/{post}/update', 'UploadPlaceController@update')->name('uploadplace.update');
+            Route::delete('uploadplace/{post}/delete', 'UploadPlaceController@destroy')->name('uploadplace.destroy');
 
             Route::get('profile', 'UserProfileController@index')->name('profile.index');
             // Route::get('profile', 'UserProfileController@showpost')->name('profile.showpost');
@@ -75,9 +84,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
 
 
     Route::group(['middleware' => ['auth', 'permission', 'verified']], function() {
-        /**
-         * Logout Routes
-         */
 
         /**
          * User Routes
@@ -92,8 +98,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::delete('/{user}/delete', 'UsersController@destroy')->name('users.destroy');
         });
 
+        
+
         /**
-         * User Routes
+         * Post Routes
          */
         Route::group(['prefix' => 'posts'], function() {
             Route::get('/', 'PostsController@index')->name('posts.index');
@@ -105,7 +113,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::delete('/{post}/delete', 'PostsController@destroy')->name('posts.destroy');
         });
 
-        Route::get('/uploadplace', 'UploadPlaceController@index')->name('uploadplace.index');
+
+
+        Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 
         Route::resource('roles', RolesController::class);
         Route::resource('permissions', PermissionsController::class);

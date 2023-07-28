@@ -30,12 +30,9 @@
                     <div class="container">
                         <div class="drag-area">
                           <div class="icon">
-                            <i class="fas fa-images"></i>
+                            <div id="image-container" class="p-3"></div>
                           </div>
-                          <span class="header">Drag & Drop</span>
-                          <span class="header">or <span class="button">browse</span></span>
-                          <input type="file" hidden />
-                          <span class="support">Supports: JPEG, JPG, PNG</span>
+                          
                         </div>
                     </div>
                 </div>
@@ -56,7 +53,9 @@
                     </div>
                     <div class="form-group mt-4">
                         <label for="inputLocation">Image Link</label>
-                        <textarea type="text" name="image" class="form-control mt-2" placeholder="Image Linnk"></textarea>
+                        <form action="">
+                        <input type="text" name="image" id="image-url" onchange="showImage(this.value)" class="form-control mt-2" placeholder="Image Linnk">
+                        </form>
                         @if ($errors->has('image'))
                         <span class="text-danger text-left">{{ $errors->first('image') }}</span>
                     @endif
@@ -76,7 +75,22 @@
               </div>
         </form>
     </div>
-
+    <script>
+        // This function takes an image URL as input and displays it in a div element
+        function showImage(url) {
+        // Create a new image element
+        let image = document.createElement("img");
+        // Set the source attribute to the URL
+        image.src = url;
+        // Set the width and height attributes to fit the div
+        image.width = 300;
+        image.height = 200;
+        // Find the div element by its id
+        let container = document.getElementById("image-container");
+        // Append the image element to the div
+        container.appendChild(image);
+        }
+      </script>
 
 </body>
 </html>

@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Post;
+use App\Models\Place;
+use Carbon\Carbon;
 
 
 class UserProfileController extends Controller
@@ -16,8 +18,9 @@ class UserProfileController extends Controller
     {
         $user = auth()->user();
         $posts = Post::where('user_id', auth()->user()->id)->get();
+        $places = Place::where('user_id', auth()->user()->id)->get();
 
-        return view('profile.index', compact('user', 'posts'));
+        return view('profile.index', compact('user', 'posts', 'places'));
     }
 
     // public function showpost()
@@ -41,17 +44,23 @@ class UserProfileController extends Controller
             'phone'    => 'required|max:12',
             'address'  => 'required|max:191',
         ]);
-
-        $username = $request->username ?? $request->user()->username; // This will set `username` to the user's current username if it is not provided in the request
-
+    
+    
         $user = $request->user();
-        $user->username = $username;
         $user->image = $request->image;
         $user->phone = $request->phone;
         $user->address = $request->address;
-
-        $user->save();
-
-        return redirect()->route('profile.index');
+    
+        $today = Carbon::today();
+        $last_updated = $user->updated_at;
+    
+        if ($today->diffInWeeks($last_updated) >= 2) {
+            $user->save();
+    
+            return redirect()->route('profile.index');
+        } else {
+            return redirect()->route('profile.index')
+                ->withError(__('You can only update your profile once per two weeks.'));
+        }
     }
 }

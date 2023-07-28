@@ -18,7 +18,7 @@
                         type="text" 
                         class="form-control" 
                         name="name" 
-                        placeholder="Name" required>
+                        placeholder="Name" >
 
                     @if ($errors->has('name'))
                         <span class="text-danger text-left">{{ $errors->first('name') }}</span>
@@ -49,7 +49,7 @@
                 <div class="mb-3">
                     <label for="role" class="form-label">Role</label>
                     <select class="form-control" 
-                        name="role" required>
+                        name="role">
                         <option value="">Select role</option>
                         @foreach($roles as $role)
                             <option value="{{ $role->id }}"

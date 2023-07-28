@@ -37,6 +37,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Post::class);
     }
 
+    public function Place()
+    {
+        return $this->hasMany(Place::class);
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

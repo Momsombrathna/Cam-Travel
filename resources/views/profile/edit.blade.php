@@ -12,17 +12,6 @@
             <form method="post" action="{{ route('profile.update') }}">
                 @csrf
                 <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input value="{{ old('username') ?? $user->username }}"
-                        type="text" 
-                        class="form-control" 
-                        name="uasername" 
-                        placeholder="Username" required>
-                    @if ($errors->has('username'))
-                        <span class="text-danger text-left">{{ $errors->first('username') }}</span>
-                    @endif
-                </div>
-                <div class="mb-3">
                     <label for="image" class="form-label">Image Link</label>
                     <input value="{{ old('image') ?? $user->image }}"
                         type="text" 

@@ -67,7 +67,11 @@
     </div>
     </section>
     {{-- End Section Profile User --}}
-
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+     @endif
     {{-- tap photo and place under profile --}}
     <section class="photo-place">
         @if ($posts->count() > 0)

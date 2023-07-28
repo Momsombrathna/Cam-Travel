@@ -23,7 +23,7 @@
     {{-- @section('content') --}}
 
     <div class="card container ">
-        <form method="POST" action="{{ route('uploadphoto.update', $post->id) }}">
+        <form method="POST" action="{{ route('uploadlace.update', $post->id) }}">
             @csrf
             @method('patch')
             <div class="row">
@@ -59,6 +59,24 @@
                         </form>
                         @if ($errors->has('image'))
                         <span class="text-danger text-left">{{ $errors->first('image') }}</span>
+                    @endif
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputLocation">Image Link</label>
+                        <form action="">
+                        <input type="text" name="images" id="image-url" onchange="showImage(this.value)" value="{{ $post->images }}" class="form-control mt-2" placeholder="Image Linnk">
+                        </form>
+                        @if ($errors->has('images'))
+                        <span class="text-danger text-left">{{ $errors->first('images') }}</span>
+                    @endif
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="inputLocation">Image Link</label>
+                        <form action="">
+                        <input type="text" name="imagess" id="image-url" onchange="showImage(this.value)" value="{{ $post->imagess }}" class="form-control mt-2" placeholder="Image Linnk">
+                        </form>
+                        @if ($errors->has('imagess'))
+                        <span class="text-danger text-left">{{ $errors->first('imagess') }}</span>
                     @endif
                     </div>
                     <div class="form-group mt-4">

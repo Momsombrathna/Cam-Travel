@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Rating;
 
 class PhotoController extends Controller
 {
@@ -18,9 +20,12 @@ class PhotoController extends Controller
     public function show(Post $post)
     {
         $user = $post->user;
+        $ratings = $post->ratings;
     
 
-        return view('photo.show', compact('post', 'user'));
+        return view('photo.show', compact('post', 'user', 'ratings'));
     }
+
+
 
 }
