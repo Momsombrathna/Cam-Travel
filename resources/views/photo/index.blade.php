@@ -1,51 +1,44 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    @extends('layouts.app-master')
-    @section('content')
-    <br/><br/><br/>
+    <!-- This script got from frontendfreecode.com -->
 
-    <div class="container fulid py-5">
-        <!-- Gallery -->
-        @foreach ($posts as $key => $post)
-        <div class="row">
-            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-            <img
-                src="{{ $post->image }}"
-                class="w-100 shadow-1-strong rounded mb-4"
-                alt="Boat on Calm Water"
-            />
-            <a class="btn btn-info btn-sm" href="{{ route('photo.show', $post->id) }}">Show</a>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js'></script>
+    <script src='http://frontendfreecode.com/codes/files/masonry.pkgd.min.js'></script>
+    <script src='http://frontendfreecode.com/codes/files/imagesloaded.pkgd.min.js'></script>
+</head>
+
+    <body>
+        @extends('layouts.partials.navbar')
+        <br><br><br><br>
+        <div class="container-fluid mb-5">
+            <div class="row gy-4 masonry">
+                @foreach ($posts as $post)
+                <div class="col-lg-3 col-md-4 col-6">
+                    <img src="{{ $post->image }}"  class="img-fluid">
+                </div>
+                @endforeach
             </div>
         </div>
-        @endforeach
-        <!-- Gallery -->
-    </div>
 
-</body>
-</html> --}}
-
-
-<html>
-  <body>
-
-
-@extends('layouts.app-master')
-@section('content')
-
-<link rel="stylesheet" href="{{ asset('assets/css/gridlayout.css') }}">
-@foreach ($posts as $key => $post)
-<div class="row">
-    <div class="column">
-      <img  src="{{ $post->image }}" style="width:100%">
-    </div>
-  </div>
-    @endforeach
-  </body>
+        <script>
+        window.onload = function () {
+            var imgDefer = document.getElementsByTagName("img");
+            for (var i = 0; i < imgDefer.length; i++) {
+                if (imgDefer[i].getAttribute("data-src")) {
+                    imgDefer[i].setAttribute("src", imgDefer[i].getAttribute("data-src"));
+                }
+            }
+            var $container = $(".masonry");
+            $container.imagesLoaded(function () {
+                $container.masonry({
+                    percentPosition: true
+                });
+            });
+        };
+        </script>
+    </body>
 </html>

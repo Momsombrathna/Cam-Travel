@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3504c10ae30b1c38d5ccaa97c8527aec",
+    "content-hash": "a890673c21d05b04796cd6378c0336e8",
     "packages": [
         {
             "name": "brick/math",
@@ -60,6 +60,53 @@
                 }
             ],
             "time": "2023-01-15T23:15:59+00:00"
+        },
+        {
+            "name": "components/masonry",
+            "version": "4.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/components/masonry.git",
+                "reference": "b43b7a0771c85ad5fd49f3b0fac86f804b228ec8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/components/masonry/zipball/b43b7a0771c85ad5fd49f3b0fac86f804b228ec8",
+                "reference": "b43b7a0771c85ad5fd49f3b0fac86f804b228ec8",
+                "shasum": ""
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "main": "masonry.pkgd.js",
+                    "scripts": [
+                        "masonry.pkgd.js"
+                    ],
+                    "files": [
+                        "masonry.pkgd.min.js"
+                    ],
+                    "shim": {
+                        "exports": "Masonry"
+                    }
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David DeSandro",
+                    "homepage": "http://desandro.com"
+                }
+            ],
+            "description": "Cascading grid layout library",
+            "homepage": "http://masonry.desandro.com",
+            "support": {
+                "issues": "https://github.com/desandro/masonry/issues",
+                "source": "https://github.com/desandro/masonry"
+            },
+            "time": "2017-06-21T13:27:13+00:00"
         },
         {
             "name": "dflydev/dot-access-data",

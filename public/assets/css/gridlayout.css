@@ -1,24 +1,55 @@
-* {
-    box-sizing: border-box
+
+* { box-sizing: border-box; }
+
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.grid-sizer,
+.grid-item {
+  width: 33.333%;
+}
+@media (max-width: 575px) {
+  .grid-sizer,
+  .grid-item {
+    width: 100%;
   }
-  body {
-    margin: 0
+}
+@media (min-width: 576px) and (max-width: 767px) {
+  .grid-sizer,
+  .grid-item {
+    width: 50%;
   }
-  .row {
-    display: flex;
-    padding: 5px;
-    flex-wrap: wrap;
+}
+
+/* To change the amount of columns on larger devices, uncomment the code below */
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .grid-sizer,
+  .grid-item {
+    width: 33.333%;
   }
-  .column {
-    flex: 25%;
-    padding: 5px
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .grid-sizer,
+  .grid-item {
+    width: 25%;
   }
-  img {
-    margin-top: 5px;
+}
+@media (min-width: 1200px) {
+  .grid-sizer,
+  .grid-item {
+    width: 20%;
   }
-  @media screen and (max-width: 900px) {
-    .column {flex: 50%}
-  }
-  @media screen and (max-width: 600px) {
-    .column {flex: 100%}
-  }
+}
+
+.grid-item {
+  float: left;
+}
+
+.grid-item img {
+  display: block;
+  max-width: 100%;
+}

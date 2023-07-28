@@ -109,5 +109,6 @@
         </div>
     </nav>
     <script type="text/javascript" src="{{ asset('assets/js/navbar.js') }}"></script>
+    
 </body>
 </html>

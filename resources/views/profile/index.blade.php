@@ -1,10 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js'></script>
+    <script src='http://frontendfreecode.com/codes/files/masonry.pkgd.min.js'></script>
+    <script src='http://frontendfreecode.com/codes/files/imagesloaded.pkgd.min.js'></script>
+    <link rel="stylesheet" href="{{ asset('assets/css/tap.css') }}">
+    <title>Profile</title>
+</head>
+<body>
 
-@extends('layouts.app-master')
-@section('content')
-<br/><br/><br/>
-<link rel="stylesheet" href="{{ asset('assets/css/tap.css') }}">
+    @extends('layouts.app-master')
+    {{-- @extends('layouts.partials.navbar') --}}
+    @section('content')
+    <br/><br/><br/>
 
-{{-- ======================================================================= --}}
+    {{-- ======================================================================= --}}
 {{-- Section Profile User --}}
 {{-- ======================================================================= --}}
 <section class="UserProfile">
@@ -90,8 +105,8 @@
         {{-- tap photo under profile --}}
         <div id="IDphoto" class="tabcontent">
         <table class="w3-animate-opacity">
-            <section class="photo-place">
-                @if ($posts->count() > 0)
+
+                {{-- @if ($posts->count() > 0)
                         <ul>
                             @foreach ($posts as $post)
                                 <div class="card" style="width: 18rem;">
@@ -108,8 +123,44 @@
                         </ul>
                     @else
                         <p>No posts found.</p>
+                    @endif --}}
+
+                    @if ($posts->count() > 0)
+                        <div class="container-fluid mb-5">
+                            <div class="row gy-4 masonry">
+                                @ @foreach ($posts as $post)
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <img src="{{ $post->image }}"  class="img-fluid">
+                                    <h5 hidden class="card-title">{{ $post->title }}</h5>
+                                    <p hidden class="card-text">{{ $post->description }}</p>
+                                    <p hidden class="card-text">{{ $post->location }}</p>
+                                    {{-- <a  href="{{ route('uploadphoto.show', $post->id) }}" class="btn btn-primary">show</a> --}}
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                    @else
+                        <p>No posts found.</p>
                     @endif
-            </section>
+
+                    <script>
+                    window.onload = function () {
+                        var imgDefer = document.getElementsByTagName("img");
+                        for (var i = 0; i < imgDefer.length; i++) {
+                            if (imgDefer[i].getAttribute("data-src")) {
+                                imgDefer[i].setAttribute("src", imgDefer[i].getAttribute("data-src"));
+                            }
+                        }
+                        var $container = $(".masonry");
+                        $container.imagesLoaded(function () {
+                            $container.masonry({
+                                percentPosition: true
+                            });
+                        });
+                    };
+                    </script>
+
         </table>
         </div>
         {{-- End tap photo under profile --}}
@@ -130,3 +181,7 @@
 
 {{-- call tap from javascript in public  --}}
 <script type="text/javascript" src="{{ asset('assets/js/tap.js') }}"></script>
+</body>
+</html>
+
+
