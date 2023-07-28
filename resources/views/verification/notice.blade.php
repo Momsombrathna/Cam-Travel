@@ -16,9 +16,10 @@
             @csrf
             <button type="submit" class="d-inline btn btn-link p-0" id="button" style="display: none;">
                 click here to request another 
-            </button>.
+            </button>
         </form>
     </div>
+    <br><br><br><br><br><br><br><br>
     <script>
         // Get the button element by id
         var button = document.getElementById("button");

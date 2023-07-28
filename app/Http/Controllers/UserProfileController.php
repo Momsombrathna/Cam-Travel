@@ -37,14 +37,15 @@ class UserProfileController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'username' => 'nullable|max:18',
             'image'    => 'required|max:655',
             'phone'    => 'required|max:12',
             'address'  => 'required|max:191',
         ]);
 
+        $username = $request->username ?? $request->user()->username; // This will set `username` to the user's current username if it is not provided in the request
+
         $user = $request->user();
-        $user->name = $request->name;
+        $user->username = $username;
         $user->image = $request->image;
         $user->phone = $request->phone;
         $user->address = $request->address;
