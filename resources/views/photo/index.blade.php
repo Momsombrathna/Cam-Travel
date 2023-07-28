@@ -11,6 +11,7 @@
     <script src='http://frontendfreecode.com/codes/files/imagesloaded.pkgd.min.js'></script>
 </head>
 
+
     <body>
         @extends('layouts.partials.navbar')
         <br><br><br><br>
@@ -19,9 +20,11 @@
             <div class="row gy-4 masonry">
                 @foreach ($posts as $post)
                 <div class="col-lg-3 col-md-4 col-6">
-                    <a href="{{ route('photo.show', $post->id) }}">
-                        <img src="{{ $post->image }}"  class="img-fluid">
-                    </a>
+                    <div class="image--hover">
+                        <a href="{{ route('photo.show', $post->id) }}">
+                            <img src="{{ $post->image }}"  class="img-fluid image" style="width:100%">
+                        </a>
+                    </div>
                 </div>
                 @endforeach
             </div>

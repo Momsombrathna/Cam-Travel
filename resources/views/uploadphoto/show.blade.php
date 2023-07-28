@@ -29,6 +29,12 @@
             <div class="col">
                 <div class="row" style="float:right">
                     <div class="col">
+                        <a href="#">
+                            <img style="cursor: pointer" src="{{URL::asset('images/download.png')}}" height="auto" width="40px">
+                        </a>
+                    </div>
+
+                    <div class="col">
                         <a href="{{ route('uploadphoto.edit', $post->id) }}" class="btn btn-primary">Edit</a>
                     </div>
                     <div class="col">

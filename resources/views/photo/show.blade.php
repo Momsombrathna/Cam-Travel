@@ -23,20 +23,22 @@
                     @endauth
                   </div>
             </div>
-            {{-- <div class="col">
+            <div class="col">
                 <div class="row" style="float:right">
                     <div class="col">
-                        <a href="{{ route('uploadphoto.edit', $post->id) }}" class="btn btn-primary">Edit</a>
+                        <a href="#">
+                            <img style="cursor: pointer" src="{{URL::asset('images/download.png')}}" height="auto" width="40pxpx">
+                        </a>
                     </div>
-                    <div class="col">
+                    {{-- <div class="col">
                         <form action="{{ route('uploadphoto.destroy', $post) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
-                    </div>
+                    </div> --}}
                   </div>
-            </div> --}}
+            </div>
         </div>
 
         <div class="image-card text-center">
