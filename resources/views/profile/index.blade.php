@@ -84,6 +84,12 @@
     </section>
     {{-- End Section Profile User --}}
 
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
 
 
     {{-- ======================================================================= --}}
@@ -98,7 +104,6 @@
     <div class="container-fluid w3-animate-opacity">
         <div class="tab">
             <button class="tablinks" onclick="openCity(event, 'IDphoto')">Photo</button>
-            <button class="tablinks" onclick="openCity(event, 'IDplace')">Place</button>
         </div>
 
         {{-- tap photo under profile --}}
@@ -137,6 +142,8 @@
                     <p>No posts found.</p>
                 @endif
             </div>
+
+
 
             <script>
             window.onload = function () {

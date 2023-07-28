@@ -66,10 +66,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::patch('/uploadphoto/{post}/update', 'UploadPhotoController@update')->name('uploadphoto.update');
             Route::delete('/uploadphoto/{post}/delete', 'UploadPhotoController@destroy')->name('uploadphoto.destroy');
 
-            Route::get('profile', 'UserProfileController@index')->name('profile.index');
-            // Route::get('profile', 'UserProfileController@showpost')->name('profile.showpost');
-            Route::get('profile/edit', 'UserProfileController@edit')->name('profile.edit');
-            Route::post('profile/edit', 'UserProfileController@update')->name('profile.update');
+            Route::get('/profile', 'UserProfileController@index')->name('profile.index');
+            Route::get('/profile/{id}/show', 'ProfileController@show')->name('profile.show');
+            Route::get('/profile/{post}/showitem', 'ProfileController@showitem')->name('profile.showitem');
+            Route::get('/profile/edit', 'UserProfileController@edit')->name('profile.edit');
+            Route::post('/profile/edit', 'UserProfileController@update')->name('profile.update');
+
+            Route::get('/search', 'SearchController@index')->name('search.index');
     });
     });
 

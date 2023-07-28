@@ -13,7 +13,7 @@
                 <div class="row" style="float:left; text-align:center; justify-content:center; align-items: center;">
                     @auth
                     <div class="col" style="float: left; cursor:pointer" >
-                        <a href="{{ route('profile.index', $user->id) }}">
+                        <a href="{{ route('profile.show', $user->id) }}">
                             <img class="userImage" src="{{ $post->user->image }}" alt="avatar"/>
                         </a>
                     </div>

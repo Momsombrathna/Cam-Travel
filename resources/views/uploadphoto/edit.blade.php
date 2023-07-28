@@ -19,13 +19,11 @@
 
 </head>
 <body>
+    <div style="margin-top: 90px;" >
+    <div class="container textmode card py-2 mb-3">
+        <img style="cursor: pointer; " onclick="history.back()" src="{{URL::asset('images/back.png')}}" alt="logo" height="auto" width="40px">
+    </div>
 
-    <br><br><br><br><br>
-    {{-- @section('content') --}}
-
-<div class="container textmode card py-2 mb-3">
-    <img style="cursor: pointer" onclick="history.back()" src="{{URL::asset('images/back.png')}}" alt="logo" height="auto" width="40px">
-</div>
 
 
     <div class="card container ">
@@ -37,40 +35,43 @@
                     <div class="container">
                         <div class="drag-area">
                           <div class="icon">
-                            <i class="fas fa-images"></i>
+                            <div id="image-container" class="p-3"></div>
                           </div>
-                          <span class="header">Drag & Drop</span>
-                          <span class="header">or <span class="button">browse</span></span>
-                          <input type="file" hidden />
-                          <span class="support">Supports: JPEG, JPG, PNG</span>
                         </div>
                     </div>
                 </div>
                 <div class="col formtext">
                     <div class="form-group">
                         <label for="inputTitle">Title</label>
-                        <input type="text" name="title" class="form-control mt-2" id="inputTitle" placeholder="Title" value="{{ $post->title}}">
+                        <input type="text" name="title" class="form-control mt-2" id="inputTitle" maxlength="70" value="{{ $post->title }}" placeholder="Title">
                         @if ($errors->has('title'))
                         <span class="text-danger text-left">{{ $errors->first('title') }}</span>
                     @endif
                     </div>
                     <div class="form-group mt-4">
                         <label>Description</label>
-                        <textarea type="text" name="description" class="form-control mt-2"  placeholder="Description">{{ $post->description}}</textarea>
+                        <textarea type="text" name="description" class="form-control mt-2"  maxlength="290" placeholder="Description">{{ $post->description }}</textarea>
                         @if ($errors->has('description'))
                         <span class="text-danger text-left">{{ $errors->first('description') }}</span>
                     @endif
                     </div>
-                    <div class="form-group mt-4">
+                    {{-- <div class="form-group mt-4">
                         <label for="inputLocation">Image Link</label>
-                        <textarea type="text" name="image" class="form-control mt-2" placeholder="Image Linnk">{{ $post->image}}</textarea>
+                        <input type="text" name="image" id="image-url" onchange="showImage(this.value)" class="form-control mt-2" value="{{ $post->image }}" placeholder="Image Linnk"/>
+                        @if ($errors->has('image'))
+                        <span class="text-danger text-left">{{ $errors->first('image') }}</span>
+                    @endif
+                    </div> --}}
+                    <div class="form-group">
+                        <label>Image</label>
+                        <input type="text" name="image" class="form-control mt-2" value="{{ $post->image }}" placeholder="image">
                         @if ($errors->has('image'))
                         <span class="text-danger text-left">{{ $errors->first('image') }}</span>
                     @endif
                     </div>
                     <div class="form-group mt-4">
                         <label for="inputLocation">Loaction</label>
-                        <textarea type="text" name="location" class="form-control mt-2"  placeholder="Location">{{ $post->location}}</textarea>
+                        <textarea type="text" name="location" class="form-control mt-2"  placeholder="Location">{{ $post->location }}</textarea>
                         @if ($errors->has('location'))
                         <span class="text-danger text-left">{{ $errors->first('location') }}</span>
                         @endif
@@ -84,8 +85,24 @@
         </form>
     </div>
 
-
+    </div>
 </body>
+<script>
+    // This function takes an image URL as input and displays it in a div element
+    function showImage(url) {
+    // Create a new image element
+    let image = document.createElement("img");
+    // Set the source attribute to the URL
+    image.src = url;
+    // Set the width and height attributes to fit the div
+    image.width = 300;
+    image.height = 200;
+    // Find the div element by its id
+    let container = document.getElementById("image-container");
+    // Append the image element to the div
+    container.appendChild(image);
+    }
+  </script>
 </html>
 
 

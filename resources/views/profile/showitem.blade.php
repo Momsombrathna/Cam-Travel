@@ -34,22 +34,12 @@
                         </a>
                     </div>
 
-                    <div class="col">
-                        <a href="{{ route('uploadphoto.edit', $post->id) }}" class="btn btn-primary">Edit</a>
-                    </div>
-                    <div class="col">
-                        <form action="{{ route('uploadphoto.destroy', $post) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </div>
                   </div>
             </div>
         </div>
 
         <div class="image-card text-center">
-            <img src=" {{$post->image}} " alt=""/>
+            <img  src=" {{$post->image}} " alt=""/>
         </div>
 
     </div>
@@ -68,6 +58,31 @@
     </div>
 
 </div>
+
+<script>
+    // Define a function to download an image from a link
+    function downloadImage(link) {
+    // Create a new image element
+    var image = new Image();
+    // Set the source attribute to the link
+    image.src = link;
+    // Wait for the image to load
+    image.onload = function() {
+        // Create a new anchor element
+        var link = document.createElement("a");
+        // Set the href attribute to the image data URL
+        link.href = image.src;
+        // Set the download attribute to the image file name
+        link.download = image.src.split("/").pop();
+        // Append the link to the document body
+        document.body.appendChild(link);
+        // Click the link to download the image
+        link.click();
+        // Remove the link from the document body
+        document.body.removeChild(link);
+    };
+    }
+</script>
 
 
 

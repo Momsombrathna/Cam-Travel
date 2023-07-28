@@ -31,9 +31,7 @@
                 </div>
 
                 <ul class="nav-links">
-                    <li><a href="{{ route('home.index') }}" >Home</a></li>
-                    <li><a href="{{ route('place.index') }}">Place</a></li>
-                    <li><a href="{{ route('photo.index') }}">Photo</a></li>
+                    <li><a href="{{ route('photo.index') }}">HOME</a></li>
 
                     @auth
                         @role('admin')
@@ -63,10 +61,14 @@
                         <i class='bx bx-x cancel'></i>
                         <i class='bx bx-search search'></i>
                    </div>
-                    <div class="search-field">
+                    {{-- <div class="search-field">
                         <input type="text" placeholder="Search...">
-                        <i class='bx bx-search'></i>
-                    </div>
+                        
+                    </div> --}}
+                    <form class="search-field" action="{{ route('search.index') }}" method="GET">
+                        <input type="text" name="search" placeholder="Search" value="{{ old('search') }}">
+                        <button type="submit" class='bx bx-search'></button>
+                    </form>
                 </div>
 
                 @auth
@@ -78,7 +80,7 @@
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="{{ route('uploadphoto.create') }}" >Upload photo</a></li>
-                            <li><a class="dropdown-item" href="{{ route('uploadplace.index') }}" >Upload place</a></li>
+                            
                         </ul>
                     </div>
                 @endauth

@@ -14,7 +14,19 @@
 
     <body>
         @extends('layouts.partials.navbar')
-        <br><br><br><br>
+        <div class="container-fluid">
+            <div class= " card--thumnails " >
+                <img class="thumnails"
+                style="
+                height: 650px;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 20px;
+                "
+                src="https://images.pexels.com/photos/4275885/pexels-photo-4275885.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="img-fluid" alt="Responsive image">
+            <div>
+        </div>
+        <br>
 
         <div class="container-fluid mb-5">
             <div class="row gy-4 masonry">
@@ -22,7 +34,7 @@
                 <div class="col-lg-3 col-md-4 col-6">
                     <div class="image--hover">
                         <a href="{{ route('photo.show', $post->id) }}">
-                            <img src="{{ $post->image }}"  class="img-fluid image" style="width:100%">
+                            <img src="{{ $post->image }}"  class="img-fluid image" style="width:100%; border-radius: 20px;">
                         </a>
                     </div>
                 </div>

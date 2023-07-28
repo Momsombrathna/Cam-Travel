@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use Carbon\Carbon;
 
 class UploadPhotoController extends Controller
 {
@@ -36,6 +37,14 @@ class UploadPhotoController extends Controller
         $post->location = $request->input('location');
         $post->user_id = auth()->user()->id;
 
+        $today = Carbon::today();
+        $count = Post::where('user_id', auth()->user()->id)->whereDate('created_at', $today)->count();
+
+        if ($count >= 2) {
+            return redirect()->route('profile.index')
+                ->withError(__('You can only uploads 2 posts per day.'));
+        }
+
         $post->save();
 
         return redirect()->route('profile.index');
@@ -44,7 +53,6 @@ class UploadPhotoController extends Controller
     public function show(Post $post)
     {
         $user = $post->user;
-    
 
         return view('uploadphoto.show', compact('post', 'user'));
     }

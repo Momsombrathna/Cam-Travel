@@ -29,7 +29,7 @@
     <div class="card container ">
         <form method="POST" action="{{ route('posts.update', $post->id) }}">
             @csrf
-            @method('PATCH')
+            @method('patch')
             <div class="row">
                 <div class="col">
                     <div class="container">
@@ -57,7 +57,7 @@
                     </div>
                     <div class="form-group mt-4">
                         <label for="inputLocation">Image Link</label>
-                        <input type="text" name="image" id="image-url" onchange="showImage(this.value)" class="form-control mt-2" value="{{ $post->image }} placeholder="Image Linnk"/>
+                        <input type="text" name="image" id="image-url" onchange="showImage(this.value)" class="form-control mt-2" value="{{ $post->image }}" placeholder="Image Link"/>
                         @if ($errors->has('image'))
                         <span class="text-danger text-left">{{ $errors->first('image') }}</span>
                     @endif
