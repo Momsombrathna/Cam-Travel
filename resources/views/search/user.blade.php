@@ -11,7 +11,7 @@
         <div class="lead">
             Manage your users here.
             <form class="d-flex col-3 mt-2" action="{{ route('search.user') }}" method="GET">
-                <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
             <a href="{{ route('places.create') }}" class="btn btn-primary btn-sm col float-right mb-2 ">Add post</a>

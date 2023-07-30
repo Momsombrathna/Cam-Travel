@@ -9,7 +9,8 @@
         </div>
 
         <div class="container mt-4">
-            <div>
+            <img src="{{ $user->image }}" class="rounded-circle" alt="" style="width: 100px" style="height: 100px">
+            <div class="mt-3">
                 Name: {{ $user->name }}
             </div>
             <div>
@@ -18,6 +19,8 @@
             <div>
                 Username: {{ $user->username }}
             </div>
+            <div>Created at: {{ $user->created_at }}</div>
+            <div>Updated at: {{ $user->updated_at }}</div>
         </div>
 
     </div>

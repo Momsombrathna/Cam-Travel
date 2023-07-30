@@ -30,6 +30,16 @@ class UploadPlaceController extends Controller
 
     public function store(Request $request)
     {
+        // Validate the request data
+        $request->validate([
+            'title' => 'required|string|max:70',
+            'description' => 'required|string|max:800',
+            'image' => 'required|url',
+            'images' => 'required|url',
+            'imagess' => 'required|url',
+            'location' => 'required|string'
+        ]);
+
         $place = new Place();
         $place->title = $request->input('title');
         $place->description = $request->input('description');
@@ -70,26 +80,26 @@ class UploadPlaceController extends Controller
     }
 
     public function update(Request $request, Place $place)
-{
-    // Validate the request data
-    $request->validate([
-        'title' => 'required|string|max:70',
-        'description' => 'required|string|max:290',
-        'image' => 'required|url',
-        'images' => 'required|url',
-        'imagess' => 'required|url',
-        'location' => 'required|string'
-    ]);
+    {
+        // Validate the request data
+        $request->validate([
+            'title' => 'required|string|max:70',
+            'description' => 'required|string|max:290',
+            'image' => 'required|url',
+            'images' => 'required|url',
+            'imagess' => 'required|url',
+            'location' => 'required|string'
+        ]);
 
-    // Fill the post attributes with the request data
-    $place->fill($request->all());
+        // Fill the post attributes with the request data
+        $place->fill($request->all());
 
-    // Save the updated post to the database
-    $place->save();
+        // Save the updated post to the database
+        $place->save();
 
-    return redirect()->route('profile.index')
-        ->withSuccess(__('Post updated successfully.'));
-}
+        return redirect()->route('profile.index')
+            ->withSuccess(__('Post updated successfully.'));
+    }
 
     public function destroy(Place $place)
     {

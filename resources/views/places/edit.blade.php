@@ -15,10 +15,15 @@
     />
     <link rel="stylesheet" href="{{ asset('assets/css/upload.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/draganddrop.css') }}">
-    <title>edit photo</title>
+    <title>edit place</title>
     <style>
       @media screen and (max-width: 720px) {
         .hide-on-small {
+          display: none;
+        }
+      }
+      @media screen and (min-width: 720px) {
+        .hide-on-huge {
           display: none;
         }
       }
@@ -32,26 +37,58 @@
     </div>
 
 
+
     <div class="card container ">
-        <form method="POST" action="{{ route('uploadphoto.update', $post->id) }}">
+        <form method="POST" action="{{ route('places.update', $place->id) }}">
             @method('patch')
             @csrf
             <div class="row">
-                <div class="col hide-on-small "> 
-                    <div class="container ">
+                <div class="col hide-on-small"> 
+                  <div class="col"> 
+                    <div class="row">
+                      <div class="container">
                         <div class="drag-area">
                           <div class="icon">
-                            <div id="image-container" class="p-3"> </div>
+                            <div id="image-container" class="p-3">    </div>
                           </div>
                         </div>
                     </div>
+                    </div>
+                    <div class="row">
+                      <div class="container">
+                        <div class="drag-area">
+                          <div class="icon">
+                            <div id="image-containers" class="p-3">    </div>
+                          </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                      <div class="container">
+                        <div class="drag-area">
+                          <div class="icon">
+                            <div id="image-containerss" class="p-3">    </div>
+                          </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
                 </div>
                 <div class="col formtext">
+                    <div class="form-group hide-on-huge">
+                        <div class="container">
+                          <div class="drag-area">
+                            <div class="icon">
+                              <div id="image-container" class="p-3"></div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
                     <div class="form-group">
                         <label for="inputTitle">Title</label>
                         <!-- Use value attribute to populate input field with current data -->
                         <!-- Use old() helper function to retain old input value if any -->
-                        <input type="text" name="title" class="form-control mt-2" id="inputTitle" maxlength="70" placeholder="Title" value="{{ old('title', $post->title) }}">
+                        <input type="text" name="title" class="form-control mt-2" id="inputTitle" maxlength="70" placeholder="Title" value="{{ old('title', $place->title) }}">
                         @if ($errors->has('title'))
                         <span class="text-danger text-left">{{ $errors->first('title') }}</span>
                     @endif
@@ -60,7 +97,7 @@
                         <label>Description</label>
                         <!-- Use value attribute to populate input field with current data -->
                         <!-- Use old() helper function to retain old input value if any -->
-                        <textarea type="text" name="description" class="form-control mt-2"  maxlength="290" placeholder="Description">{{ old('description', $post->description) }}</textarea>
+                        <textarea type="text" name="description" class="form-control mt-2"  maxlength="290" placeholder="Description">{{ old('description', $place->description) }}</textarea>
                         @if ($errors->has('description'))
                         <span class="text-danger text-left">{{ $errors->first('description') }}</span>
                     @endif
@@ -69,16 +106,34 @@
                         <label for="inputLocation">Image Link</label>
                         <!-- Use value attribute to populate input field with current data -->
                         <!-- Use old() helper function to retain old input value if any -->
-                        <textarea type="text" name="image" id="image-url" oninput="showImage(this.value)" class="form-control mt-2" placeholder="Image Link">{{ old('image', $post->image) }}</textarea>
+                        <textarea type="text" name="image" id="image-url" oninput="showImage(this.value)" class="form-control mt-2" placeholder="Image Link">{{ old('image', $place->image) }}</textarea>
                         @if ($errors->has('image'))
                         <span class="text-danger text-left">{{ $errors->first('image') }}</span>
                     @endif
                     </div>
                     <div class="form-group mt-4">
+                      <label for="inputLocation">Image Link</label>
+                      <!-- Use value attribute to populate input field with current data -->
+                      <!-- Use old() helper function to retain old input value if any -->
+                      <textarea type="text" name="images" id="image-url" oninput="showImage(this.value)" class="form-control mt-2" placeholder="Image Link">{{ old('images', $place->images) }}</textarea>
+                      @if ($errors->has('images'))
+                      <span class="text-danger text-left">{{ $errors->first('images') }}</span>
+                  @endif
+                  </div>
+                  <div class="form-group mt-4">
+                    <label for="inputLocation">Image Link</label>
+                    <!-- Use value attribute to populate input field with current data -->
+                    <!-- Use old() helper function to retain old input value if any -->
+                    <textarea type="text" name="imagess" id="image-url" oninput="showImagess(this.value)" class="form-control mt-2" placeholder="Image Link">{{ old('imagess', $place->imagess) }}</textarea>
+                    @if ($errors->has('imagess'))
+                    <span class="text-danger text-left">{{ $errors->first('imagess') }}</span>
+                  @endif
+                  </div>
+                    <div class="form-group mt-4">
                         <label for="inputLocation">Loaction</label>
                         <!-- Use value attribute to populate input field with current data -->
                         <!-- Use old() helper function to retain old input value if any -->
-                        <textarea type="text" name="location" class="form-control mt-2"  placeholder="Location">{{ old('location', $post->location) }}</textarea>
+                        <textarea type="text" name="location" class="form-control mt-2"  placeholder="Location">{{ old('location', $place->location) }}</textarea>
                         @if ($errors->has('location'))
                         <span class="text-danger text-left">{{ $errors->first('location') }}</span>
                         @endif
@@ -96,6 +151,7 @@
     </div>
 </body>
 @include('layouts.partials.showimage')
+
 </html>
 
 

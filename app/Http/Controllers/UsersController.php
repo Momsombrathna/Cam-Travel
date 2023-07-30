@@ -17,7 +17,7 @@ class UsersController extends Controller
      */
     public function index() 
     {
-        $users = User::latest()->paginate(10);
+        $users = User::all();
 
         return view('users.index', compact('users'));
     }
@@ -75,6 +75,7 @@ class UsersController extends Controller
      */
     public function edit(User $user) 
     {
+        
         return view('users.edit', [
             'user' => $user,
             'userRole' => $user->roles->pluck('name')->toArray(),

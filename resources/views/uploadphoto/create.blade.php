@@ -36,8 +36,8 @@
     <div class="card container ">
         <form method="POST" action="{{ route('uploadphoto.store') }}">
             @csrf
-            <div class="row hide-on-small">
-                <div class="col"> 
+            <div class="row ">
+                <div class="col hide-on-small "> 
                     <div class="container">
                         <div class="drag-area">
                           <div class="icon">

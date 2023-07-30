@@ -30,6 +30,14 @@ class UploadPhotoController extends Controller
 
     public function store(Request $request)
     {
+        // Validate the request data
+        $request->validate([
+            'title' => 'required|string|max:70',
+            'description' => 'required|string|max:800',
+            'image' => 'required|url',
+            'location' => 'required|string'
+        ]);
+
         $post = new Post();
         $post->title = $request->input('title');
         $post->description = $request->input('description');
@@ -68,24 +76,24 @@ class UploadPhotoController extends Controller
     }
 
     public function update(Request $request, Post $post)
-{
-    // Validate the request data
-    $request->validate([
-        'title' => 'required|string|max:70',
-        'description' => 'required|string|max:290',
-        'image' => 'required|url',
-        'location' => 'required|string'
-    ]);
+    {
+        // Validate the request data
+        $request->validate([
+            'title' => 'required|string|max:70',
+            'description' => 'required|string|max:800',
+            'image' => 'required|url',
+            'location' => 'required|string'
+        ]);
 
-    // Fill the post attributes with the request data
-    $post->fill($request->all());
+        // Fill the post attributes with the request data
+        $post->fill($request->all());
 
-    // Save the updated post to the database
-    $post->save();
+        // Save the updated post to the database
+        $post->save();
 
-    return redirect()->route('profile.index')
-        ->withSuccess(__('Post updated successfully.'));
-}
+        return redirect()->route('profile.index')
+            ->withSuccess(__('Post updated successfully.'));
+    }
 
     public function destroy(Post $post)
     {
