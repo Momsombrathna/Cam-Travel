@@ -42,7 +42,7 @@
         </div>
 
         <div class="image-card text-center">
-            <img style="width: 300px" src=" {{$post->image}} " alt=""/>
+            <img class="img" src=" {{$post->image}} " alt=""/>
         </div>
 
     </div>
@@ -61,6 +61,19 @@
     </div>
 
 </div>
+<style>
+    @media (max-width: 768px) {
+        .img {
+            max-width: 50%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .img {
+            max-width: 300px;
+        }
+    }
+</style>
  @endsection
 
 
