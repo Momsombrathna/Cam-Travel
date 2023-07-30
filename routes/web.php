@@ -43,6 +43,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         // forgot password routes   
         Route::get('/forgot-password', 'ForgotPasswordController@showForgotPasswordForm')->name('forgot.password.get');
         Route::post('forgot-password/send-reset-email', 'ForgotPasswordController@sendResetEmail')->name('forgot-password.send-reset-email');
+        Route::get('password/reset/{token}', 'ForgotPasswordController@showResetForm')->name('password.reset');
+        Route::post('password/reset', 'ForgotPasswordController@reset')->name('password.update');
+        
 
 
         

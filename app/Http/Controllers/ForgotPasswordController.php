@@ -43,5 +43,26 @@ class ForgotPasswordController extends Controller
             $message->subject('Reset Your Password');
         });
     }
+
+    public function showResetForm(Request $request)
+
+    {
+
+        if ($request->has('token')) {
+
+            $token = $request->input('token');
+
+        } else {
+
+            abort(404);
+
+        }
+
+
+
+        return view('auth.passwords.reset', ['token' => $token]);
+
+    }
+
 }
 
