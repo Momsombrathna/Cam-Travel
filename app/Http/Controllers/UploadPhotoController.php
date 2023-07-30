@@ -59,21 +59,39 @@ class UploadPhotoController extends Controller
 
     public function edit(Post $post)
     {
+        // Check if the user is authorized to edit the post
+        $this->authorize('update', $post);
+    
         return view('uploadphoto.edit', [
             'post' => $post
         ]);
     }
 
     public function update(Request $request, Post $post)
-    {
-        $post->update($request->only('title', 'description', 'image', 'location'));
+{
+    // Validate the request data
+    $request->validate([
+        'title' => 'required|string|max:70',
+        'description' => 'required|string|max:290',
+        'image' => 'required|url',
+        'location' => 'required|string'
+    ]);
 
-        return redirect()->route('profile.index')
-            ->withSuccess(__('Post updated successfully.'));
-    }
+    // Fill the post attributes with the request data
+    $post->fill($request->all());
+
+    // Save the updated post to the database
+    $post->save();
+
+    return redirect()->route('profile.index')
+        ->withSuccess(__('Post updated successfully.'));
+}
 
     public function destroy(Post $post)
     {
+        // Check if the user is authorized to edit the post
+        $this->authorize('update', $post);
+        
         $post->delete();
 
         return redirect()->route('profile.index')

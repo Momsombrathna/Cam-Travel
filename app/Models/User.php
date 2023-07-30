@@ -37,6 +37,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Post::class);
     }
 
+    public function Place()
+    {
+        return $this->hasMany(Place::class);
+    }
+
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -65,5 +71,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function getPasswordChangedAtAttribute()
+    {
+        return $this->attributes['password_changed_at'] ?? null;
+    }
+
+    public function setPasswordChangedAtAttribute($value)
+    {
+        $this->attributes['password_changed_at'] = $value;
     }
 }

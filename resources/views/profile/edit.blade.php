@@ -12,6 +12,30 @@
             <form method="post" action="{{ route('profile.update') }}">
                 @csrf
                 <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <label for="image" class="form-label">Image Link</label>
+                            <input value="{{ old('image') ?? $user->image }}"
+                                type="text" 
+                                class="form-control" 
+                                name="image" 
+                                placeholder="Image Link" required>
+                            @if ($errors->has('image'))
+                                <span class="text-danger text-left">{{ $errors->first('image') }}</span>
+                            @endif
+                        </div>
+                        <div class="col">
+                            <div class="container">
+                                <div class="drag-area">
+                                  <div class="icon">
+                                    <div id="image-container" class="p-3"></div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input value="{{ old('username') ?? $user->username }}"
                         type="text" 
@@ -20,17 +44,6 @@
                         placeholder="Username" required>
                     @if ($errors->has('username'))
                         <span class="text-danger text-left">{{ $errors->first('username') }}</span>
-                    @endif
-                </div>
-                <div class="mb-3">
-                    <label for="image" class="form-label">Image Link</label>
-                    <input value="{{ old('image') ?? $user->image }}"
-                        type="text" 
-                        class="form-control" 
-                        name="image" 
-                        placeholder="Image Link" required>
-                    @if ($errors->has('image'))
-                        <span class="text-danger text-left">{{ $errors->first('image') }}</span>
                     @endif
                 </div>
                 <div class="mb-3">
@@ -63,4 +76,5 @@
         </div>
 
     </div>
+    
 @endsection

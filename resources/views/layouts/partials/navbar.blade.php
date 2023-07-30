@@ -16,7 +16,7 @@
             display: none;
           }
         }
-        </style>
+    </style>
 </head>
 <body>
     <nav>
@@ -31,7 +31,9 @@
                 </div>
 
                 <ul class="nav-links">
-                    <li><a href="{{ route('photo.index') }}">HOME</a></li>
+                    <li><a href="{{ route('home.index') }}">Home</a></li>
+                    <li><a href="{{ route('photo.index') }}">Photo</a></li>
+                    <li><a href="{{ route('place.index') }}">Place</a></li>
 
                     @auth
                         @role('admin')
@@ -77,10 +79,11 @@
                         class=" btn btn-info dropdown-toggle" type="profile" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true">
                         Upload
                         </button>
+                    
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="{{ route('uploadphoto.create') }}" >Upload photo</a></li>
-                            
+                            <li><a class="dropdown-item" href="{{ route('uploadplace.create') }}" >Upload place</a></li>
                         </ul>
                     </div>
                 @endauth

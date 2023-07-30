@@ -2,7 +2,7 @@
 
 @section('content')
     <br/><br/><br/>
-    <h1 class="mb-3">Post Contents</h1>
+    <h1 class="mb-3">Admin Post Contents</h1>
     {{-- <a href="{{ route('users.index') }}" class="btn btn-primary btn-sm">Users</a>
     <a href="{{ route('roles.index') }}" class="btn btn-primary btn-sm">User Roles</a> --}}
 
@@ -31,10 +31,10 @@
             @foreach ($posts as $key => $post)
             <tr>
                 <td>{{ $key + 1 }}</td>
-                <td>{{ $post->user->username }}</td>
-                <td>{{ $post->title }}</td>
-                <td>{{ $post->description }}</td>
-                <td>{{ $post->location }}</td>
+                <td><p>{{ $post->user->username }}</p></td>
+                <td><p>{{ $post->title }}</p></td>
+                <td><p>{{ $post->description }}</p></td>
+                <td><a href="{{ $post->location }}" class="textmode" target="_blank" rel="noopener noreferrer">visit</a></td>
                 <td><img src="{{ $post->image }}" alt="" style="width: 50px" style="height: 50px"></td>
                 <td>
                     <a class="btn btn-info btn-sm" href="{{ route('posts.show', $post->id) }}">Show</a>
