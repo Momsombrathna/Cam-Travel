@@ -17,7 +17,7 @@
                 Description: {{ $post->description }}
             </div>
             <div>
-                Location: {{ $post->location }}
+                Location: <a href="{{ $post->location }}" class="textmode" target="_blank" rel="noopener noreferrer">visit</a>
             </div>
             <td>Post by: {{ $post->user->username }}</td>
             </div>

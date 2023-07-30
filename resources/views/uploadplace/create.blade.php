@@ -15,7 +15,7 @@
     />
     <link rel="stylesheet" href="{{ asset('assets/css/upload.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/draganddrop.css') }}">
-    <title>Upload photo</title>
+    <title>Upload place</title>
     <style>
       @media screen and (max-width: 720px) {
         .hide-on-small {
@@ -34,18 +34,38 @@
 
 
     <div class="card container ">
-        <form method="POST" action="{{ route('uploadphoto.store') }}">
+        <form method="POST" action="{{ route('uploadplace.store') }}">
             @csrf
             <div class="row hide-on-small">
-                <div class="col"> 
-                    <div class="container">
-                        <div class="drag-area">
-                          <div class="icon">
-                            <div id="image-container" class="p-3">    </div>
-                          </div>
-                        </div>
+              <div class="col"> 
+                <div class="row">
+                  <div class="container">
+                    <div class="drag-area">
+                      <div class="icon">
+                        <div id="image-container" class="p-3">    </div>
+                      </div>
                     </div>
                 </div>
+                </div>
+                <div class="row">
+                  <div class="container">
+                    <div class="drag-area">
+                      <div class="icon">
+                        <div id="image-containers" class="p-3">    </div>
+                      </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                  <div class="container">
+                    <div class="drag-area">
+                      <div class="icon">
+                        <div id="image-containerss" class="p-3">    </div>
+                      </div>
+                    </div>
+                </div>
+                </div>
+            </div>
                 <div class="col formtext"> 
                     <div class="form-group">
                         <label for="inputTitle">Title</label>
@@ -68,6 +88,20 @@
                         <span class="text-danger text-left">{{ $errors->first('image') }}</span>
                     @endif
                     </div>
+                    <div class="form-group mt-4">
+                      <label for="inputLocation">Image Link</label>
+                      <textarea type="text" name="images" id="image-url" oninput="showImages(this.value)" class="form-control mt-2" placeholder="Image Link"></textarea>
+                      @if ($errors->has('images'))
+                      <span class="text-danger text-left">{{ $errors->first('images') }}</span>
+                  @endif
+                  </div>
+                  <div class="form-group mt-4">
+                    <label for="inputLocation">Image Link</label>
+                    <textarea type="text" name="imagess" id="image-url" oninput="showImagess(this.value)" class="form-control mt-2" placeholder="Image Link"></textarea>
+                    @if ($errors->has('imagess'))
+                    <span class="text-danger text-left">{{ $errors->first('imagess') }}</span>
+                @endif
+                </div>
                     <div class="form-group mt-4">
                         <label for="inputLocation">Loaction</label>
                         <textarea type="text" name="location" class="form-control mt-2"  placeholder="Location"></textarea>

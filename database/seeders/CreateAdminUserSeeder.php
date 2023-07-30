@@ -22,9 +22,9 @@ class CreateAdminUserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'username' => 'admin',
             'password' => 'admin123',
-            'image' => 'https://a0.anyrgb.com/pngimg/1526/18/icon-ico-files-admin-system-administrator-ico-icon-download-user-profile-password-megaphone-login.png',
+            'image' => 'https://static.vecteezy.com/system/resources/thumbnails/006/017/842/small_2x/customer-service-icon-user-with-laptop-computer-and-headphone-illustration-free-vector.jpg',
             'phone' => '09999999',
-            'address' => 'Admin Cam travel, Phnopm Penh, Cambodia',
+            'address' => 'Phnopm Penh, Cambodia',
         ]);
 
         $role = Role::create(['name' => 'admin']);
