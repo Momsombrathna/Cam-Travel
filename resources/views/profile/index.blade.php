@@ -55,7 +55,7 @@
                     <p class="mb-0">Phone</p>
                 </div>
                 <div class="col-sm-9">
-                    <p class="text-muted mb-0">+855 {{ $user->phone }}</p>
+                    <p class="text-muted mb-0">+855 {{ auth()->user()->phone }}</p>
                 </div>
                 </div>
                 <hr>
@@ -64,7 +64,7 @@
                     <p class="mb-0">Address</p>
                 </div>
                 <div class="col-sm-9">
-                    <p class="text-muted mb-0">{{ $user->address }}</p>
+                    <p class="text-muted mb-0">{{ auth()->user()->address }}</p>
                 </div>
                 </div>
 

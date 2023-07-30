@@ -73,13 +73,5 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->attributes['password'] = bcrypt($value);
     }
 
-    public function getPasswordChangedAtAttribute()
-    {
-        return $this->attributes['password_changed_at'] ?? null;
-    }
-
-    public function setPasswordChangedAtAttribute($value)
-    {
-        $this->attributes['password_changed_at'] = $value;
-    }
+    
 }

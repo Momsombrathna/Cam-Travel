@@ -30,32 +30,20 @@
             <div class="card mb-4 text-center">
                 <div class="card-body">
                     <img src="{{ $user->image }}" alt="avatar" class="image--cover">
-                    <h3 class="my-3 textmode">{{auth()->user()->username}}</h3>
+                    <h3 class="my-3 textmode">{{$user->username}}</h3>
                 </div>
-            <div>
-                <a class="w-100 btn btn-lg btn-primary" href="{{ route('profile.edit') }}"type="submit">Change Profile</a>
-            </div>
             </div>
             @endauth
         </div>
         <div class="col-lg-8 textmode">
             <div class="card mb-4" >
             <div class="card-body">
-                <div class="row">
-                <div class="col-sm-3">
-                    <p class="mb-0">Role</p>
-                </div>
-                <div class="col-sm-9 ">
-                    <p class="text-muted mb-0">{{auth()->user()->name}}</p>
-                </div>
-                </div>
-                <hr>
                 <div class="row ">
                 <div class="col-sm-3 ">
                     <p class="mb-0">Email</p>
                 </div>
                 <div class="col-sm-9 ">
-                    <p class="text-muted mb-0">{{auth()->user()->email}}</p>
+                    <p class="text-muted mb-0">{{$user->email}}</p>
                 </div>
                 </div>
                 <hr>
@@ -76,6 +64,15 @@
                     <p class="text-muted mb-0">{{ $user->address }}</p>
                 </div>
                 </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0">Role</p>
+                    </div>
+                    <div class="col-sm-9 ">
+                        <p class="text-muted mb-0">{{$user->name}}</p>
+                    </div>
+                    </div>
             </div>
             </div>
 

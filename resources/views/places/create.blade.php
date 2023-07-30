@@ -34,10 +34,10 @@
 
 
     <div class="card container ">
-        <form method="POST" action="{{ route('uploadplace.store') }}">
+        <form method="POST" action="{{ route('places.store') }}">
             @csrf
-            <div class="row">
-              <div class="col hide-on-small "> 
+            <div class="row hide-on-small">
+              <div class="col"> 
                 <div class="row">
                   <div class="container">
                     <div class="drag-area">
@@ -48,7 +48,7 @@
                 </div>
                 </div>
                 <div class="row">
-                  <div class="container ">
+                  <div class="container">
                     <div class="drag-area">
                       <div class="icon">
                         <div id="image-containers" class="p-3">    </div>
@@ -104,7 +104,7 @@
                 </div>
                     <div class="form-group mt-4">
                         <label for="inputLocation">Loaction</label>
-                        <textarea type="text" name="location" class="form-control mt-2"  placeholder="Location Link"></textarea>
+                        <textarea type="text" name="location" class="form-control mt-2"  placeholder="Location"></textarea>
                         @if ($errors->has('location'))
                         <span class="text-danger text-left">{{ $errors->first('location') }}</span>
                         @endif

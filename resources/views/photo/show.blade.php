@@ -42,7 +42,7 @@
         </div>
 
         <div class="image-card text-center">
-            <img style="width: 300px" src=" {{$post->image}} " alt=""/>
+            <img class="img" src=" {{$post->image}} " alt=""/>
         </div>
 
     </div>
@@ -50,17 +50,30 @@
     <br>
     <div style="float: left">
         <h4>Title: {{ $post->title }}</h4>
-        <p>{{ $post->description }}</p>
-        <p style="font-size: 10px">Created at: {{ $post->created_at }}</p>
-        <p style="font-size: 10px">Updated at: {{ $post->updated_at }}</p>
+        <p>Description: {{ $post->description }}</p>
+        <p>Created at: {{ $post->created_at }}</p>
+        <p>Updated at: {{ $post->updated_at }}</p>
         <div>
             <img src="{{URL::asset('images/location.png')}}" height="auto" width="20px">
-            <a class="textmode" href="{{ $post->location }}" target="blank">go to visit</a>
+            <a class="textmode" href="{{ $post->location }}" target="blank">go to map</a>
         </div>
 
     </div>
 
 </div>
+<style>
+    @media (max-width: 768px) {
+        .img {
+            max-width: 50%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .img {
+            max-width: 300px;
+        }
+    }
+</style>
  @endsection
 
 

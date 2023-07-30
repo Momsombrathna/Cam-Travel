@@ -5,7 +5,7 @@
     <img style="cursor: pointer" onclick="history.back()" src="{{URL::asset('images/back.png')}}" alt="logo" height="auto" width="40px">
 </div>
 
-<div class="card-show-photo mb-5" style="padding: 30px">
+<div class="card-show-photo mb-5 rotate" style="padding: 30px">
     <div class="text-center" >
 
         <div class="row" >
@@ -52,9 +52,9 @@
     <br><br><br>
     <div style="float: left">
         <h4>Title: {{ $place->title }}</h4>
-        <p class="pr-3">{{ $place->description }}</p>
-        <p style="font-size: 10px">Created at: {{ $place->created_at }}</p>
-        <p style="font-size: 10px">Updated at: {{ $place->updated_at }}</p>
+        <p>Description: {{ $place->description }}</p>
+        <p>Created at: {{ $place->created_at }}</p>
+        <p>Updated at: {{ $place->updated_at }}</p>
         <div>
             <img src="{{URL::asset('images/location.png')}}" height="auto" width="20px">
             <a class="textmode" href="{{ $place->location }}" target="blank">go to map</a>
@@ -63,6 +63,13 @@
     </div>
 
 </div>
+<style>
+    .rotate {
+        width: fit-content;
+        block-size: fit-content;
+    }
+</style>
+
  @endsection
 
 

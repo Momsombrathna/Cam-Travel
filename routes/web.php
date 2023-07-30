@@ -22,8 +22,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::get('/photo', 'PhotoController@index')->name('photo.index');
     Route::get('/photo/{post}/show', 'PhotoController@show')->name('photo.show');
 
-    Route::get('/place', 'PlaceController@index')->name('place.index');
-    Route::get('/place/{place}/show', 'PlaceController@show')->name('place.show');
+    Route::get('/place', 'PlaceShowController@index')->name('place.index');
+    Route::get('/place/{place}/show', 'PlaceShowController@show')->name('place.show');
     
     
 
@@ -39,6 +39,14 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
          */
         Route::get('/login', 'LoginController@show')->name('login.show');
         Route::post('/login', 'LoginController@login')->name('login.perform');
+
+        // forgot password routes   
+        Route::get('/forgot-password', 'ForgotPasswordController@showForgotPasswordForm')->name('forgot.password.get');
+        Route::post('forgot-password/send-reset-email', 'ForgotPasswordController@sendResetEmail')->name('forgot-password.send-reset-email');
+        Route::get('password/reset/{token}', 'ForgotPasswordController@showResetForm')->name('password.reset');
+        Route::post('password/reset', 'ForgotPasswordController@reset')->name('password.update');
+        
+
 
         
     });
@@ -85,13 +93,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::get('/profile/{post}/showitem', 'ProfileController@showitem')->name('profile.showitem');
             Route::get('/profile/{place}/showitemplace', 'ProfileController@showitemplace')->name('profile.showitemplace');
             Route::get('/profile/edit', 'UserProfileController@edit')->name('profile.edit');
-            Route::post('/profile/edit', 'UserProfileController@update')->name('profile.update');
+            Route::post('/profile/update', 'UserProfileController@update')->name('profile.update');
 
             // Search routes
             Route::get('/search', 'SearchController@index')->name('search.index');
 
-            // Password update
-            Route::get('/change-password', 'ChangePasswordController@changePassword')->name('change-password');
 
     });
     });
@@ -117,7 +123,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         });
 
         /**
-         * User Routes
+         * Posts Routes
          */
         Route::group(['prefix' => 'posts'], function() {
             Route::get('/', 'PostsController@index')->name('posts.index');
@@ -129,8 +135,28 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::delete('/{post}/delete', 'PostsController@destroy')->name('posts.destroy');
         });
 
+        /**
+         *Places Routes
+         */
+        Route::group(['prefix' => 'places'], function() {
+            Route::get('/', 'PlaceController@index')->name('places.index');
+            Route::get('/create', 'PlaceController@create')->name('places.create');
+            Route::post('/create', 'PlaceController@store')->name('places.store');
+            Route::get('/{place}/show', 'PlaceController@show')->name('places.show');
+            Route::get('/{place}/edit', 'PlaceController@edit')->name('places.edit');
+            Route::patch('/{place}/update', 'PlaceController@update')->name('places.update');
+            Route::delete('/{place}/delete', 'PlaceController@destroy')->name('places.destroy');
+        });
+
+        
+
         Route::get('/uploadplace', 'UploadPlaceController@index')->name('uploadplace.index');
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
+
+        
+        Route::get('/search/user', 'SearchController@search_user')->name('search.user');
+        Route::get('/search/post', 'SearchController@search_post')->name('search.post');
+        Route::get('/search/place', 'SearchController@search_place')->name('search.place');
 
         Route::resource('roles', RolesController::class);
         Route::resource('permissions', PermissionsController::class);

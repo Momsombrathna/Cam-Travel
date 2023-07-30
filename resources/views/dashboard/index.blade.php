@@ -18,7 +18,7 @@
                 <tbody>
                   <tr>
 
-                    <td>User Count</td>
+                    <td>Users Count</td>
                     <td>{{ $user_count }}</td>
      
                   </tr>
@@ -26,6 +26,12 @@
                 
                     <td>Posts Count</td>
                     <td>{{ $post_count }}</td>
+                  
+                  </tr>
+                  <tr>
+                
+                    <td>Places Count</td>
+                    <td>{{ $place_count }}</td>
                   
                   </tr>
                   <tr>
@@ -60,9 +66,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/comments">
+                    <a class="nav-link" href="/places">
                         <i class="fa fa-comments"></i>
-                        Comments
+                        Places
                     </a>
                 </li>
             </ul>

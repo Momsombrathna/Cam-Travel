@@ -43,9 +43,12 @@
 
                         <div class="form-group mb-3">
                             <input class="form-check-input "type="checkbox" onclick="ShowPassword()" value="" >
-                            <label class="form-check-label" for="flexCheckChecked">
-                              Show Password
-                            </label>
+                            <div class="row">
+                              <label class="form-check-label col" for="flexCheckChecked">
+                                Show Password
+                              </label>
+                              <a class="col" href="{{ route('forgot.password.get') }}">forgot password</a>
+                            </div>
                         </div>
 
                         <div class="form-group form-floating  mb-3">

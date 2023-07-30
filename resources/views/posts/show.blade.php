@@ -19,7 +19,9 @@
             <div>
                 Location: <a href="{{ $post->location }}" class="textmode" target="_blank" rel="noopener noreferrer">visit</a>
             </div>
-            <td>Post by: {{ $post->user->username }}</td>
+            <div>Post by: {{ $post->user->username }}</div>
+            <div>Created at: {{ $post->created_at }}</div>
+            <div>Updated at: {{ $post->updated_at }}</div>
             </div>
         </div>
 
