@@ -42,15 +42,17 @@
         </div>
 
         <div class="image-card text-center">
-            <img src=" {{$post->image}} " alt=""/>
+            <img style="width: 300px" src=" {{$post->image}} " alt=""/>
         </div>
 
     </div>
 
-    <br>
+    <br><br><br>
     <div style="float: left">
-        <h4>{{ $post->title }}</h4>
-        <p>{{ $post->description }}</p>
+        <h4>Title: {{ $post->title }}</h4>
+        <p class="pr-3">{{ $post->description }}</p>
+        <p style="font-size: 10px">Created at: {{ $post->created_at }}</p>
+        <p style="font-size: 10px">Updated at: {{ $post->updated_at }}</p>
         <div>
             <img src="{{URL::asset('images/location.png')}}" height="auto" width="20px">
             <a class="textmode" href="{{ $post->location }}" target="blank">{{ $post->location }}</a>

@@ -16,7 +16,7 @@
             display: none;
           }
         }
-        </style>
+    </style>
 </head>
 <body>
     <nav>

@@ -16,6 +16,13 @@
     <link rel="stylesheet" href="{{ asset('assets/css/upload.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/draganddrop.css') }}">
     <title>Upload photo</title>
+    <style>
+      @media screen and (max-width: 720px) {
+        .hide-on-small {
+          display: none;
+        }
+      }
+  </style>
 
 </head>
 <body>
@@ -29,17 +36,17 @@
     <div class="card container ">
         <form method="POST" action="{{ route('uploadphoto.store') }}">
             @csrf
-            <div class="row">
-                <div class="col">
+            <div class="row hide-on-small">
+                <div class="col"> 
                     <div class="container">
                         <div class="drag-area">
                           <div class="icon">
-                            <div id="image-container" class="p-3"></div>
+                            <div id="image-container" class="p-3">    </div>
                           </div>
                         </div>
                     </div>
                 </div>
-                <div class="col formtext">
+                <div class="col formtext"> 
                     <div class="form-group">
                         <label for="inputTitle">Title</label>
                         <input type="text" name="title" class="form-control mt-2" id="inputTitle" maxlength="70" placeholder="Title">
@@ -56,7 +63,7 @@
                     </div>
                     <div class="form-group mt-4">
                         <label for="inputLocation">Image Link</label>
-                        <input type="text" name="image" id="image-url" onchange="showImage(this.value)" class="form-control mt-2" placeholder="Image Linnk"/>
+                        <textarea type="text" name="image" id="image-url" oninput="showImage(this.value)" class="form-control mt-2" placeholder="Image Link"></textarea>
                         @if ($errors->has('image'))
                         <span class="text-danger text-left">{{ $errors->first('image') }}</span>
                     @endif
@@ -91,8 +98,21 @@
     image.height = 200;
     // Find the div element by its id
     let container = document.getElementById("image-container");
-    // Append the image element to the div
-    container.appendChild(image);
+    // Use a try...catch block to handle any errors
+    try {
+      // Use an if statement to check if the div already has an image
+      if (container.hasChildNodes()) {
+        // Use the removeChild() method to remove the existing image
+        container.removeChild(container.firstChild);
+      }
+      // Append the new image element to the div
+      container.appendChild(image);
+    }
+    catch (error) {
+      // Log any errors to the console
+      console.error(error);
+    }
+    
     }
   </script>
 </html>

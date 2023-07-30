@@ -1,29 +1,45 @@
 @extends('layouts.app-master')
-<h1>Search Results</h1>
-<br><br><br>
-<ul>
-    @foreach ($users as $user)
-            <a href="{{ route('profile.show', $user->id) }}">
-                <div class="card" style="width: 18rem;">
-                    <img src="{{ $user->image }}" class="card-img-top rounded-circle" alt="...">
-                    <div class="card-body">
-                    <h5 class="card-title textmode" style="text-decoration: none">Username: {{ $user->username }}</h5>
-                    <p class="card-text textmode" style="text-decoration: none">Role: {{ $user->name }}</p>
-                    </div> 
-                </div>
-            </a>
-    @endforeach
 
-    @foreach ($posts as $post)
-     
-        <a href="{{ route('profile.showitem', $post->id) }}">
-            <div class="card" style="width: 18rem;">
-                <img src="{{ $post->image }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title textmode" style="text-decoration: none">title: {{ $post->title }}</h5>
-                    <p class="card-text textmode" style="text-decoration: none">{{ $post->description }}</p>
+@section('content')
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">Search Results</div>
+        <div class="card-body">
+          @if(count($posts) > 0)
+          <ul class="list-group">
+            @foreach($posts as $post)
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <a href="{{ route('profile.showitem', $post->id) }}">{{ $post->title }}</a>
+              <a href="{{ route('profile.showitem', $post->id) }}">{{ $post->description }}</a>
+              <span class="badge badge-primary">{{ $post->created_at->diffForHumans() }}</span>
+            </li>
+            @endforeach
+          </ul>
+          @else
+          <p>No results found for post</p>
+          @endif
+        </div>
+        <div class="card-body">
+            @if(count($users) > 0)
+            <ul class="list-group">
+              @foreach($users as $user)
+              <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="col">
+                    <a class="row" href="{{ route('profile.show', $user->id) }}">{{ $user->username }}</a>
+                    <a class="row" href="{{ route('profile.show', $user->id) }}">{{ $user->name }}</a>
                 </div>
-            </div>
-        </a>
-    @endforeach
-</ul>
+                <span class="badge badge-primary">{{ $user->created_at->diffForHumans() }}</span>
+              </li>
+              @endforeach
+            </ul>
+            @else
+            <p>No results found for users</p>
+            @endif
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection

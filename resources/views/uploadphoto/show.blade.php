@@ -35,30 +35,35 @@
                     </div>
 
                     <div class="col">
+                        @can('update', $post)
                         <a href="{{ route('uploadphoto.edit', $post->id) }}" class="btn btn-primary">Edit</a>
+                        @endcan
                     </div>
                     <div class="col">
+                        @can('update', $post)
                         <form action="{{ route('uploadphoto.destroy', $post) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
+                        @endcan
                     </div>
                   </div>
             </div>
         </div>
 
         <div class="image-card text-center">
-            <img src=" {{$post->image}} " alt=""/>
+            <img style="width: 300px" src=" {{$post->image}} " alt=""/>
         </div>
 
     </div>
     
-    <br>
+    <br><br><br>
     <div style="float: left">
         <h4>Title: {{ $post->title }}</h4>
-        <p>Description: {{ $post->description }}</p>
-        <p>Created at: {{ $post->created_at }}</p>
+        <p>{{ $post->description }}</p>
+        <p style="font-size: 10px">Created at: {{ $post->created_at }}</p>
+        <p style="font-size: 10px">Updated at: {{ $post->updated_at }}</p>
         <div>
             <img src="{{URL::asset('images/location.png')}}" alt="logo" height="auto" width="20px">
 

@@ -9,10 +9,10 @@
         </div>
 
         <div class="container mt-4">
-            <div>
+            <img src="{{ $post->image }}" alt="" style="width: 400px" style="height: 400px">
+            <div class="mt-3">
                 Title: {{ $post->title }}
             </div>
-            <img src="{{ $post->image }}" alt="" style="width: 200px" style="height: 200px">
             <div>
                 Description: {{ $post->description }}
             </div>

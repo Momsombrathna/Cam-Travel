@@ -2,7 +2,7 @@
 
 @section('content')
     <br/><br/><br/>
-    <h1 class="mb-3">Post Contents</h1>
+    <h1 class="mb-3">Admin Post Contents</h1>
     {{-- <a href="{{ route('users.index') }}" class="btn btn-primary btn-sm">Users</a>
     <a href="{{ route('roles.index') }}" class="btn btn-primary btn-sm">User Roles</a> --}}
 

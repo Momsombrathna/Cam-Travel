@@ -39,16 +39,17 @@
         </div>
 
         <div class="image-card text-center">
-            <img  src=" {{$post->image}} " alt=""/>
+            <img style="width: 300px"  src=" {{$post->image}} " alt=""/>
         </div>
 
     </div>
     
-    <br>
+    <br><br><br>
     <div style="float: left">
         <h4>Title: {{ $post->title }}</h4>
-        <p>Description: {{ $post->description }}</p>
-        <p>Created at: {{ $post->created_at }}</p>
+        <p>{{ $post->description }}</p>
+        <p style="font-size: 10px">Created at: {{ $post->created_at }}</p>
+        <p style="font-size: 10px">Updated at: {{ $post->updated_at }}</p>
         <div>
             <img src="{{URL::asset('images/location.png')}}" alt="logo" height="auto" width="20px">
 
@@ -58,33 +59,6 @@
     </div>
 
 </div>
-
-<script>
-    // Define a function to download an image from a link
-    function downloadImage(link) {
-    // Create a new image element
-    var image = new Image();
-    // Set the source attribute to the link
-    image.src = link;
-    // Wait for the image to load
-    image.onload = function() {
-        // Create a new anchor element
-        var link = document.createElement("a");
-        // Set the href attribute to the image data URL
-        link.href = image.src;
-        // Set the download attribute to the image file name
-        link.download = image.src.split("/").pop();
-        // Append the link to the document body
-        document.body.appendChild(link);
-        // Click the link to download the image
-        link.click();
-        // Remove the link from the document body
-        document.body.removeChild(link);
-    };
-    }
-</script>
-
-
 
 @endsection
 

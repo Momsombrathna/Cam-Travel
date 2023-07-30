@@ -20,8 +20,6 @@ class ProfileController extends Controller
     {
         $user = $post->user;
         
-        
-
         return view('profile.showitem', compact('post', 'user'));
     }
 }

@@ -39,7 +39,7 @@
             @endauth
         </div>
         <div class="col-lg-8 textmode">
-            <div class="card mb-4">
+            <div class="card mb-4" >
             <div class="card-body">
                 <div class="row">
                 <div class="col-sm-3">

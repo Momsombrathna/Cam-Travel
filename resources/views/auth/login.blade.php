@@ -16,14 +16,14 @@
                   <div class="text-center">
                       <img src="{{URL::asset('images/logo.png')}}" alt="logo" height="auto" width="230px"> <br><br>
                     <h4 class="mt-1 mb-5 pb-1 textmode">Welcome Back</h4>
+
+                    @include('layouts.partials.messages')
+                  
                   </div>
-
-
+                
                     <form method="post" action="{{ route('login.perform') }}">
                         <p class="textmode">Please login to your account</p>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-
-                        @include('layouts.partials.messages')
 
                         <div class="form-group form-floating mb-3">
                             <input type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="Username" required="required" autofocus>

@@ -15,7 +15,19 @@
     />
     <link rel="stylesheet" href="{{ asset('assets/css/upload.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/draganddrop.css') }}">
-    <title>Upload photo</title>
+    <title>edit photo</title>
+    <style>
+      @media screen and (max-width: 720px) {
+        .hide-on-small {
+          display: none;
+        }
+      }
+      @media screen and (min-width: 720px) {
+        .hide-on-huge {
+          display: none;
+        }
+      }
+  </style>
 
 </head>
 <body>
@@ -28,61 +40,72 @@
 
     <div class="card container ">
         <form method="POST" action="{{ route('uploadphoto.update', $post->id) }}">
-            @csrf
             @method('patch')
+            @csrf
             <div class="row">
-                <div class="col">
+                <div class="col hide-on-small"> 
                     <div class="container">
                         <div class="drag-area">
                           <div class="icon">
-                            <div id="image-container" class="p-3"></div>
+                            <div id="image-container" class="p-3"> </div>
                           </div>
                         </div>
                     </div>
                 </div>
                 <div class="col formtext">
+                    <div class="form-group hide-on-huge">
+                        <div class="container">
+                          <div class="drag-area">
+                            <div class="icon">
+                              <div id="image-container" class="p-3"></div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
                     <div class="form-group">
                         <label for="inputTitle">Title</label>
-                        <input type="text" name="title" class="form-control mt-2" id="inputTitle" maxlength="70" value="{{ $post->title }}" placeholder="Title">
+                        <!-- Use value attribute to populate input field with current data -->
+                        <!-- Use old() helper function to retain old input value if any -->
+                        <input type="text" name="title" class="form-control mt-2" id="inputTitle" maxlength="70" placeholder="Title" value="{{ old('title', $post->title) }}">
                         @if ($errors->has('title'))
                         <span class="text-danger text-left">{{ $errors->first('title') }}</span>
                     @endif
                     </div>
                     <div class="form-group mt-4">
                         <label>Description</label>
-                        <textarea type="text" name="description" class="form-control mt-2"  maxlength="290" placeholder="Description">{{ $post->description }}</textarea>
+                        <!-- Use value attribute to populate input field with current data -->
+                        <!-- Use old() helper function to retain old input value if any -->
+                        <textarea type="text" name="description" class="form-control mt-2"  maxlength="290" placeholder="Description">{{ old('description', $post->description) }}</textarea>
                         @if ($errors->has('description'))
                         <span class="text-danger text-left">{{ $errors->first('description') }}</span>
                     @endif
                     </div>
-                    {{-- <div class="form-group mt-4">
+                    <div class="form-group mt-4">
                         <label for="inputLocation">Image Link</label>
-                        <input type="text" name="image" id="image-url" onchange="showImage(this.value)" class="form-control mt-2" value="{{ $post->image }}" placeholder="Image Linnk"/>
-                        @if ($errors->has('image'))
-                        <span class="text-danger text-left">{{ $errors->first('image') }}</span>
-                    @endif
-                    </div> --}}
-                    <div class="form-group">
-                        <label>Image</label>
-                        <input type="text" name="image" class="form-control mt-2" value="{{ $post->image }}" placeholder="image">
+                        <!-- Use value attribute to populate input field with current data -->
+                        <!-- Use old() helper function to retain old input value if any -->
+                        <textarea type="text" name="image" id="image-url" oninput="showImage(this.value)" class="form-control mt-2" placeholder="Image Link">{{ old('image', $post->image) }}</textarea>
                         @if ($errors->has('image'))
                         <span class="text-danger text-left">{{ $errors->first('image') }}</span>
                     @endif
                     </div>
                     <div class="form-group mt-4">
                         <label for="inputLocation">Loaction</label>
-                        <textarea type="text" name="location" class="form-control mt-2"  placeholder="Location">{{ $post->location }}</textarea>
+                        <!-- Use value attribute to populate input field with current data -->
+                        <!-- Use old() helper function to retain old input value if any -->
+                        <textarea type="text" name="location" class="form-control mt-2"  placeholder="Location">{{ old('location', $post->location) }}</textarea>
                         @if ($errors->has('location'))
                         <span class="text-danger text-left">{{ $errors->first('location') }}</span>
                         @endif
                     </div>
                     <div class="form-group mt-4">
-                        <button type="submit" class="btn btn-info mt-2">Submit</button>
+                        <button type="submit" class="btn btn-info mt-2">Update</button>
                     </div>
-
+          
                 </div>
               </div>
-        </form>
+          </form>
+          
     </div>
 
     </div>
@@ -99,8 +122,21 @@
     image.height = 200;
     // Find the div element by its id
     let container = document.getElementById("image-container");
-    // Append the image element to the div
-    container.appendChild(image);
+    // Use a try...catch block to handle any errors
+    try {
+      // Use an if statement to check if the div already has an image
+      if (container.hasChildNodes()) {
+        // Use the removeChild() method to remove the existing image
+        container.removeChild(container.firstChild);
+      }
+      // Append the new image element to the div
+      container.appendChild(image);
+    }
+    catch (error) {
+      // Log any errors to the console
+      console.error(error);
+    }
+    
     }
   </script>
 </html>
