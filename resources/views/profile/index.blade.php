@@ -39,17 +39,8 @@
             @endauth
         </div>
         <div class="col-lg-8 textmode">
-            <div class="card mb-4">
+            <div class="card mb-4" >
             <div class="card-body">
-                <div class="row">
-                <div class="col-sm-3">
-                    <p class="mb-0">Role</p>
-                </div>
-                <div class="col-sm-9 ">
-                    <p class="text-muted mb-0">{{auth()->user()->name}}</p>
-                </div>
-                </div>
-                <hr>
                 <div class="row ">
                 <div class="col-sm-3 ">
                     <p class="mb-0">Email</p>
@@ -64,7 +55,7 @@
                     <p class="mb-0">Phone</p>
                 </div>
                 <div class="col-sm-9">
-                    <p class="text-muted mb-0">+855 {{ $user->phone }}</p>
+                    <p class="text-muted mb-0">+855 {{ auth()->user()->phone }}</p>
                 </div>
                 </div>
                 <hr>
@@ -73,9 +64,24 @@
                     <p class="mb-0">Address</p>
                 </div>
                 <div class="col-sm-9">
-                    <p class="text-muted mb-0">{{ $user->address }}</p>
+                    <p class="text-muted mb-0">{{ auth()->user()->address }}</p>
                 </div>
                 </div>
+
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0">Role</p>
+                    </div>
+                    <div class="col-sm-9 ">
+                        @if(auth()->user()->roles)
+                        <p class="text-muted mb-0">{{auth()->user()->name}}</p>
+                        @else
+                        <p class="text-muted mb-0">No role</p>
+                        @endif
+                    </div>
+                </div>
+
             </div>
             </div>
 
@@ -104,6 +110,7 @@
     <div class="container-fluid w3-animate-opacity">
         <div class="tab">
             <button class="tablinks" onclick="openCity(event, 'IDphoto')">Photo</button>
+            <button class="tablinks" onclick="openCity(event, 'IDplace')">Place</button>
         </div>
 
         {{-- tap photo under profile --}}
@@ -143,39 +150,52 @@
                 @endif
             </div>
 
-
-
-            <script>
-            window.onload = function () {
-                var imgDefer = document.getElementsByTagName("img");
-                for (var i = 0; i < imgDefer.length; i++) {
-                    if (imgDefer[i].getAttribute("data-src")) {
-                        imgDefer[i].setAttribute("src", imgDefer[i].getAttribute("data-src"));
-                    }
-                }
-                var $container = $(".masonry");
-                $container.imagesLoaded(function () {
-                    $container.masonry({
-                        percentPosition: true
-                    });
-                });
-            };
-            </script>
+            @include('layouts.partials.showpost')
         </table>
         </div>
         {{-- End tap photo under profile --}}
 
-        {{-- tap place under profile --}}
-        <div id="IDplace" class="tabcontent w3-animate-opacity">
-        <table>
-        <h1>place</h1>
-
-        </table>
-        </div>
-        {{-- tap place under profile --}}
-
-    </div>
-    {{-- END TAP NAV --}}
+        {{-- tap photo under profile --}}
+        <div id="IDplace" class="tabcontent">
+            <table class="w3-animate-opacity">
+                <div>
+                    @if ($places->count() > 0)
+                        <div class="container-fluid mb-5">
+                            <div class="row gy-4 masonry">
+                                @foreach ($places as $place)
+                                    <div class="col-lg-3 col-md-4 col-6">
+                                        <a href="{{ route('uploadplace.show', $place->id) }}">
+                                            <img
+                                                style=
+                                                "
+                                                cursor: pointer;
+                                                width: 100%;
+                                                height: 100%;
+                                                max-height: 200px;
+                                                object-fit: cover;
+                                                "
+                                                src="{{ $place->image }} "
+                                                class="img-fluid"
+                                            >
+    
+                                            <h5 hidden class="card-title">{{ $place->title }}</h5>
+                                            <p hidden class="card-text">{{ $place->description }}</p>
+                                            <p hidden class="card-text">{{ $place->location }}</p>
+                                            {{-- <a  href="{{ route('uploadphoto.show', $post->id) }}" class="btn btn-primary">show</a> --}}
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @else
+                        <p>No posts found.</p>
+                    @endif
+                </div>
+    
+                @include('layouts.partials.showpost')
+            </table>
+            </div>
+            {{-- End tap photo under profile --}}
 
 @endsection
 

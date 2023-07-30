@@ -16,7 +16,7 @@
             display: none;
           }
         }
-        </style>
+    </style>
 </head>
 <body>
     <nav>
@@ -26,23 +26,23 @@
 
             <div class="menu">
                 <div class="logo-toggle">
-                    <span class="logo"><a href="#"><a href="#"><img src="{{URL::asset('images/logo.png')}}" alt="logo" height="auto" width="185px"></a></a></span>
+                    <span class="logo"><a href="{{ route('home.index') }}"><a href="#"><img src="{{URL::asset('images/logo.png')}}" alt="logo" height="auto" width="185px"></a></a></span>
                     <i class='bx bx-x siderbarClose'></i>
                 </div>
 
                 <ul class="nav-links">
-                    <li><a href="{{ route('photo.index') }}">HOME</a></li>
+                    <li><a href="{{ route('home.index') }}">Home</a></li>
+                    <li><a href="{{ route('photo.index') }}">Photo</a></li>
+                    <li><a href="{{ route('place.index') }}">Place</a></li>
 
                     @auth
                         @role('admin')
                             <li><a href="{{ route('dashboard.index') }}">Dashboad</a></li>
-                            {{-- <li><a href="{{ route('roles.index') }}">Role</a></li>
-                            <li><a href="{{ route('posts.index') }}">Post</a></li> --}}
                         @endrole
                         @role('stuff')
-                            <li><a href="{{ route('users.index') }}">User</a></li>
-                            {{-- <li><a href="{{ route('roles.index') }}">Role</a></li> --}}
-                            <li><a href="{{ route('posts.index') }}">Post</a></li>
+                            <li><a href="{{ route('users.index') }}">Users</a></li>
+                            <li><a href="{{ route('places.index') }}">Places</a></li>
+                            <li><a href="{{ route('posts.index') }}">Posts</a></li>
                         @endrole
 
 
@@ -67,7 +67,7 @@
                     </div> --}}
                     <form class="search-field" action="{{ route('search.index') }}" method="GET">
                         <input type="text" name="search" placeholder="Search" value="{{ old('search') }}">
-                        <button type="submit" class='bx bx-search'></button>
+                        <button type="submit" class='bx bx-search btn' style="width: 50px; height: 40px"></button>
                     </form>
                 </div>
 
@@ -77,10 +77,11 @@
                         class=" btn btn-info dropdown-toggle" type="profile" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true">
                         Upload
                         </button>
+                    
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="{{ route('uploadphoto.create') }}" >Upload photo</a></li>
-                            
+                            <li><a class="dropdown-item" href="{{ route('uploadplace.create') }}" >Upload place</a></li>
                         </ul>
                     </div>
                 @endauth

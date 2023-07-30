@@ -17,11 +17,11 @@
                     @auth
                     <div class="col" style="float: left; cursor:pointer" >
                         <a href="{{ route('profile.index', $user->id) }}">
-                            <img class="userImage" src="{{$post->user->image }}" alt="avatar"/>
+                            <img class="userImage" src="{{ $place->user->image }}" alt="avatar"/>
                         </a>
                     </div>
                     <div class="col">
-                        <h5>{{ $post->user->username }}</h5>
+                        <h5>{{ $place->user->username }}</h5>
                     </div>
                     @endauth
                   </div>
@@ -34,31 +34,49 @@
                         </a>
                     </div>
 
+                    <div class="col">
+                        @can('update', $place)
+                        <a href="{{ route('uploadplace.edit', $place->id) }}" class="btn btn-primary">Edit</a>
+                        @endcan
+                    </div>
+                    <div class="col">
+                        @can('update', $place)
+                        <form action="{{ route('uploadplace.destroy', $place) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                        @endcan
+                    </div>
                   </div>
             </div>
         </div>
 
         <div class="image-card text-center">
-            <img style="width: 300px"  src=" {{$post->image}} " alt=""/>
+            <img style="width: 300px" src=" {{$place->image}} " alt=""/>
+            <img style="width: 300px" src=" {{$place->images}} " alt=""/>
+            <img style="width: 300px" src=" {{$place->imagess}} " alt=""/>
         </div>
 
     </div>
     
     <br><br><br>
     <div style="float: left">
-        <h4>Title: {{ $post->title }}</h4>
-        <p>{{ $post->description }}</p>
-        <p style="font-size: 10px">Created at: {{ $post->created_at }}</p>
-        <p style="font-size: 10px">Updated at: {{ $post->updated_at }}</p>
+        <h4>Title: {{ $place->title }}</h4>
+        <p>{{ $place->description }}</p>
+        <p style="font-size: 10px">Created at: {{ $place->created_at }}</p>
+        <p style="font-size: 10px">Updated at: {{ $place->updated_at }}</p>
         <div>
             <img src="{{URL::asset('images/location.png')}}" alt="logo" height="auto" width="20px">
 
-            <a class="textmode" href="{{ $post->location }}" target="blank">{{ $post->location }}</a>
+            <a class="textmode" href="{{ $place->location }}" target="blank">go to map</a>
         </div>
 
     </div>
 
 </div>
+
+
 
 @endsection
 

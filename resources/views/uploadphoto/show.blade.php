@@ -1,5 +1,4 @@
 @extends('layouts.app-master')
-
 @section('content')
     <br><br><br>
 
@@ -35,21 +34,25 @@
                     </div>
 
                     <div class="col">
+                        @can('update', $post)
                         <a href="{{ route('uploadphoto.edit', $post->id) }}" class="btn btn-primary">Edit</a>
+                        @endcan
                     </div>
                     <div class="col">
+                        @can('update', $post)
                         <form action="{{ route('uploadphoto.destroy', $post) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
+                        @endcan
                     </div>
                   </div>
             </div>
         </div>
 
         <div class="image-card text-center">
-            <img src=" {{$post->image}} " alt=""/>
+            <img class="img" src=" {{$post->image}} " alt=""/>
         </div>
 
     </div>
@@ -59,15 +62,30 @@
         <h4>Title: {{ $post->title }}</h4>
         <p>Description: {{ $post->description }}</p>
         <p>Created at: {{ $post->created_at }}</p>
+        <p>updated at: {{ $post->updated_at }}</p>
         <div>
             <img src="{{URL::asset('images/location.png')}}" alt="logo" height="auto" width="20px">
 
-            <a class="textmode" href="{{ $post->location }}" target="blank">{{ $post->location }}</a>
+            <a class="textmode" href="{{ $post->location }}" target="blank">go to map</a>
         </div>
 
     </div>
 
 </div>
+<style>
+    @media (max-width: 768px) {
+        .img {
+            max-width: 50%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .img {
+            max-width: 300px;
+        }
+    }
+</style>
+
 
 
 

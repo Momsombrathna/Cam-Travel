@@ -31,10 +31,13 @@
         <div class="container-fluid mb-5">
             <div class="row gy-4 masonry">
                 @foreach ($posts as $post)
+                <!-- Use Bootstrap grid system to create responsive columns -->
                 <div class="col-lg-3 col-md-4 col-6">
-                    <div class="image--hover">
+                    <!-- Use Bootstrap spacing utilities to control margins and paddings -->
+                    <div class="image--hover m-0 p-1">
                         <a href="{{ route('photo.show', $post->id) }}">
-                            <img src="{{ $post->image }}"  class="img-fluid image" style="width:100%; border-radius: 20px;">
+                            <!-- Use Bootstrap responsive breakpoints to change image height -->
+                            <img src="{{ $post->image }}"  class="img-fluid image h-25" style="width:100%; border-radius: 20px;">
                         </a>
                     </div>
                 </div>

@@ -19,9 +19,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
      * Home Routes
      */
     Route::get('/', 'HomeController@index')->name('home.index');
-    Route::get('/place', 'PlaceController@index')->name('place.index');
     Route::get('/photo', 'PhotoController@index')->name('photo.index');
     Route::get('/photo/{post}/show', 'PhotoController@show')->name('photo.show');
+
+    Route::get('/place', 'PlaceShowController@index')->name('place.index');
+    Route::get('/place/{place}/show', 'PlaceShowController@show')->name('place.show');
     
     
 
@@ -38,9 +40,18 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('/login', 'LoginController@show')->name('login.show');
         Route::post('/login', 'LoginController@login')->name('login.perform');
 
+        // forgot password routes   
+        Route::get('/forgot-password', 'ForgotPasswordController@showForgotPasswordForm')->name('forgot.password.get');
+        Route::post('forgot-password/send-reset-email', 'ForgotPasswordController@sendResetEmail')->name('forgot-password.send-reset-email');
+        Route::get('password/reset/{token}', 'ForgotPasswordController@showResetForm')->name('password.reset');
+        Route::post('password/reset', 'ForgotPasswordController@reset')->name('password.update');
+        
+
+
         
     });
 
+    // User routes
     Route::group(['middleware' => ['auth']], function() {
 
         /**
@@ -50,7 +61,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify')->middleware(['signed']);
         Route::post('/email/resend', 'VerificationController@resend')->name('verification.resend');
         
-        
+        // User verification routes
         Route::group(['middleware' => ['verified']], function() {
             /**
              * Dashboard Routes
@@ -58,6 +69,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
             Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
 
+            // Upload posts routes
             Route::get('/uploadphoto', 'UploadPhotoController@index')->name('uploadphoto.index');
             Route::get('/uploadphoto/create', 'UploadPhotoController@create')->name('uploadphoto.create');
             Route::post('/uploadphoto/create', 'UploadPhotoController@store')->name('uploadphoto.store');
@@ -66,17 +78,32 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::patch('/uploadphoto/{post}/update', 'UploadPhotoController@update')->name('uploadphoto.update');
             Route::delete('/uploadphoto/{post}/delete', 'UploadPhotoController@destroy')->name('uploadphoto.destroy');
 
+            // Upload place routes
+            Route::get('/uploadplace', 'UploadPlaceController@index')->name('uploadplace.index');
+            Route::get('/uploadplace/create', 'UploadPlaceController@create')->name('uploadplace.create');
+            Route::post('/uploadplace/create', 'UploadPlaceController@store')->name('uploadplace.store');
+            Route::get('/uploadplace/{place}/edit', 'UploadPlaceController@edit')->name('uploadplace.edit');
+            Route::get('/uploadplace/{place}/show', 'UploadPlaceController@show')->name('uploadplace.show');
+            Route::patch('/uploadplace/{place}/update', 'UploadPlaceController@update')->name('uploadplace.update');
+            Route::delete('/uploadplace/{place}/delete', 'UploadPlaceController@destroy')->name('uploadplace.destroy');
+
+            // Profile routes
             Route::get('/profile', 'UserProfileController@index')->name('profile.index');
             Route::get('/profile/{id}/show', 'ProfileController@show')->name('profile.show');
             Route::get('/profile/{post}/showitem', 'ProfileController@showitem')->name('profile.showitem');
+            Route::get('/profile/{place}/showitemplace', 'ProfileController@showitemplace')->name('profile.showitemplace');
             Route::get('/profile/edit', 'UserProfileController@edit')->name('profile.edit');
-            Route::post('/profile/edit', 'UserProfileController@update')->name('profile.update');
+            Route::post('/profile/update', 'UserProfileController@update')->name('profile.update');
 
+            // Search routes
             Route::get('/search', 'SearchController@index')->name('search.index');
+
+
     });
     });
 
 
+    // Admin routes
     Route::group(['middleware' => ['auth', 'permission', 'verified']], function() {
         /**
          * Logout Routes
@@ -96,7 +123,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         });
 
         /**
-         * User Routes
+         * Posts Routes
          */
         Route::group(['prefix' => 'posts'], function() {
             Route::get('/', 'PostsController@index')->name('posts.index');
@@ -108,8 +135,28 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::delete('/{post}/delete', 'PostsController@destroy')->name('posts.destroy');
         });
 
+        /**
+         *Places Routes
+         */
+        Route::group(['prefix' => 'places'], function() {
+            Route::get('/', 'PlaceController@index')->name('places.index');
+            Route::get('/create', 'PlaceController@create')->name('places.create');
+            Route::post('/create', 'PlaceController@store')->name('places.store');
+            Route::get('/{place}/show', 'PlaceController@show')->name('places.show');
+            Route::get('/{place}/edit', 'PlaceController@edit')->name('places.edit');
+            Route::patch('/{place}/update', 'PlaceController@update')->name('places.update');
+            Route::delete('/{place}/delete', 'PlaceController@destroy')->name('places.destroy');
+        });
+
+        
+
         Route::get('/uploadplace', 'UploadPlaceController@index')->name('uploadplace.index');
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
+
+        
+        Route::get('/search/user', 'SearchController@search_user')->name('search.user');
+        Route::get('/search/post', 'SearchController@search_post')->name('search.post');
+        Route::get('/search/place', 'SearchController@search_place')->name('search.place');
 
         Route::resource('roles', RolesController::class);
         Route::resource('permissions', PermissionsController::class);

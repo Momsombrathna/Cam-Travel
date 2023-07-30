@@ -9,17 +9,19 @@
         </div>
 
         <div class="container mt-4">
-            <div>
+            <img src="{{ $post->image }}" alt="" style="width: 400px" style="height: 400px">
+            <div class="mt-3">
                 Title: {{ $post->title }}
             </div>
-            <img src="{{ $post->image }}" alt="" style="width: 200px" style="height: 200px">
             <div>
                 Description: {{ $post->description }}
             </div>
             <div>
-                Location: {{ $post->location }}
+                Location: <a href="{{ $post->location }}" class="textmode" target="_blank" rel="noopener noreferrer">visit</a>
             </div>
-            <td>Post by: {{ $post->user->username }}</td>
+            <div>Post by: {{ $post->user->username }}</div>
+            <div>Created at: {{ $post->created_at }}</div>
+            <div>Updated at: {{ $post->updated_at }}</div>
             </div>
         </div>
 
