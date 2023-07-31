@@ -66,7 +66,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/places">
+                    <a class="nav-link" href="{{ route('places.index') }}">
                         <i class="fa fa-comments"></i>
                         Places
                     </a>

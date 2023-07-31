@@ -22,11 +22,11 @@
     <nav>
         <div class="nav-bar">
             <i class='bx bx-menu sidebarOpen' ></i>
-            <span class="logo navLogo hide-on-small"><a href="#"><img src="{{URL::asset('images/logo.png')}}" alt="logo" height="auto" width="185px"></a></span>
+            <span class="logo navLogo hide-on-small"><a href="#"><img src="" alt="logo" height="auto" width="185px"></a></span>
 
             <div class="menu">
                 <div class="logo-toggle">
-                    <span class="logo"><a href="{{ route('home.index') }}"><a href="#"><img src="{{URL::asset('images/logo.png')}}" alt="logo" height="auto" width="185px"></a></a></span>
+                    <span class="logo"><a href="{{ route('home.index') }}"><img src="" alt="logo" height="auto" width="185px"></a></a></span>
                     <i class='bx bx-x siderbarClose'></i>
                 </div>
 

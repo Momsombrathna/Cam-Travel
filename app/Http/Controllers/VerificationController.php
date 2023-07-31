@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RedirectsUsers;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Support\Facades\Mail;
 
 class VerificationController extends Controller
 {
@@ -53,5 +54,21 @@ class VerificationController extends Controller
                         : view('verification.notice', [
                             'pageTitle' => __('Account Verification')
                         ]);
+    }
+
+    public function sendEmail(Request $request)
+    {
+        $user = $request->user();
+
+        $token = $this->generateToken();
+
+        // This is where you would add the code above
+
+        Mail::send('auth.emails.verify', ['token' => $token], function ($message) use ($user) {
+            $message->to($user->email);
+            $message->subject('Verify Your Email Address');
+        });
+
+        return $this->resendVerificationLink($request);
     }
 }

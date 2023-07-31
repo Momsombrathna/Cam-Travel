@@ -45,9 +45,7 @@ class ForgotPasswordController extends Controller
     }
 
     public function showResetForm(Request $request)
-
     {
-
         if ($request->has('token')) {
 
             $token = $request->input('token');
@@ -57,8 +55,6 @@ class ForgotPasswordController extends Controller
             abort(404);
 
         }
-
-
 
         return view('auth.passwords.reset', ['token' => $token]);
 
