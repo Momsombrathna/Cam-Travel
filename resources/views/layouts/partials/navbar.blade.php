@@ -16,17 +16,22 @@
             display: none;
           }
         }
+        @media screen and (min-width: 720px) {
+          .hide-on-huge {
+            display: none;
+          }
+        }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-bar">
             <i class='bx bx-menu sidebarOpen' ></i>
-            <span class="logo navLogo hide-on-small"><a href="#"><img src="" alt="logo" height="auto" width="185px"></a></span>
+            <span class="logo navLogo hide-on-small"><a href="{{ route('home.index') }}"><img src="https://res.cloudinary.com/dugfn9ryq/image/upload/v1690763506/houzgp8o3x2urwg8btvc.png" alt="logo" height="auto" width="185px"></a></span>
 
             <div class="menu">
                 <div class="logo-toggle">
-                    <span class="logo"><a href="{{ route('home.index') }}"><img src="" alt="logo" height="auto" width="185px"></a></a></span>
+                    <span class="logo"><a href="{{ route('home.index') }}"><img src="https://res.cloudinary.com/dugfn9ryq/image/upload/v1690763506/houzgp8o3x2urwg8btvc.png" alt="logo" height="auto" width="185px"></a></a></span>
                     <i class='bx bx-x siderbarClose'></i>
                 </div>
 
@@ -34,6 +39,12 @@
                     <li><a href="{{ route('home.index') }}">Home</a></li>
                     <li><a href="{{ route('photo.index') }}">Photo</a></li>
                     <li><a href="{{ route('place.index') }}">Place</a></li>
+                    @auth
+                    <div class="hide-on-huge">
+                        <li><a class="dropdown-item" href="{{ route('uploadphoto.create') }}" >Upload photo</a></li>
+                        <li><a class="dropdown-item" href="{{ route('uploadplace.create') }}" >Upload place</a></li>
+                    </div>
+                    @endauth
 
                     @auth
                         @role('admin')
@@ -44,9 +55,8 @@
                             <li><a href="{{ route('places.index') }}">Places</a></li>
                             <li><a href="{{ route('posts.index') }}">Posts</a></li>
                         @endrole
-
-
                     @endauth
+
                 </ul>
             </div>
 
@@ -72,7 +82,7 @@
                 </div>
 
                 @auth
-                    <div style="margin-left: 10px;" class="dropdown">
+                    <div style="margin-left: 10px;" class="dropdown hide-on-small">
                         <button src="https://images.pexels.com/photos/15767257/pexels-photo-15767257.jpeg?cs=srgb&dl=pexels-thamyres-silva-15767257.jpg&fm=jpg&_gl=1*gt2tmu*_ga*MTMxMjgzNTE2NC4xNjg5Mzg4NjIx*_ga_8JE65Q40S6*MTY4OTg0NTYzNS41LjEuMTY4OTg0Njk2NS4wLjAuMA.."
                         class=" btn btn-info dropdown-toggle" type="profile" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true">
                         Upload
