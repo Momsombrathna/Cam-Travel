@@ -112,4 +112,15 @@ body.dark{
     align-items: center;
 }
 
+/*  */
 
+@media screen and (max-width: 1000px) {
+    .hide-on-small {
+      display: none;
+    }
+  }
+  @media screen and (min-width: 1000px) {
+    .hide-on-big {
+      display: none;
+    }
+  }

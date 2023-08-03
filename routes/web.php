@@ -23,6 +23,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::get('/photo', 'PhotoController@index')->name('photo.index');
     Route::get('/photo/{post}/show', 'PhotoController@show')->name('photo.show');
 
+
+
     Route::get('/place', 'PlaceShowController@index')->name('place.index');
     Route::get('/place/{place}/show', 'PlaceShowController@show')->name('place.show');
 
@@ -47,6 +49,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::post('forgot-password/send-reset-email', 'ForgotPasswordController@sendResetEmail')->name('forgot-password.send-reset-email');
         Route::get('password/reset/{token}', 'ForgotPasswordController@showResetForm')->name('password.reset');
         Route::post('password/reset', 'ForgotPasswordController@reset')->name('password.update');
+
 
 
 
@@ -100,6 +103,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             // Search routes
             Route::get('/search', 'SearchController@index')->name('search.index');
 
+
+            // share buuton to social media
+            Route::get('/uploadphoto/{post}/show', 'ProfileController@share')->name('uploadphoto.show');
+            Route::get('/uploadplace/{post}/show', 'PlaceController@shareplacebtn')->name('uploadplace.show');
 
     });
     });

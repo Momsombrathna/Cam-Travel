@@ -43,7 +43,7 @@
         </div>
 
     </div>
-    
+
     <br><br><br>
     <div style="float: left">
         <h4>Title: {{ $post->title }}</h4>

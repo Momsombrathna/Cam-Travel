@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Place;
 use App\Models\User;
 use Carbon\Carbon;
+use App\Models\Post;
+use Illuminate\Support\Facades\URL;
+use Jorenvh\Share\Share;
 
 class PlaceController extends Controller
 {
@@ -92,10 +95,30 @@ class PlaceController extends Controller
 
     public function destroy(Place $place)
     {
-        
+
         $place->delete();
 
         return redirect()->route('places.index')
             ->withSuccess(__('Post deleted successfully.'));
     }
+    public function shareplace(Post $post)
+{
+    $user = $post->user;
+
+    $share = new Share();
+    $shareplacebtn = $share->page(
+        url('https://camtravel.online/photo/12/show'),
+        'Your share text comes here',
+    )
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->whatsapp()
+        ->pinterest()
+        ->reddit()
+        ->telegram();
+
+    return view('uploadplace.show', compact('post', 'user', 'shareplacebtn'));
+}
+
 }

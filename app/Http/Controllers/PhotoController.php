@@ -34,6 +34,8 @@ class PhotoController extends Controller
         ->reddit()
         ->telegram();
 
+
         return view('photo.show', compact('post', 'user', 'shareButtons'));
     }
+
 }

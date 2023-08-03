@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/draganddrop.css') }}">
     <title>Upload photo</title>
     <style>
-      @media screen and (max-width: 720px) {
+      @media screen and (max-width: 420px) {
         .hide-on-small {
           display: none;
         }
@@ -34,7 +34,7 @@
         </div>
 
         <div class="container mt-4 row">
-            <div class="col">
+            <div class="col hide-on-small ">
                 <div class="container">
                     <div class="drag-area">
                       <div class="icon">
@@ -48,21 +48,21 @@
                 <div class="mb-3">
                     <label for="image" class="form-label">Image Link</label>
                     <textarea value="{{ old('image') ?? $user->image }}"
-                        type="text" 
-                        class="form-control" 
-                        name="image" 
+                        type="text"
+                        class="form-control"
+                        name="image"
                         oninput="showImage(this.value)"
                         placeholder="Image Link" >{{ old('image') ?? $user->image }}</textarea>
                     @if ($errors->has('image'))
                         <span class="text-danger text-left">{{ $errors->first('image') }}</span>
-                    @endif       
+                    @endif
                 </div>
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input value="{{ old('username') ?? $user->username }}"
-                        type="text" 
-                        class="form-control" 
-                        name="uasername" 
+                        type="text"
+                        class="form-control"
+                        name="uasername"
                         placeholder="Username" >
                     @if ($errors->has('username'))
                         <span class="text-danger text-left">{{ $errors->first('username') }}</span>
@@ -71,9 +71,9 @@
                 <div class="mb-3">
                     <label for="phone" class="form-label">phone</label>
                     <input value="{{ old('phone') ?? $user->phone }}"
-                        type="text" 
-                        class="form-control" 
-                        name="phone" 
+                        type="text"
+                        class="form-control"
+                        name="phone"
                         placeholder="Phone Number" >
                     @if ($errors->has('phone'))
                         <span class="text-danger text-left">{{ $errors->first('phone') }}</span>
@@ -82,15 +82,15 @@
                 <div class="mb-3">
                     <label for="address" class="form-label">Address</label>
                     <input value="{{ old('address') ?? $user->address }}"
-                        type="text" 
-                        class="form-control" 
-                        name="address" 
+                        type="text"
+                        class="form-control"
+                        name="address"
                         placeholder="Address" >
                     @if ($errors->has('address'))
                         <span class="text-danger text-left">{{ $errors->first('address') }}</span>
                     @endif
                 </div>
-                
+
 
                 <button type="submit" class="btn btn-primary">Update profile</button>
                 <a href="{{ route('profile.index') }}" class="btn btn-default">Cancel</button>
@@ -99,5 +99,5 @@
 
     </div>
     @include('layouts.partials.showimage')
-    
+
 @endsection
