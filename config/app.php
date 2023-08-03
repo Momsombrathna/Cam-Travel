@@ -168,6 +168,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
+
     ])->toArray(),
 
     /*
@@ -185,6 +187,7 @@ return [
         // 'Example' => App\Facades\Example::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Share' => Jorenvh\Share\ShareFacade::class,
     ])->toArray(),
 
 ];

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PhotoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,8 +25,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
 
     Route::get('/place', 'PlaceShowController@index')->name('place.index');
     Route::get('/place/{place}/show', 'PlaceShowController@show')->name('place.show');
-    
-    
+
+
+
 
     Route::group(['middleware' => ['guest']], function() {
         /**
@@ -40,15 +42,15 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('/login', 'LoginController@show')->name('login.show');
         Route::post('/login', 'LoginController@login')->name('login.perform');
 
-        // forgot password routes   
+        // forgot password routes
         Route::get('/forgot-password', 'ForgotPasswordController@showForgotPasswordForm')->name('forgot.password.get');
         Route::post('forgot-password/send-reset-email', 'ForgotPasswordController@sendResetEmail')->name('forgot-password.send-reset-email');
         Route::get('password/reset/{token}', 'ForgotPasswordController@showResetForm')->name('password.reset');
         Route::post('password/reset', 'ForgotPasswordController@reset')->name('password.update');
-        
 
 
-        
+
+
     });
 
     // User routes
@@ -60,7 +62,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('/email/verify', 'VerificationController@show')->name('verification.notice');
         Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify')->middleware(['signed']);
         Route::post('/email/resend', 'VerificationController@resend')->name('verification.resend');
-        
+
         // User verification routes
         Route::group(['middleware' => ['verified']], function() {
             /**
@@ -148,12 +150,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::delete('/{place}/delete', 'PlaceController@destroy')->name('places.destroy');
         });
 
-        
+
 
         Route::get('/uploadplace', 'UploadPlaceController@index')->name('uploadplace.index');
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 
-        
+
         Route::get('/search/user', 'SearchController@search_user')->name('search.user');
         Route::get('/search/post', 'SearchController@search_post')->name('search.post');
         Route::get('/search/place', 'SearchController@search_place')->name('search.place');

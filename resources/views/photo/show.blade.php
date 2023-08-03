@@ -1,5 +1,8 @@
 @extends('layouts.app-master')
 @section('content')
+{{-- @import('share'); --}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.0/css/all.css">
+
 <br><br><br>
 <div class="container textmode card py-2 mb-3">
     <img style="cursor: pointer" onclick="history.back()" src="{{URL::asset('images/back.png')}}" alt="logo" height="auto" width="40px">
@@ -30,13 +33,33 @@
                             <img style="cursor: pointer" src="{{URL::asset('images/download.png')}}" height="auto" width="40pxpx">
                         </a>
                     </div>
-                    {{-- <div class="col">
-                        <form action="{{ route('uploadphoto.destroy', $post) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </div> --}}
+                    <div class="col">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Share
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Share this with your Community</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body social-btn-sp" >
+                                    {{-- social media --}}
+                                        {!! $shareButtons !!}
+                                    {{-- end social media --}}
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        {{-- end modal --}}
+                    </div>
                   </div>
             </div>
         </div>
@@ -45,10 +68,10 @@
             <img class="img" src=" {{$post->image}} " alt=""/>
         </div>
 
-    </div>
+    </div><br>
 
-    <br>
-    <div style="float: left">
+
+    <div class="row" style="float:left">
         <h4>Title: {{ $post->title }}</h4>
         <p>Description: {{ $post->description }}</p>
         <p>Created at: {{ $post->created_at }}</p>
@@ -57,11 +80,13 @@
             <img src="{{URL::asset('images/location.png')}}" height="auto" width="20px">
             <a class="textmode" href="{{ $post->location }}" target="blank">go to map</a>
         </div>
-
     </div>
 
 </div>
+
+
 <style>
+
     @media (max-width: 768px) {
         .img {
             max-width: 50%;
