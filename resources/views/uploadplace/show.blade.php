@@ -74,7 +74,7 @@
                         </div>
                         <div class="modal-body social-btn-sp" >
                             {{-- social media --}}
-
+                            {!! $splace !!}
                             {{-- end social media --}}
                         </div>
                         <div class="modal-footer">

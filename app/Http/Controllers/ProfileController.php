@@ -32,7 +32,7 @@ class ProfileController extends Controller
         return view('profile.showitemplace', compact('place', 'user'));
     }
 
-    public function share(Post $post)
+    public function share(Post $post, Place $place)
     {
         $user = $post->user;
 
@@ -40,17 +40,11 @@ class ProfileController extends Controller
         $shareBtn = $share->page(
             url('https://camtravel.online/photo/12/show'),
             'Your share text comes here',
-        )
-        ->facebook()
-        ->twitter()
-        ->linkedin()
-        ->whatsapp()
-        ->pinterest()
-        ->reddit()
-        ->telegram();
+        );
+
+
 
         return view('uploadphoto.show', compact('post', 'user', 'shareBtn'));
     }
-
 
 }

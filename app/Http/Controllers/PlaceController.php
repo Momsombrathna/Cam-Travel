@@ -61,6 +61,7 @@ class PlaceController extends Controller
     {
         $user = $place->user;
 
+
         return view('places.show', compact('place', 'user'));
     }
 
@@ -101,24 +102,6 @@ class PlaceController extends Controller
         return redirect()->route('places.index')
             ->withSuccess(__('Post deleted successfully.'));
     }
-    public function shareplace(Post $post)
-{
-    $user = $post->user;
 
-    $share = new Share();
-    $shareplacebtn = $share->page(
-        url('https://camtravel.online/photo/12/show'),
-        'Your share text comes here',
-    )
-        ->facebook()
-        ->twitter()
-        ->linkedin()
-        ->whatsapp()
-        ->pinterest()
-        ->reddit()
-        ->telegram();
-
-    return view('uploadplace.show', compact('post', 'user', 'shareplacebtn'));
-}
 
 }

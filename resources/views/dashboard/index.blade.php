@@ -20,27 +20,27 @@
 
                     <td>Users Count</td>
                     <td>{{ $user_count }}</td>
-     
+
                   </tr>
                   <tr>
-                
+
                     <td>Posts Count</td>
                     <td>{{ $post_count }}</td>
-                  
+
                   </tr>
                   <tr>
-                
+
                     <td>Places Count</td>
                     <td>{{ $place_count }}</td>
-                  
+
                   </tr>
                   <tr>
-                   
+
                     <td>Roles Count</td>
                     <td>{{ $role_count }}</td>
                   </tr>
                   <tr>
-                   
+
                     <td>permission Count</td>
                     <td>{{ $permission_count }}</td>
                   </tr>
@@ -74,5 +74,5 @@
             </ul>
         </div>
     </div>
-    
+
 @endsection
