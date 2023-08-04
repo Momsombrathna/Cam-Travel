@@ -42,6 +42,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Place::class);
     }
 
+    public function Cart()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
 
     /**
      * The attributes that should be hidden for arrays.

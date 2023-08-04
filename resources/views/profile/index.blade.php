@@ -90,12 +90,6 @@
     </section>
     {{-- End Section Profile User --}}
 
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
-
 
 
     {{-- ======================================================================= --}}
@@ -111,6 +105,7 @@
         <div class="tab">
             <button class="tablinks" onclick="openCity(event, 'IDphoto')">Photo</button>
             <button class="tablinks" onclick="openCity(event, 'IDplace')">Place</button>
+            <button class="tablinks" onclick="openCity(event, 'IDsave')">Photo Save</button>
         </div>
 
         {{-- tap photo under profile --}}
@@ -196,6 +191,50 @@
             </table>
             </div>
             {{-- End tap photo under profile --}}
+
+            {{-- tap photo under profile --}}
+        <div id="IDsave" class="tabcontent">
+            <table class="w3-animate-opacity">
+                <div>
+                    @if ($carts->count() > 0)
+                        <div class="container-fluid mb-5">
+                            <div class="row gy-4 masonry">
+                                @foreach ($carts as $cart)
+                                    <div class="col-lg-3 col-md-4 col-6">
+                                        <a href="{{ route('save.show', $cart->post->id) }}">
+                                            <img
+                                                style=
+                                                "
+                                                cursor: pointer;
+                                                width: 100%;
+                                                height: 100%;
+                                                max-height: 200px;
+                                                object-fit: cover;
+                                                "
+                                                src="{{ $cart->post->image }} "
+                                                class="img-fluid"
+                                            >
+    
+                                            <h5 hidden class="card-title">{{ $cart->post->title }}</h5>
+                                            <p hidden class="card-text">{{ $cart->postdescription }}</p>
+                                            <p hidden class="card-text">{{ $cart->postlocation }}</p>
+                                            {{-- <a  href="{{ route('uploadphoto.show', $post->id) }}" class="btn btn-primary">show</a> --}}
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @else
+                        <p>No posts found.</p>
+                    @endif
+                </div>
+    
+                @include('layouts.partials.showpost')
+            </table>
+            </div>
+            {{-- End tap photo under profile --}}
+
+             
 
 @endsection
 

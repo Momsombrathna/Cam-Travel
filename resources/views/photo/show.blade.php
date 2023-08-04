@@ -1,9 +1,15 @@
 @extends('layouts.app-master')
 @section('content')
 <br><br><br>
+@if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
 <div class="container textmode card py-2 mb-3">
     <img style="cursor: pointer" onclick="history.back()" src="{{URL::asset('images/back.png')}}" alt="logo" height="auto" width="40px">
 </div>
+
 
 <div class="card-show-photo mb-5" style="padding: 30px">
     <div class="text-center" >
@@ -26,23 +32,21 @@
             <div class="col">
                 <div class="row" style="float:right">
                     <div class="col">
-                        <a href="#">
+                        <a id="download-btn">
                             <img style="cursor: pointer" src="{{URL::asset('images/download.png')}}" height="auto" width="40pxpx">
                         </a>
-                    </div>
-                    {{-- <div class="col">
-                        <form action="{{ route('uploadphoto.destroy', $post) }}" method="POST">
+                        <form action="{{ route('photo.save', $post->id) }}" method="post">
                             @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                        
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </form>
-                    </div> --}}
+                    </div>
                   </div>
             </div>
         </div>
 
         <div class="image-card text-center">
-            <img class="img" src=" {{$post->image}} " alt=""/>
+            <img class="img image_downlaod" src=" {{$post->image}} " alt=""/>
         </div>
 
     </div>
@@ -74,6 +78,39 @@
         }
     }
 </style>
+<script>
+    // Get the image element and the button element
+    const img = document.querySelector('.image_downlaod');
+    const btn = document.querySelector('#download-btn');
+
+    // Add a click event listener to the button
+    btn.addEventListener('click', async () => {
+        try {
+            // Fetch the image data as a blob
+            const response = await fetch(img.src);
+            const blob = await response.blob();
+
+            // Create a URL for the blob
+            const url = URL.createObjectURL(blob);
+
+            // Create a link element with the URL and the filename
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = img.src.split('/').pop();
+
+            // Append the link to the document body and click it
+            document.body.appendChild(link);
+            link.click();
+
+            // Remove the link from the document body and revoke the URL
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        } catch (error) {
+            // Handle any errors
+            console.error(error);
+        }
+    });
+</script>
  @endsection
 
 

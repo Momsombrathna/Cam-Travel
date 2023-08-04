@@ -53,7 +53,7 @@
         <div>
             <img src="{{URL::asset('images/location.png')}}" alt="logo" height="auto" width="20px">
 
-            <a class="textmode" href="{{ $post->location }}" target="blank">{{ $post->location }}</a>
+            <a class="textmode" href="{{ $post->location }}" target="blank">go to map</a>
         </div>
 
     </div>

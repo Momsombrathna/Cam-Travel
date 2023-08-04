@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('description', 800);
             $table->string('image', 800);
             $table->string('location', 800);
+            $table->boolean('approved')->default(false);
             $table->timestamps();
 
             $table->foreign('user_id')

@@ -36,9 +36,12 @@
               @if(count($users) > 0)
                 @foreach($users as $user)
                 <li style="border: 0;" class="list-group-item d-flex justify-content-between">
-                  <div class="col">
-                    <a class="row textmode" href="{{ route('profile.show', $user->id) }}">{{ $user->username }}</a>
-                    <a class="row textmode" href="{{ route('profile.show', $user->id) }}">{{ $user->name }}</a>
+                  <div class="row">
+                    <img src="{{$user->image}}" alt="" style="width: 70px" style="height: 70px"  class="rounded-circle">
+                    <div class="col">
+                      <a class="row textmode" href="{{ route('profile.show', $user->id) }}">{{ $user->username }}</a>
+                      <a class="row textmode" href="{{ route('profile.show', $user->id) }}">{{ $user->name }}</a>
+                    </div>
                   </div>
                   <span class="badge badge-primary">{{ $user->created_at->diffForHumans() }}</span>
                 </li>
@@ -52,9 +55,14 @@
               @if(count($posts) > 0)
                 @foreach($posts as $post)
                 <li style="border: 0;" class="list-group-item d-flex justify-content-between align-items-start">
-                  <div class="col">
-                    <a class="row textmode" href="{{ route('profile.showitem', $post->id) }}">{{ $post->title }}</a>
-                    <a class="row textmode" href="{{ route('profile.showitem', $post->id) }}">{{ $post->description }}</a>
+                  <div class="row">
+                    <div class="col">
+                      <img src="{{ $post->image }}" alt="" style="width:70px" >
+                    </div>
+                    <div class="col">
+                      <a class="row textmode" href="{{ route('profile.showitem', $post->id) }}">{{ $post->title }}</a>
+                      <a class="row textmode" href="{{ route('profile.showitem', $post->id) }}">{{ $post->description }}</a>
+                    </div>
                   </div>
                   <span class="badge badge-primary">{{ $post->created_at->diffForHumans() }}</span>
                 </li>
@@ -68,9 +76,14 @@
               @if(count($places) > 0)
                 @foreach($places as $place)
                 <li style="border: 0;" class="list-group-item d-flex justify-content-between align-items-start">
-                  <div class="col">
-                    <a class="row textmode" href="{{ route('profile.showitemplace', $place->id) }}">{{ $place->title }}</a>
-                    <a class="row textmode" href="{{ route('profile.showitemplace', $place->id) }}">{{ $place->description }}</a>
+                  <div class="row">
+                    <div class="col">
+                      <img src="{{ $place->image }}" alt="" style="width:70px" >
+                    </div>
+                    <div class="col">
+                      <a class="row textmode" href="{{ route('profile.showitemplace', $place->id) }}">{{ $place->title }}</a>
+                      <a class="row textmode" href="{{ route('profile.showitemplace', $place->id) }}">{{ $place->description }}</a>
+                    </div>
                   </div>
                   <span class="badge badge-primary">{{ $place->created_at->diffForHumans() }}</span>
                 </li>

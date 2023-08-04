@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
 use Carbon\Carbon;
+use App\Models\Cart;
+
 
 class UploadPhotoController extends Controller
 {
@@ -65,6 +67,15 @@ class UploadPhotoController extends Controller
         return view('uploadphoto.show', compact('post', 'user'));
     }
 
+    // show card
+    public function showcart(Post $post)
+    {
+        $user = $post->user;
+        $cart = Cart::where('user_id', auth()->user()->id)->where('post_id', $post->id)->first();
+
+        return view('uploadphoto.showcart', compact('post', 'user', 'cart'));
+    }
+
     public function edit(Post $post)
     {
         // Check if the user is authorized to edit the post
@@ -105,4 +116,44 @@ class UploadPhotoController extends Controller
         return redirect()->route('profile.index')
             ->withSuccess(__('Post deleted successfully.'));
     }
+
+    public function addToCart(Post $post)
+    {
+        // Check if the user has carts
+        if (auth()->user()->carts && auth()->user()->carts->count() > 0) {
+            // The user has carts
+            // Check if the post is already in their cart
+            if (auth()->user()->carts->contains('post_id', $post->id)) {
+                return redirect()->route('photo.show', $post->id)
+                    ->withError(__('Post already in your cart.'));
+            }
+        }
+
+        // Create a new Cart instance
+        $cart = new Cart();
+        $cart->user_id = auth()->user()->id;
+        $cart->post_id = $post->id;
+
+        // Save the Cart instance to the database
+        $cart->save();
+
+        return redirect()->route('photo.show', $post->id)
+            ->withSuccess(__('Post added to cart successfully.'));
+    }
+
+    public function destroycart(Cart $cart)
+    {
+        
+        
+        $cart->delete();
+
+        return redirect()->route('profile.index')
+            ->withSuccess(__('Post deleted successfully.'));
+    }
+
+
+
+
+
+
 }

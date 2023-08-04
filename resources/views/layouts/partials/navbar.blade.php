@@ -15,6 +15,9 @@
           .hide-on-small {
             display: none;
           }
+          .logo_small{
+            padding-right: 10px;
+          }
         }
         @media screen and (min-width: 720px) {
           .hide-on-huge {
@@ -27,7 +30,7 @@
     <nav>
         <div class="nav-bar">
             <i class='bx bx-menu sidebarOpen' ></i>
-            <span class="logo navLogo hide-on-small"><a href="{{ route('home.index') }}"><img src="https://res.cloudinary.com/dugfn9ryq/image/upload/v1690763506/houzgp8o3x2urwg8btvc.png" alt="logo" height="auto" width="185px"></a></span>
+            <span class="logo navLogo "><a href="{{ route('home.index') }}"><img src="https://res.cloudinary.com/dugfn9ryq/image/upload/v1690763506/houzgp8o3x2urwg8btvc.png" alt="logo" height="auto" width="160px"></a></span>
 
             <div class="menu">
                 <div class="logo-toggle">

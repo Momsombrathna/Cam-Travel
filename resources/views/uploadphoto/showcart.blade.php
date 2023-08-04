@@ -36,13 +36,8 @@
                     </div>
 
                     <div class="col">
-                        @can('update', $post)
-                        <a href="{{ route('uploadphoto.edit', $post->id) }}" class="btn btn-primary">Edit</a>
-                        @endcan
-                    </div>
-                    <div class="col">
-                        @can('update', $post)
-                        <form action="{{ route('uploadphoto.destroy', $post) }}" method="POST">
+                        @can('update', $cart)
+                        <form action="{{ route('save.destroy', $cart) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>

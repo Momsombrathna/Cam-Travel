@@ -11,6 +11,7 @@
     <script src='http://frontendfreecode.com/codes/files/imagesloaded.pkgd.min.js'></script>
 </head>
 
+    @include('layouts.partials.image_wrap')
 
     <body>
         @extends('layouts.partials.navbar')
@@ -34,10 +35,10 @@
                 <!-- Use Bootstrap grid system to create responsive columns -->
                 <div class="col-lg-3 col-md-4 col-6">
                     <!-- Use Bootstrap spacing utilities to control margins and paddings -->
-                    <div class="image--hover m-0 p-1">
+                    <div class="image--hover m-0">
                         <a href="{{ route('photo.show', $post->id) }}">
                             <!-- Use Bootstrap responsive breakpoints to change image height -->
-                            <img src="{{ $post->image }}"  class="img-fluid image h-25" style="width:100%; border-radius: 20px;">
+                            <img src="{{ $post->image }}"  class="img-fluid image h-25" style="width:100%; border-radius: 10px;">
                         </a>
                     </div>
                 </div>
@@ -45,21 +46,6 @@
             </div>
         </div>
 
-        <script>
-        window.onload = function () {
-            var imgDefer = document.getElementsByTagName("img");
-            for (var i = 0; i < imgDefer.length; i++) {
-                if (imgDefer[i].getAttribute("data-src")) {
-                    imgDefer[i].setAttribute("src", imgDefer[i].getAttribute("data-src"));
-                }
-            }
-            var $container = $(".masonry");
-            $container.imagesLoaded(function () {
-                $container.masonry({
-                    percentPosition: true
-                });
-            });
-        };
-        </script>
+
     </body>
 </html>

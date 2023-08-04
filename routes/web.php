@@ -98,6 +98,14 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             // Search routes
             Route::get('/search', 'SearchController@index')->name('search.index');
 
+            // Route for downloading the image
+            Route::get('/photo/download/{id}', 'PhotoController@download')->name('photo.download');
+
+            // Route add to cart
+            Route::post('/uploadphoto/{post}/cart', 'UploadPhotoController@addToCart')->name('photo.save');
+            Route::delete('/cart/{cart}/delete', 'UploadPhotoController@destroycart')->name('save.destroy');
+            Route::get('/cart/{post}/show', 'UploadPhotoController@showcart')->name('save.show');
+
 
     });
     });
