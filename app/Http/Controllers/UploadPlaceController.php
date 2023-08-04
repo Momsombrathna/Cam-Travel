@@ -7,6 +7,8 @@ use App\Models\Place;
 use App\Models\SavePlace;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\URL;
+use Jorenvh\Share\Share;
 
 class UploadPlaceController extends Controller
 {
@@ -67,7 +69,22 @@ class UploadPlaceController extends Controller
     {
         $user = $place->user;
 
-        return view('uploadplace.show', compact('place', 'user'));
+
+        $share = new Share();
+        $splace = $share->page(
+            url('https://camtravel.online/photo/12/show'),
+            'Your share text comes here',
+        )
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->whatsapp()
+        ->pinterest()
+        ->reddit()
+        ->telegram();
+
+
+        return view('uploadplace.show', compact('place', 'user', 'splace'));
     }
 
     // show card
@@ -83,7 +100,7 @@ class UploadPlaceController extends Controller
     {
         // Check if the user is authorized to edit the post
         $this->authorize('update', $place);
-    
+
         return view('uploadplace.edit', [
             'place' => $place
         ]);
@@ -115,7 +132,7 @@ class UploadPlaceController extends Controller
     {
         // Check if the user is authorized to edit the post
         $this->authorize('update', $place);
-        
+
         $place->delete();
 
         return redirect()->route('profile.index')

@@ -106,7 +106,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
 
             // share buuton to social media
             Route::get('/uploadphoto/{post}/show', 'ProfileController@share')->name('uploadphoto.show');
-            Route::get('/uploadplace/{post}/show', 'PlaceController@shareplacebtn')->name('uploadplace.show');
+            Route::get('/uploadplace/{post}/show', 'PlaceController@sharePlace')->name('uploadplace.show');
 
             // Route add to cart
             Route::post('/uploadphoto/{post}/cart', 'UploadPhotoController@addToCart')->name('photo.save');
