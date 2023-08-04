@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.0/css/all.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <br><br><br>
-
+    
 {{-- back class --}}
 <div class="container textmode card py-2 mb-3">
     <img style="cursor: pointer" onclick="history.back()" src="{{URL::asset('images/back.png')}}" alt="logo" height="auto" width="40px">
@@ -34,22 +34,27 @@
             {{-- col for desktop --}}
             <div class="col hide-on-small">
                 <div class="row" style="float:right">
-                    <div class="col">
-                        <a href="#">
-                            <i onclick="myFunction(this)" class="far fa-2x fa-bookmark"></i>
-                        </a>
-                    </div>
+                    
                     <script>
                        function myFunction(x) {
                             x.classList.toggle("fas fa-2x fa-bookmark");
                         }
                     </script>
+                    
 
                     <div class="col">
-                        <a href="#">
+                        <a id="download-btn" href="#">
                             {{-- <i class="fas fa-circle-arrow-down  fa-2x" ></i> --}}
                             <img style="cursor: pointer" src="{{URL::asset('images/download.png')}}" height="auto" width="40px">
                         </a>
+                    </div>
+                    
+                    <div class="col">
+                        <form action="{{ route('photo.save', $post->id) }}" method="post">
+                            @csrf
+                        
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </form>
                     </div>
                     {{-- <div class="col">
                         @can('update', $post)
@@ -107,23 +112,13 @@
                                     More
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <button class=" btn text-left">
-                                        <li><a class="dropdown-item" href="{{ route('uploadphoto.create') }}" >Download</a></li>
+                                    <button id="download-btn" class=" btn text-left">
+                                        <li><a class="dropdown-item" >Download</a></li>
                                     </button>
-                                    {{-- @can('update', $post)
-                                    <button class="btn text-left">
-                                        <li><a class="dropdown-item" href="{{ route('uploadphoto.edit', $post->id) }}" >Edit</a></li>
-                                    </button>
-                                    @endcan
-                                    @can('update', $post)
-                                    <form action="{{ route('uploadphoto.destroy', $post->id) }}" method="POST">
+                                    <form action="{{ route('photo.save', $post->id) }}" method="post">
                                         @csrf
-                                        @method('DELETE')
-                                        <button class=" btn  text-left">
-                                        <li><a class="dropdown-item" type="submit" >Delete</a></li>
-                                        </button>
+                                        <button type="submit" class="btn"><li><a class="dropdown-item" >save</a></li></button>
                                     </form>
-                                    @endcan --}}
                                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <li><a class="dropdown-item" >Share</a></li>
                                     </button>
@@ -138,12 +133,12 @@
     </div>
     <div class="card-body">
         <div class="card-containers">
-            <img class="card-img-top image-card " style="align-content: center; align-item:center" src=" {{$post->image}} "  alt="Card image cap">
+            <img class="card-img-top image-card image " style="align-content: center; align-item:center" src=" {{$post->image}} "  alt="Card image cap">
         </div>
         <hr class="textmode">
 
-        <h3 class="card-title textmode" >{{ $post->title }}</h3>
-        <p class="card-title textmode mb-5" >{{ $post->description }}</p>
+        <h3 class="card-title textmode" >Title: {{ $post->title }}</h3>
+        <p class="card-title textmode mb-5" >Description: {{ $post->description }}</p>
         <div>
             <i  href="{{ $post->location }}" class="fas textmode fa-location-dot"></i>
             <a class="textmode" href="{{ $post->location }}" target="blank">go to map</a>
@@ -155,7 +150,7 @@
         <p class="card-text textmode p-c" >Created at: {{ $post->created_at }} <br> Updated at: {{ $post->updated_at }}</p>
     </div>
 </div>
-
+@include('layouts.partials.imagedownload')
 <style>
     @media (max-width: 768px) {
         .img {

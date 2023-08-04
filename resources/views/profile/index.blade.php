@@ -21,14 +21,14 @@
 {{-- ======================================================================= --}}
 {{-- Section Profile User --}}
 {{-- ======================================================================= --}}
-<section class="UserProfile ">
-    <div class="container-fluid  py-5">
+<section class="UserProfile">
+    <div class="container-fluid py-5">
 
-        <div class="row ">
+        <div class="row">
         <div class="col-lg-4">
             @auth
             <div class="card mb-4 text-center">
-                <div class="card-body ">
+                <div class="card-body">
                     <img src="{{ $user->image }}" alt="avatar" class="image--cover">
                     <h3 class="my-3 textmode">{{auth()->user()->username}}</h3>
                 </div>
@@ -38,7 +38,7 @@
             </div>
             @endauth
         </div>
-        <div class="col-lg-8 textmode ">
+        <div class="col-lg-8 textmode">
             <div class="card mb-4" >
             <div class="card-body">
                 <div class="row ">
@@ -90,12 +90,6 @@
     </section>
     {{-- End Section Profile User --}}
 
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
-
 
 
     {{-- ======================================================================= --}}
@@ -111,14 +105,16 @@
         <div class="tab">
             <button class="tablinks" onclick="openCity(event, 'IDphoto')">Photo</button>
             <button class="tablinks" onclick="openCity(event, 'IDplace')">Place</button>
+            <button class="tablinks" onclick="openCity(event, 'IDsave')">Photo Save</button>
+            <button class="tablinks" onclick="openCity(event, 'IDsaveplace')">Place Save</button>
         </div>
 
         {{-- tap photo under profile --}}
-        <div id="IDphoto" class="tabcontent ">
-        <table class="w3-animate-opacity ">
+        <div id="IDphoto" class="tabcontent">
+        <table class="w3-animate-opacity">
             <div>
                 @if ($posts->count() > 0)
-                    <div class="container-fluid mb-5 ">
+                    <div class="container-fluid mb-5">
                         <div class="row gy-4 masonry">
                             @foreach ($posts as $post)
                                 <div class="col-lg-3 col-md-4 col-6">
@@ -133,7 +129,7 @@
                                             object-fit: cover;
                                             "
                                             src="{{ $post->image }} "
-                                            class="img-fluid textmode"
+                                            class="img-fluid"
                                         >
 
                                         <h5 hidden class="card-title">{{ $post->title }}</h5>
@@ -177,7 +173,7 @@
                                                 src="{{ $place->image }} "
                                                 class="img-fluid"
                                             >
-
+    
                                             <h5 hidden class="card-title">{{ $place->title }}</h5>
                                             <p hidden class="card-text">{{ $place->description }}</p>
                                             <p hidden class="card-text">{{ $place->location }}</p>
@@ -191,11 +187,97 @@
                         <p>No posts found.</p>
                     @endif
                 </div>
-
+    
                 @include('layouts.partials.showpost')
             </table>
             </div>
             {{-- End tap photo under profile --}}
+
+            {{-- tap photo under profile --}}
+            <div id="IDsave" class="tabcontent">
+                <table class="w3-animate-opacity">
+                    <div>
+                        @if ($carts->count() > 0)
+                            <div class="container-fluid mb-5">
+                                <div class="row gy-4 masonry">
+                                    @foreach ($carts as $cart)
+                                        <div class="col-lg-3 col-md-4 col-6">
+                                            <a href="{{ route('save.show', $cart->post->id) }}">
+                                                <img
+                                                    style=
+                                                    "
+                                                    cursor: pointer;
+                                                    width: 100%;
+                                                    height: 100%;
+                                                    max-height: 200px;
+                                                    object-fit: cover;
+                                                    "
+                                                    src="{{ $cart->post->image }} "
+                                                    class="img-fluid"
+                                                >
+        
+                                                <h5 hidden class="card-title">{{ $cart->post->title }}</h5>
+                                                <p hidden class="card-text">{{ $cart->post->description }}</p>
+                                                <p hidden class="card-text">{{ $cart->post->location }}</p>
+                                                {{-- <a  href="{{ route('uploadphoto.show', $post->id) }}" class="btn btn-primary">show</a> --}}
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @else
+                            <p>No posts found.</p>
+                        @endif
+                    </div>
+        
+                    @include('layouts.partials.showpost')
+                </table>
+                </div>
+                {{-- End tap photo under profile --}}
+
+                {{-- tap photo under profile --}}
+                <div id="IDsaveplace" class="tabcontent">
+                    <table class="w3-animate-opacity">
+                        <div>
+                            @if ($save_places->count() > 0)
+                                <div class="container-fluid mb-5">
+                                    <div class="row gy-4 masonry">
+                                        @foreach ($save_places as $save_place)
+                                            <div class="col-lg-3 col-md-4 col-6">
+                                                <a href="{{ route('placesave.show', $save_place->place->id) }}">
+                                                    <img
+                                                        style=
+                                                        "
+                                                        cursor: pointer;
+                                                        width: 100%;
+                                                        height: 100%;
+                                                        max-height: 200px;
+                                                        object-fit: cover;
+                                                        "
+                                                        src="{{ $save_place->place->image }} "
+                                                        class="img-fluid"
+                                                    >
+            
+                                                    <h5 hidden class="card-title">{{ $save_place->place->title }}</h5>
+                                                    <p hidden class="card-text">{{ $save_place->place->description }}</p>
+                                                    <p hidden class="card-text">{{ $save_place->place->location }}</p>
+                                                    {{-- <a  href="{{ route('uploadphoto.show', $post->id) }}" class="btn btn-primary">show</a> --}}
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @else
+                                <p>No posts found.</p>
+                            @endif
+                        </div>
+            
+                        @include('layouts.partials.showpost')
+                    </table>
+                    </div>
+                    {{-- End tap photo under profile --}}
+
+             
 
 @endsection
 
@@ -203,5 +285,3 @@
 <script type="text/javascript" src="{{ asset('assets/js/tap.js') }}"></script>
 </body>
 </html>
-
-

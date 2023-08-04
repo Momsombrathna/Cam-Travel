@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Place;
+use App\Models\SavePlace;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -69,6 +70,15 @@ class UploadPlaceController extends Controller
         return view('uploadplace.show', compact('place', 'user'));
     }
 
+    // show card
+    public function showsave(Place $place)
+    {
+        $user = $place->user;
+        $save_place = SavePlace::where('user_id', auth()->user()->id)->where('place_id', $place->id)->first();
+
+        return view('uploadplace.showcart', compact('place', 'user', 'save_place'));
+    }
+
     public function edit(Place $place)
     {
         // Check if the user is authorized to edit the post
@@ -107,6 +117,41 @@ class UploadPlaceController extends Controller
         $this->authorize('update', $place);
         
         $place->delete();
+
+        return redirect()->route('profile.index')
+            ->withSuccess(__('Post deleted successfully.'));
+    }
+    
+    public function addToSave(Place $place)
+    {
+        // Check if the user has carts
+        if (auth()->user()->save_places && auth()->user()->save_places->count() > 0) {
+            // The user has carts
+            // Check if the post is already in their cart
+            if (auth()->user()->save_places->contains('place_id', $place->id)) {
+                return redirect()->route('place.show', $place->id)
+                    ->withError(__('Post already in your cart.'));
+            }
+        }
+
+        // Create a new Cart instance
+        $save_places = new SavePlace();
+        $save_places->user_id = auth()->user()->id;
+        $save_places->place_id = $place->id;
+
+        // Save the Cart instance to the database
+        $save_places->save();
+
+        return redirect()->route('place.show', $place->id)
+            ->withSuccess(__('Post added to cart successfully.'));
+    }
+
+    public function destroyplacesave(SavePlace $save_place)
+    {  
+        // Check if the user is authorized to edit the post
+        $this->authorize('update', $save_place);
+        
+        $save_place->delete();
 
         return redirect()->route('profile.index')
             ->withSuccess(__('Post deleted successfully.'));

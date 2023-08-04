@@ -1,4 +1,3 @@
-
 @extends('layouts.app-master')
 @section('content')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.0/css/all.css">
@@ -21,7 +20,7 @@
                 <div class="row " style="float:left">
                     @auth
                         <div class="col" style="float: left; cursor:pointer" >
-                            <a href="{{ route('profile.show', $user->id) }}">
+                            <a href="{{ route('profile.index', $user->id) }}">
                                 <img class="userImage" src="{{$place->user->image }}" alt="avatar"/>
                             </a>
                         </div>
@@ -42,27 +41,16 @@
                             <img style="cursor: pointer" src="{{URL::asset('images/download.png')}}" height="auto" width="40px">
                         </a>
                     </div>
+                    
                     <div class="col">
-                        <form action="{{ route('placesave.save', $place->id) }}" method="post">
-                            @csrf
-                        
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </form>
-                    </div>
-                    {{-- <div class="col">
-                        @can('update', $place)
-                        <a href="{{ route('uploadplace.edit', $place->id) }}" class="btn btn-primary">Edit</a>
-                        @endcan
-                    </div>
-                    <div class="col">
-                        @can('update', $place)
-                        <form action="{{ route('uploadphoto.destroy', $place) }}" method="POST">
+                        @can('update', $save_place)
+                        <form action="{{ route('placesave.destroy', $save_place) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                         @endcan
-                    </div> --}}
+                    </div>
                     <div class="col">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -106,12 +94,18 @@
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     <button class=" btn text-left">
-                                        <li><a id="download-btn" class="dropdown-item">Download</a></li>
+                                        <li><a class="dropdown-item" id="download-btn" >Download</a></li>
                                     </button>
-                                    <form action="{{ route('placesave.save', $place->id) }}" method="post">
+                                    
+                                    @can('update', $save_place)
+                                    <form action="{{ route('placesave.destroy', $save_place->id) }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn"><li><a class="dropdown-item" >save</a></li></button>
+                                        @method('DELETE')
+                                        <button class=" btn  text-left">
+                                        <li><a class="dropdown-item" type="submit" >Delete</a></li>
+                                        </button>
                                     </form>
+                                    @endcan
                                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <li><a class="dropdown-item" >Share</a></li>
                                     </button>
@@ -180,6 +174,7 @@
 </style>
 
 @endsection
+
 
 
 

@@ -67,7 +67,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::post('/email/resend', 'VerificationController@resend')->name('verification.resend');
 
         // User verification routes
-        Route::group(['middleware' => ['verified']], function() {
+        // Route::group(['middleware' => ['verified']], function() {
             /**
              * Dashboard Routes
              */
@@ -108,7 +108,17 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::get('/uploadphoto/{post}/show', 'ProfileController@share')->name('uploadphoto.show');
             Route::get('/uploadplace/{post}/show', 'PlaceController@shareplacebtn')->name('uploadplace.show');
 
-    });
+            // Route add to cart
+            Route::post('/uploadphoto/{post}/cart', 'UploadPhotoController@addToCart')->name('photo.save');
+            Route::delete('/cart/{cart}/delete', 'UploadPhotoController@destroycart')->name('save.destroy');
+            Route::get('/cart/{post}/show', 'UploadPhotoController@showcart')->name('save.show');
+
+            // Route add to save
+            Route::post('/uploadplace/{place}/cart', 'UploadPlaceController@addToSave')->name('placesave.save');
+            Route::delete('/save_place/{save_place}/delete', 'UploadPlaceController@destroyplacesave')->name('placesave.destroy');
+            Route::get('/save_place/{place}/show', 'UploadPlaceController@showsave')->name('placesave.show');
+
+    // });
     });
 
 

@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Cart;
 use App\Models\Place;
 use App\Models\Post;
-
+use App\Models\SavePlace;
 
 class UserProfileController extends Controller
 {
@@ -18,8 +19,10 @@ class UserProfileController extends Controller
         $user = auth()->user();
         $posts = Post::where('user_id', auth()->user()->id)->get();
         $places = Place::where('user_id', auth()->user()->id)->get();
+        $carts = Cart::where('user_id', auth()->user()->id)->get();
+        $save_places = SavePlace::where('user_id', auth()->user()->id)->get();
 
-        return view('profile.index', compact('user', 'posts', 'places'));
+        return view('profile.index', compact('user', 'posts', 'places', 'carts', 'save_places'));
     }
 
     // public function showpost()

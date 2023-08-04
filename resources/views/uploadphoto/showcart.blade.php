@@ -1,9 +1,7 @@
-
 @extends('layouts.app-master')
 @section('content')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.0/css/all.css">
     <br><br><br>
-
 
 {{-- back class --}}
 <div class="container textmode card py-2 mb-3">
@@ -14,6 +12,7 @@
 
 {{-- main class --}}
 
+
 <div class="card ">
     <div class="card-header ">
         <div class="row textmode" >
@@ -21,17 +20,16 @@
                 <div class="row " style="float:left">
                     @auth
                         <div class="col" style="float: left; cursor:pointer" >
-                            <a href="{{ route('profile.show', $user->id) }}">
-                                <img class="userImage" src="{{$place->user->image }}" alt="avatar"/>
+                            <a href="{{ route('profile.index', $user->id) }}">
+                                <img class="userImage" src="{{$post->user->image }}" alt="avatar"/>
                             </a>
                         </div>
                         <div class="col textmode">
-                            <h5  style="justify-content:center">{{ $place->user->username }}</h5>
+                            <h5  style="justify-content:center">{{ $post->user->username }}</h5>
                         </div>
                     @endauth
                 </div>
             </div>
-
 
             {{-- col for desktop --}}
             <div class="col hide-on-small">
@@ -43,26 +41,15 @@
                         </a>
                     </div>
                     <div class="col">
-                        <form action="{{ route('placesave.save', $place->id) }}" method="post">
-                            @csrf
-                        
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </form>
-                    </div>
-                    {{-- <div class="col">
-                        @can('update', $place)
-                        <a href="{{ route('uploadplace.edit', $place->id) }}" class="btn btn-primary">Edit</a>
-                        @endcan
-                    </div>
-                    <div class="col">
-                        @can('update', $place)
-                        <form action="{{ route('uploadphoto.destroy', $place) }}" method="POST">
+                        @can('update', $cart)
+                        <form action="{{ route('save.destroy', $cart) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                         @endcan
-                    </div> --}}
+                    </div>
+                    
                     <div class="col">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -82,7 +69,7 @@
                         </div>
                         <div class="modal-body social-btn-sp" >
                             {{-- social media --}}
-
+                            {{-- {!! $shareBtn !!} --}}
                             {{-- end social media --}}
                         </div>
                         <div class="modal-footer">
@@ -106,12 +93,22 @@
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     <button class=" btn text-left">
-                                        <li><a id="download-btn" class="dropdown-item">Download</a></li>
+                                        <li><a class="dropdown-item" id="download-btn" >Download</a></li>
                                     </button>
-                                    <form action="{{ route('placesave.save', $place->id) }}" method="post">
+                                    @can('update', $post)
+                                    <button class="btn text-left">
+                                        <li><a class="dropdown-item" href="{{ route('uploadphoto.edit', $post->id) }}" >Edit</a></li>
+                                    </button>
+                                    @endcan
+                                    @can('update', $cart)
+                                    <form action="{{ route('save.destroy', $cart) }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn"><li><a class="dropdown-item" >save</a></li></button>
+                                        @method('DELETE')
+                                        <button class=" btn  text-left">
+                                        <li><a class="dropdown-item" type="submit" >Delete</a></li>
+                                        </button>
                                     </form>
+                                    @endcan
                                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <li><a class="dropdown-item" >Share</a></li>
                                     </button>
@@ -126,43 +123,21 @@
     </div>
     <div class="card-body">
         <div class="card-containers">
-            {{-- carousel image --}}
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img class="card-img-top image-card d-block image w-100 " style="align-content: center; align-item:center" src=" {{$place->image}} "  alt="Card image cap">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="card-img-top image-card d-block image w-100 " style="align-content: center; align-item:center" src=" {{$place->images}} "  alt="Card image cap">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="card-img-top image-card d-block image w-100 " style="align-content: center; align-item:center" src=" {{$place->imagess}} "  alt="Card image cap">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
-            {{-- end carousel image  --}}
+            <img class="card-img-top image-card image " style="align-content: center; align-item:center" src=" {{$post->image}} "  alt="Card image cap">
         </div>
         <hr class="textmode">
 
-        <h3 class="card-title textmode" >{{ $place->title }}</h3>
-        <p class="card-title textmode mb-5" >{{ $place->description }}</p>
+        <h3 class="card-title textmode" >Title: {{ $post->title }}</h3>
+        <p class="card-title textmode mb-5" >Description: {{ $post->description }}</p>
         <div>
-            <i  href="{{ $place->location }}" class="fas textmode fa-location-dot"></i>
-            <a class="textmode" href="{{ $place->location }}" target="blank">go to map</a>
+            <i  href="{{ $post->location }}" class="fas textmode fa-location-dot"></i>
+            <a class="textmode" href="{{ $post->location }}" target="blank">go to map</a>
         </div>
 
 
         <hr class="textmode">
 
-        <p class="card-text textmode p-c" >Created at: {{ $place->created_at }} <br> Updated at: {{ $place->updated_at }}</p>
+        <p class="card-text textmode p-c" >Created at: {{ $post->created_at }} <br> Updated at: {{ $post->updated_at }}</p>
     </div>
 </div>
 @include('layouts.partials.imagedownload')
@@ -180,7 +155,5 @@
 </style>
 
 @endsection
-
-
 
 

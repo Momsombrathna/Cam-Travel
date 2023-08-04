@@ -35,7 +35,7 @@
             <div class="col hide-on-small">
                 <div class="row" style="float:right">
                     <div class="col">
-                        <a href="#">
+                        <a id="download-btn" href="#">
                             {{-- <i class="fas fa-circle-arrow-down  fa-2x" ></i> --}}
                             <img style="cursor: pointer" src="{{URL::asset('images/download.png')}}" height="auto" width="40px">
                         </a>
@@ -97,7 +97,7 @@
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     <button class=" btn text-left">
-                                        <li><a class="dropdown-item" href="{{ route('uploadphoto.create') }}" >Download</a></li>
+                                        <li><a class="dropdown-item" id="download-btn" >Download</a></li>
                                     </button>
                                     @can('update', $post)
                                     <button class="btn text-left">
@@ -127,12 +127,12 @@
     </div>
     <div class="card-body">
         <div class="card-containers">
-            <img class="card-img-top image-card " style="align-content: center; align-item:center" src=" {{$post->image}} "  alt="Card image cap">
+            <img class="card-img-top image-card image " style="align-content: center; align-item:center" src=" {{$post->image}} "  alt="Card image cap">
         </div>
         <hr class="textmode">
 
-        <h3 class="card-title textmode" >{{ $post->title }}</h3>
-        <p class="card-title textmode mb-5" >{{ $post->description }}</p>
+        <h3 class="card-title textmode" >Title: {{ $post->title }}</h3>
+        <p class="card-title textmode mb-5" >Description: {{ $post->description }}</p>
         <div>
             <i  href="{{ $post->location }}" class="fas textmode fa-location-dot"></i>
             <a class="textmode" href="{{ $post->location }}" target="blank">go to map</a>
@@ -144,7 +144,7 @@
         <p class="card-text textmode p-c" >Created at: {{ $post->created_at }} <br> Updated at: {{ $post->updated_at }}</p>
     </div>
 </div>
-
+@include('layouts.partials.imagedownload')
 <style>
     @media (max-width: 768px) {
         .img {

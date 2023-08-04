@@ -36,7 +36,7 @@
             <div class="col hide-on-small">
                 <div class="row" style="float:right">
                     <div class="col">
-                        <a href="#">
+                        <a id="download-btn" href="#">
                             {{-- <i class="fas fa-circle-arrow-down  fa-2x" ></i> --}}
                             <img style="cursor: pointer" src="{{URL::asset('images/download.png')}}" height="auto" width="40px">
                         </a>
@@ -98,7 +98,7 @@
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     <button class=" btn text-left">
-                                        <li><a class="dropdown-item" href="{{ route('uploadphoto.create') }}" >Download</a></li>
+                                        <li><a class="dropdown-item" id="download-btn" >Download</a></li>
                                     </button>
                                     @can('update', $place)
                                     <button class="btn text-left">
@@ -132,13 +132,13 @@
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img class="card-img-top image-card d-block  w-100 " style="align-content: center; align-item:center" src=" {{$place->image}} "  alt="Card image cap">
+                    <img class="card-img-top image-card d-block image  w-100 " style="align-content: center; align-item:center" src=" {{$place->image}} "  alt="Card image cap">
                   </div>
                   <div class="carousel-item">
-                    <img class="card-img-top image-card d-block  w-100 " style="align-content: center; align-item:center" src=" {{$place->images}} "  alt="Card image cap">
+                    <img class="card-img-top image-card d-block image  w-100 " style="align-content: center; align-item:center" src=" {{$place->images}} "  alt="Card image cap">
                   </div>
                   <div class="carousel-item">
-                    <img class="card-img-top image-card d-block  w-100 " style="align-content: center; align-item:center" src=" {{$place->imagess}} "  alt="Card image cap">
+                    <img class="card-img-top image-card d-block image  w-100 " style="align-content: center; align-item:center" src=" {{$place->imagess}} "  alt="Card image cap">
                   </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -154,8 +154,8 @@
         </div>
         <hr class="textmode">
 
-        <h3 class="card-title textmode" >{{ $place->title }}</h3>
-        <p class="card-title textmode mb-5" >{{ $place->description }}</p>
+        <h3 class="card-title textmode" >Title: {{ $place->title }}</h3>
+        <p class="card-title textmode mb-5" >Description: {{ $place->description }}</p>
         <div>
             <i  href="{{ $place->location }}" class="fas textmode fa-location-dot"></i>
             <a class="textmode" href="{{ $place->location }}" target="blank">go to map</a>
@@ -167,7 +167,7 @@
         <p class="card-text textmode p-c" >Created at: {{ $place->created_at }} <br> Updated at: {{ $place->updated_at }}</p>
     </div>
 </div>
-
+@include('layouts.partials.imagedownload')
 <style>
     @media (max-width: 768px) {
         .img {

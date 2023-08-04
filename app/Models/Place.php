@@ -25,4 +25,9 @@ class Place extends Model
     { 
         return $this->belongsTo(User::class); 
     }
+
+    public function saveplace()
+    {
+        return $this->hasMany(SavePlace::class);
+    }
 }
